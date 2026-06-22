@@ -790,7 +790,9 @@
       var track = document.getElementById('roleTrack');
       var bar   = document.getElementById('roleProgress');
       if (!wrap || !track) return;
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      // mobile e reduced-motion: layout empilhado (CSS) — sem hijack de scroll
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+          window.matchMedia('(max-width: 768px)').matches) return;
 
       var total = track.querySelectorAll('.role-panel').length; // 5
 
