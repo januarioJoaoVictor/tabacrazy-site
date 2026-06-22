@@ -18,11 +18,11 @@
   function dismiss() {
     if (dismissed) return;
     dismissed = true;
+    // LIBERA scroll/clique JÁ no início da saída (o loader fade-out tem
+    // pointer-events:none, então não bloqueia enquanto some).
+    document.body.classList.remove('loader-active');
     el.classList.add('glitch-out');
-    setTimeout(() => {
-      document.body.classList.remove('loader-active');
-      el.remove();
-    }, GLITCH_DURATION);
+    setTimeout(() => { el.remove(); }, GLITCH_DURATION);
   }
 
   const isMobile = window.matchMedia('(max-width: 768px)').matches;
@@ -37,9 +37,9 @@
     video.addEventListener('error', dismiss, { once: true });
     setTimeout(dismiss, 1800);                   // corta o intro curto
   } else {
-    // MOBILE: só PNG estático — entrada CSS (.6s) + pausa, e sai em 1,8s
-    // (fade out de .4s → total ~2,2s, sem depender de nenhum evento de vídeo)
-    setTimeout(dismiss, 1800);
+    // MOBILE: só PNG estático — splash curtíssimo (entrada CSS .6s) e sai
+    // em 700ms pra liberar a tela rápido (sem prender o usuário).
+    setTimeout(dismiss, 700);
   }
 
   // timeout MÁXIMO de segurança — nunca deixa o usuário preso no loader
@@ -225,9 +225,10 @@
 
   // só acende DEPOIS que o loader de intro sair (senão a ignição roda atrás dele).
   // O efeito é só visual (letras inline) — não bloqueia scroll/clique.
+  // "loader saindo" = loader-active removido (a tela já está liberada);
+  // dispara a neon nesse momento, sem esperar o fade terminar.
   function loaderGone() {
-    return !document.getElementById('loader') &&
-           !document.body.classList.contains('loader-active');
+    return !document.body.classList.contains('loader-active');
   }
   var delay = isMobile ? 150 : 300;   // mobile: dispara quase imediato após o loader
   if (loaderGone()) {
