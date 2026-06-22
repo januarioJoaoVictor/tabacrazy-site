@@ -2593,6 +2593,20 @@ address {
   50%      { transform: translateX(8px); opacity: 1;   }
 }
 
+/* dica de rolagem: "deslize →" (desktop, horizontal) · "role ↓" (mobile, vertical).
+   Desktop fica idêntico ao que era; o variante mobile só aparece ≤768px. */
+.rih-mob, .rih-arr-mob { display: none; }
+.rih-arr-mob { animation-name: role-arr-down; }   /* seta ↓ com bounce vertical */
+@keyframes role-arr-down {
+  0%,100% { transform: translateY(0);   opacity: .35; }
+  50%      { transform: translateY(6px); opacity: 1;   }
+}
+@media (max-width: 768px) {
+  .rih-web, .rih-arr-web { display: none; }
+  .rih-mob     { display: inline; }
+  .rih-arr-mob { display: inline-block; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .role-intro__arrow { animation: none; opacity: .6; }
 }
