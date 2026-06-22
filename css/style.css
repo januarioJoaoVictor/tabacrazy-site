@@ -352,7 +352,8 @@ body.loader-active { overflow: hidden; }
   inset-inline: 0;
   height: var(--nav);
   z-index: 700;
-  transition: background var(--dur) var(--ease),
+  transition: transform .3s ease,
+              background var(--dur) var(--ease),
               backdrop-filter var(--dur) var(--ease),
               border-bottom var(--dur) var(--ease);
 }
@@ -363,6 +364,32 @@ body.loader-active { overflow: hidden; }
   -webkit-backdrop-filter: blur(18px);
   border-bottom: 1px solid var(--border);
 }
+
+/* esconde a navbar ao rolar p/ baixo (só o carrinho fica, via FAB) */
+body.nav-hidden .nav { transform: translateY(-100%); }
+
+/* carrinho flutuante — aparece só quando a navbar está oculta */
+.cart-fab {
+  display: none;
+  position: fixed;
+  top: 12px;
+  right: clamp(1rem, 4vw, 3rem);
+  z-index: 800;            /* acima da nav (700) */
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--text);
+  background: rgba(168,255,31,.16);     /* círculo sutil na cor da marca */
+  border: 1px solid rgba(168,255,31,.4);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  transition: background var(--dur) var(--ease);
+}
+.cart-fab:hover { background: rgba(168,255,31,.3); }
+body.nav-hidden .cart-fab { display: inline-flex; }
 
 .nav__in {
   display: flex;
@@ -3966,6 +3993,12 @@ address {
   height: 100%;
   touch-action: manipulation; /* toque sobe sem zoom/scroll acidental */
   cursor: pointer;
+}
+
+/* MOBILE: jogo maior (retrato) — ~80vh de altura, 100% da largura.
+   O buffer do canvas é ajustado por JS (fitCanvas) p/ não distorcer. */
+@media (max-width: 768px) {
+  .gframe { aspect-ratio: auto; height: 80vh; }
 }
 
 /* HUD */

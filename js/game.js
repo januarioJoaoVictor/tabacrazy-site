@@ -137,27 +137,49 @@ async function renderLeaderboard() {
   const overTitle = document.getElementById('over-title');
   const overSub   = document.getElementById('over-sub');
 
-  const W = 600, H = 360;
   const NEON = '#a8ff1f', PURPLE = '#9b2fe0', BG = '#0b0a0f';
+  const BASE_W = 600, BASE_H = 360;   // referência de tuning
 
-  /* ─ TUNING ─ */
-  const GRAVITY     = 1350;
-  const FLAP        = -380;
-  const PIPE_SPEED0 = 150;
-  const PIPE_W      = 62;
-  const GAP0        = 140;
-  const GAP_MIN     = 108;
-  const SPACING     = 230;
-  const PLAYER_X    = 140;
-  const PLAYER_R    = 17;
+  /* W/H e tuning recalculados em fitCanvas() — tudo relativo a 600×360.
+     Desktop: 600×360 fixo. Mobile: 100% largura × ~80vh (fica retrato). */
+  let W = BASE_W, H = BASE_H, sx = 1, sy = 1, s = 1;
+  let GRAVITY, FLAP, PIPE_SPEED0, PIPE_W, GAP0, GAP_MIN, SPACING, PLAYER_X, PLAYER_R;
 
   let player, pipes = [], score = 0, speed, gap, running = false, nextSpawnX;
   let rafId = null, lastTick = 0, scorePop = 0, deathFlash = 0, nome = '';
-  const bg = [];
+  let bg = [];
 
-  for (let i = 0; i < 26; i++) {
-    bg.push({ x: Math.random() * W, y: Math.random() * H, r: Math.random() * 1.6 + .4,
-              s: Math.random() * 16 + 6, c: Math.random() > .5 ? NEON : PURPLE });
+  function buildBg() {
+    bg = [];
+    for (let i = 0; i < 26; i++) {
+      bg.push({ x: Math.random() * W, y: Math.random() * H,
+                r: (Math.random() * 1.6 + .4) * s, s: (Math.random() * 16 + 6) * sx,
+                c: Math.random() > .5 ? NEON : PURPLE });
+    }
+  }
+
+  /* dimensiona o canvas e escala TODO o tuning/colisão proporcionalmente */
+  function fitCanvas() {
+    const mobile = window.matchMedia('(max-width: 768px)').matches;
+    if (mobile) {
+      const r = canvas.getBoundingClientRect();          // tamanho real (CSS: 100% × ~80vh)
+      W = Math.max(240, Math.round(r.width));
+      H = Math.max(320, Math.round(r.height));
+    } else {
+      W = BASE_W; H = BASE_H;
+    }
+    canvas.width = W; canvas.height = H;                  // buffer = tamanho de exibição
+    sx = W / BASE_W; sy = H / BASE_H; s = (sx + sy) / 2;
+    GRAVITY     = 1350 * sy;
+    FLAP        = -380 * sy;
+    PIPE_SPEED0 = 150  * sx;
+    PIPE_W      = 62   * sx;
+    GAP0        = 140  * sy;
+    GAP_MIN     = 108  * sy;
+    SPACING     = 230  * sx;
+    PLAYER_X    = 140  * sx;
+    PLAYER_R    = 17   * s;
+    buildBg();
   }
 
   const rand = (a, b) => a + Math.random() * (b - a);
@@ -203,7 +225,7 @@ async function renderLeaderboard() {
     const tilt = Math.max(-.5, Math.min(.85, vy / 620));
     const t = performance.now() / 200;
     ctx.save();
-    ctx.translate(x, y); ctx.rotate(tilt);
+    ctx.translate(x, y); ctx.rotate(tilt); ctx.scale(s, s);   // polvo proporcional ao canvas
     ctx.shadowBlur = 16; ctx.shadowColor = PURPLE;
     ctx.strokeStyle = PURPLE; ctx.lineWidth = 4; ctx.lineCap = 'round';
     for (let i = 0; i < 5; i++) {
@@ -223,10 +245,10 @@ async function renderLeaderboard() {
 
   function drawScore() {
     ctx.save();
-    ctx.font = '700 54px Anton, sans-serif';
+    ctx.font = '700 ' + (54 * s) + 'px Anton, sans-serif';
     ctx.textAlign = 'center'; ctx.textBaseline = 'top';
-    const s = 1 + scorePop * .3;
-    ctx.translate(W / 2, 22); ctx.scale(s, s);
+    const pop = 1 + scorePop * .3;
+    ctx.translate(W / 2, 22 * sy); ctx.scale(pop, pop);
     ctx.shadowBlur = 18; ctx.shadowColor = NEON; ctx.fillStyle = NEON;
     ctx.fillText(score, 0, 0);
     ctx.restore();
@@ -247,7 +269,7 @@ async function renderLeaderboard() {
   }
 
   function spawnPipe(x) {
-    const margin = 46;
+    const margin = 46 * sy;
     const gapY = rand(margin + gap / 2, H - margin - gap / 2);
     pipes.push({ x, gapY, gap, color: Math.random() > .5 ? NEON : PURPLE, passed: false });
   }
@@ -282,8 +304,8 @@ async function renderLeaderboard() {
       for (const p of pipes) {
         if (!p.passed && p.x + PIPE_W < player.x - PLAYER_R) {
           p.passed = true; score++; scorePop = 1;
-          speed = PIPE_SPEED0 + score * 4;
-          gap = Math.max(GAP_MIN, GAP0 - score * 1.5);
+          speed = PIPE_SPEED0 + score * 4 * sx;
+          gap = Math.max(GAP_MIN, GAP0 - score * 1.5 * sy);
           pintarRecorde();
         }
         if (hitPipe(player.x, player.y, PLAYER_R, p)) { die(); break; }
@@ -367,14 +389,26 @@ async function renderLeaderboard() {
   btnRename.addEventListener('click', trocarNome);
   inpName.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); iniciar(); } });
 
-  /* ─ boot: frame parado + ranking ─ */
+  /* desenha o frame parado (boot / idle) */
+  function drawIdle() {
+    player = { x: PLAYER_X, y: H / 2, vy: 0 };
+    drawBg(0);
+    ctx.strokeStyle = 'rgba(168,255,31,.35)'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(0, H - 1); ctx.lineTo(W, H - 1); ctx.stroke();
+    drawPolvo(player.x, player.y, 0);
+  }
+
+  /* ─ boot ─ */
+  fitCanvas();                 // dimensiona + escala antes de desenhar
   inpName.value = Placar.getNome() || '';
-  player = { x: PLAYER_X, y: H / 2, vy: 0 };
   pintarRecorde();
-  drawBg(0);
-  ctx.strokeStyle = 'rgba(168,255,31,.35)'; ctx.lineWidth = 2;
-  ctx.beginPath(); ctx.moveTo(0, H - 1); ctx.lineTo(W, H - 1); ctx.stroke();
-  drawPolvo(player.x, player.y, 0);
+  drawIdle();
+
+  // re-ajusta ao girar/redimensionar (só re-desenha o frame parado se não estiver jogando)
+  window.addEventListener('resize', function () {
+    fitCanvas();
+    if (!running) drawIdle();
+  }, { passive: true });
 })();
 
 renderLeaderboard();

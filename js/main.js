@@ -200,11 +200,14 @@
   }
 
   var hero = document.getElementById('hero') || el;
+  var isMobile = window.matchMedia('(max-width: 768px)').matches;
   var armed = false;
   function ligar() { if (armed) return; armed = true; el.classList.add('lit'); }
 
-  // dispara a ignição quando a Hero entra na viewport (1x por carregamento)
   function arm() {
+    // MOBILE: a Hero já está visível ao entrar → acende JÁ (sem observer)
+    if (isMobile) { ligar(); return; }
+    // DESKTOP: dispara quando a Hero entra na viewport (1x por carregamento)
     if ('IntersectionObserver' in window) {
       var obs = new IntersectionObserver(function (entries) {
         entries.forEach(function (e) {
@@ -220,18 +223,51 @@
     setTimeout(ligar, 4000); // rede de segurança
   }
 
-  // IMPORTANTE: só acende DEPOIS que o loader de intro sair — senão a
-  // ignição (~1,8s) acontece atrás do loader e a pessoa só vê "já aceso".
+  // só acende DEPOIS que o loader de intro sair (senão a ignição roda atrás dele).
+  // O efeito é só visual (letras inline) — não bloqueia scroll/clique.
   function loaderGone() {
     return !document.getElementById('loader') &&
            !document.body.classList.contains('loader-active');
   }
+  var delay = isMobile ? 150 : 300;   // mobile: dispara quase imediato após o loader
   if (loaderGone()) {
-    setTimeout(arm, 300);                 // pequeno respiro pra ver a palavra apagada
+    setTimeout(arm, delay);
   } else {
     var iv = setInterval(function () {
-      if (loaderGone()) { clearInterval(iv); setTimeout(arm, 300); }
+      if (loaderGone()) { clearInterval(iv); setTimeout(arm, delay); }
     }, 100);
     setTimeout(function () { clearInterval(iv); arm(); }, 6000); // hard-stop
+  }
+})();
+
+
+/* ── § NAV SCROLL (esconde a navbar ao rolar; mantém o carrinho via FAB) ── */
+(function navScroll() {
+  var nav = document.querySelector('.nav');
+  if (!nav) return;
+  var fab = document.getElementById('cartFab');
+  var lastY = window.scrollY || 0;
+  var hidden = false;
+
+  function setHidden(h) {
+    if (h === hidden) return;
+    hidden = h;
+    document.body.classList.toggle('nav-hidden', h);
+  }
+  function onScroll() {
+    var y = window.scrollY || 0;
+    if (y <= 80) setHidden(false);              // topo: navbar sempre visível
+    else if (y > lastY + 4) setHidden(true);    // rolando p/ baixo: esconde
+    else if (y < lastY - 4) setHidden(false);   // rolando p/ cima: mostra
+    lastY = y;
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // o carrinho flutuante abre o MESMO drawer do carrinho da navbar
+  if (fab) {
+    fab.addEventListener('click', function () {
+      var btn = document.getElementById('cartBtn');
+      if (btn) btn.click();
+    });
   }
 })();
