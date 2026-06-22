@@ -37,8 +37,9 @@
     video.addEventListener('error', dismiss, { once: true });
     setTimeout(dismiss, 1800);                   // corta o intro curto
   } else {
-    // MOBILE: mostra só o PNG transparente e entra rápido
-    setTimeout(dismiss, 1500);
+    // MOBILE: só PNG estático — entrada CSS (.6s) + pausa, e sai em 1,8s
+    // (fade out de .4s → total ~2,2s, sem depender de nenhum evento de vídeo)
+    setTimeout(dismiss, 1800);
   }
 
   // timeout MÁXIMO de segurança — nunca deixa o usuário preso no loader

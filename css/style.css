@@ -136,7 +136,8 @@ address    { font-style: normal; }
     height: auto;
     position: relative;
     z-index: 1;
-    animation: loader-pulse 1.6s ease-in-out infinite;
+    /* entrada suave (one-shot): opacity 0 + scale .85 → 1 */
+    animation: loader-in .6s ease-out both;
   }
   .hero__video { display: none; }
   .hero__img {
@@ -148,9 +149,9 @@ address    { font-style: normal; }
   }
 }
 
-@keyframes loader-pulse {
-  0%, 100% { transform: scale(1);    opacity: .9; }
-  50%      { transform: scale(1.05); opacity: 1;  }
+@keyframes loader-in {
+  0%   { opacity: 0; transform: scale(.85); }
+  100% { opacity: 1; transform: scale(1); }
 }
 @media (prefers-reduced-motion: reduce) {
   .loader__img { animation: none; }
@@ -165,6 +166,7 @@ body.loader-active { overflow: hidden; }
 /* ─ GLITCH OUT ─ */
 .loader.glitch-out {
   animation: loader-glitch .45s steps(2) forwards;
+  pointer-events: none;   /* sem camada residual bloqueando o conteúdo */
 }
 
 .loader.glitch-out .loader__video {
@@ -208,6 +210,15 @@ body.loader-active { overflow: hidden; }
   50%  { filter: hue-rotate(-40deg) contrast(1.6); transform: translate(8px,-3px); }
   75%  { filter: invert(.15) saturate(3); transform: translate(-4px,1px); }
   100% { filter: none; transform: translate(0,0); opacity: 0; }
+}
+
+/* MOBILE: saída do loader por fade limpo (sobrepõe o glitch do desktop).
+   Vem depois das regras de .glitch-out → vence por ordem de fonte no mobile. */
+@media (max-width: 768px) {
+  .loader { transition: opacity .4s ease; }
+  .loader.glitch-out { animation: none; opacity: 0; }
+  .loader.glitch-out::before,
+  .loader.glitch-out::after { display: none; }
 }
 
 @keyframes glitch-shift-r {
@@ -570,7 +581,7 @@ body.loader-active { overflow: hidden; }
 .hero__title--neon   {
   color: var(--neon);
   /* glow neon em camadas, numa var p/ reduzir no mobile (estado aceso) */
-  --neon-glow: 0 0 7px rgba(168,255,31,.9), 0 0 15px rgba(168,255,31,.55), 0 0 30px rgba(168,255,31,.35);
+  --neon-glow: 0 0 4px rgba(168,255,31,.45), 0 0 8px rgba(168,255,31,.28), 0 0 15px rgba(168,255,31,.18);
   text-shadow: var(--neon-glow);
 }
 .hero__title--purple { color: var(--purple); }
@@ -613,7 +624,7 @@ body.loader-active { overflow: hidden; }
 
 /* mobile: menos camadas de glow (performance) */
 @media (max-width: 768px) {
-  .hero__title--neon { --neon-glow: 0 0 6px rgba(168,255,31,.85), 0 0 12px rgba(168,255,31,.4); }
+  .hero__title--neon { --neon-glow: 0 0 3px rgba(168,255,31,.42), 0 0 6px rgba(168,255,31,.2); }
 }
 /* acessibilidade: sem flicker → neon estático */
 @media (prefers-reduced-motion: reduce) {
