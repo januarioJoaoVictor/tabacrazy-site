@@ -225,10 +225,13 @@
 
   // só acende DEPOIS que o loader de intro sair (senão a ignição roda atrás dele).
   // O efeito é só visual (letras inline) — não bloqueia scroll/clique.
-  // "loader saindo" = loader-active removido (a tela já está liberada);
-  // dispara a neon nesse momento, sem esperar o fade terminar.
+  // só dispara a neon quando o loader foi TOTALMENTE removido do DOM — assim
+  // a ignição escalonada roda numa tela limpa (o el.remove() no meio da
+  // animação reiniciava o efeito em alguns navegadores mobile → "só o M").
+  // A tela já fica interativa antes (o loader libera o overflow ao começar a sair).
   function loaderGone() {
-    return !document.body.classList.contains('loader-active');
+    return !document.getElementById('loader') &&
+           !document.body.classList.contains('loader-active');
   }
   var delay = isMobile ? 150 : 300;   // mobile: dispara quase imediato após o loader
   if (loaderGone()) {
