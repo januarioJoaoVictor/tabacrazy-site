@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Tabacrazy Loja — Sedas, Dichavadores, Boings, Bones, Bags e muito mais. Smoke shop em Piumhi/MG.">
+  <meta property="og:title"       content="Tabacrazy — Nossa Loja">
+  <meta property="og:description" content="Vê o que tem no balcão. Filtra por categoria.">
+  <meta property="og:type"        content="website">
+  <meta name="theme-color"        content="#0b0a0f">
+  <title>Tabacrazy — Nossa Loja</title>
+
+  <link rel="icon" type="image/png" href="logo/logoSemFundo.png">
+  <link rel="apple-touch-icon"      href="logo/logoSemFundo.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bangers&family=Permanent+Marker&family=Space+Grotesk:wght@300;400;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="grain"  aria-hidden="true"></div>
+  <div class="blobs"  aria-hidden="true">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+  </div>
+
+  <!-- ░ NAV ░ -->
+  <header class="nav" role="banner">
+    <div class="nav__in">
+      <a href="index.html" class="nav__logo" aria-label="Tabacrazy — início">
+        <span class="nav__dot" aria-hidden="true"></span>
+        <span class="nav__brand">TABA <span class="nav__brand--neon">CRAZY</span></span>
+      </a>
+      <nav aria-label="Principal">
+        <button class="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="navlist">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="navlist" id="navlist" role="list">
+          <li><a href="index.html#store">Loja</a></li>
+          <li><a href="adega.html">Adega</a></li>
+          <li><a href="index.html#jogo">Jogo</a></li>
+          <li><a href="index.html#role">O Rolê</a></li>
+          <li><a href="index.html#vem">Localização</a></li>
+          <li>
+            <button class="cart-btn" id="cartBtn" aria-label="Abrir carrinho">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                   stroke-linecap="round" stroke-linejoin="round" width="22" height="22" aria-hidden="true">
+                <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <path d="M16 10a4 4 0 01-8 0"/>
+              </svg>
+              <span class="cart-count" id="cartCount" aria-live="polite" hidden>0</span>
+            </button>
+          </li>
+          <li class="navlist__cta"><a href="https://wa.me/55XXXXXXXXXXX" target="_blank" rel="noopener noreferrer" class="btn btn--neon">BATER UM PAPO</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ░░ STORE COMPLETA ░░ -->
+    <section id="store" class="shop-section">
+      <div class="w">
+
+        <a href="index.html" class="store-back">← Voltar ao início</a>
+
+        <div class="shop-head">
+          <h2 class="shop-heading">
+            <span class="shop-heading--outline">NOSSA</span>
+            <span class="shop-heading--neon">LOJA</span>
+          </h2>
+          <p class="shop-lead">Filtra a categoria e vê o que tem no balcão.</p>
+        </div>
+
+        <div class="shop-filters" role="group" aria-label="Filtrar produtos">
+          <button class="shop-pill active" data-filter="todos">Todos</button>
+          <button class="shop-pill" data-filter="sedas">Sedas</button>
+          <button class="shop-pill" data-filter="dichavadores">Dichavadores</button>
+          <button class="shop-pill" data-filter="bones">Bones</button>
+          <button class="shop-pill" data-filter="bags">Bags</button>
+          <button class="shop-pill" data-filter="piteiras-papel">Piteiras de Papel</button>
+          <button class="shop-pill" data-filter="piteiras-vidro">Piteiras de Vidro</button>
+          <button class="shop-pill" data-filter="boings">Boings</button>
+          <button class="shop-pill" data-filter="kits">Kits</button>
+          <button class="shop-pill" data-filter="tesouras">Tesouras</button>
+          <button class="shop-pill" data-filter="cinzeiros">Cinzeiros</button>
+          <button class="shop-pill" data-filter="slicks">Slicks</button>
+          <button class="shop-pill" data-filter="cuia">Cuia</button>
+          <button class="shop-pill" data-filter="tabaco">Tabaco</button>
+          <button class="shop-pill" data-filter="isqueiros">Isqueiros</button>
+        </div>
+
+        <ul class="shop-grid" id="shop-grid" role="list">
+
+          <!-- ── SEDAS ── -->
+          <li class="shop-card" data-category="sedas">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://smokea.com/cdn/shop/products/raw-classic-1-1-4-rolling-papers-28321625079910.jpg" alt="RAW Classic 1¼" loading="lazy">
+                <span class="shop-badge shop-badge--novo">NOVO</span>
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old">R$ 10,90</p>
+                <p class="shop-card__name">RAW Classic 1¼</p>
+                <p class="shop-card__price">R$ 8,90</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="sedas">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://cdn.shopify.com/s/files/1/0741/9422/3327/files/OOH12_OCB_Organic_Hemp_114_Each_Mockup_2025_Web.jpg?v=1776277585" alt="OCB Organic Hemp" loading="lazy">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">OCB Organic Hemp</p>
+                <p class="shop-card__price">R$ 9,50</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="sedas">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://lionrollingcircus.com/img_grandes/20210119193205-1.jpg" alt="Lion Rolling Circus 1¼" loading="lazy">
+                <span class="shop-badge shop-badge--limited">LIMITED</span>
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old">R$ 9,90</p>
+                <p class="shop-card__name">Lion Rolling Circus 1¼</p>
+                <p class="shop-card__price">R$ 7,90</p>
+              </div>
+            </div>
+          </li>
+
+          <!-- ── DICHAVADORES ── -->
+          <li class="shop-card" data-category="dichavadores">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://spacecase.com/wp-content/uploads/2025/08/GSM-BLK-900x900-1-e1755207032294-510x510.jpg" alt="Space Case 4 Partes" loading="lazy">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Space Case 4 Partes</p>
+                <p class="shop-card__price">R$ 89,90</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="dichavadores">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://highonchapel.com/cdn/shop/files/aba7892c-9a1c-4350-8f57-4fa478f53204.jpg?v=1773838487" alt="Sharpstone 63mm" loading="lazy">
+                <span class="shop-badge shop-badge--novo">NOVO</span>
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old">R$ 89,90</p>
+                <p class="shop-card__name">Sharpstone 63mm</p>
+                <p class="shop-card__price">R$ 69,90</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="dichavadores">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://santacruzshredder.com/cdn/shop/files/Alum-medium-4p-glossyblack-M4BK1_2048x.jpg?v=1747246108" alt="Santa Cruz Shredder" loading="lazy">
+                <span class="shop-badge shop-badge--limited">LIMITED</span>
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Santa Cruz Shredder</p>
+                <p class="shop-card__price">R$ 119,90</p>
+              </div>
+            </div>
+          </li>
+
+          <!-- ── BONES ── -->
+          <li class="shop-card" data-category="bones">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://www.grasscity.com/cdn/shop/files/20211207_143735-kopieren.jpg?v=1769555374" alt="New Era 59Fifty" loading="lazy">
+                <span class="shop-badge shop-badge--limited">LIMITED</span>
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">New Era 59Fifty</p>
+                <p class="shop-card__price">R$ 159,90</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="bones">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://www.grasscity.com/cdn/shop/files/20220323_123216-kopieren.jpg?v=1769555381" alt="Snapback Fumô" loading="lazy">
+                <span class="shop-badge shop-badge--novo">NOVO</span>
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old">R$ 99,90</p>
+                <p class="shop-card__name">Snapback Fumô</p>
+                <p class="shop-card__price">R$ 89,90</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="bones">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://www.grasscity.com/cdn/shop/files/20211207_143745-kopieren.jpg?v=1769555374" alt="Dad Hat Crazy" loading="lazy">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Dad Hat Crazy</p>
+                <p class="shop-card__price">R$ 69,90</p>
+              </div>
+            </div>
+          </li>
+
+          <!-- ── BAGS ── -->
+          <li class="shop-card" data-category="bags">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://www.grasscity.com/cdn/shop/files/QWCP04_1_1.jpg?v=1769563288" alt="Pochete Streetwear" loading="lazy">
+                <span class="shop-badge shop-badge--novo">NOVO</span>
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old">R$ 89,90</p>
+                <p class="shop-card__name">Pochete Streetwear</p>
+                <p class="shop-card__price">R$ 69,90</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="bags">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://www.grasscity.com/cdn/shop/files/f5331_3_1600x_cd1fabe4-20fa-417a-8333-58831783dae7.jpg?v=1769550114" alt="Mochila Crazy" loading="lazy">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Mochila Crazy</p>
+                <p class="shop-card__price">R$ 149,90</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="bags">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://www.grasscity.com/cdn/shop/files/qw_shoulderbag_blue_front_1024x1024_2x_5e20950d-a0d2-4603-a92a-e9f59848f7e1.jpg?v=1769557413" alt="Bag de Ombro" loading="lazy">
+                <span class="shop-badge shop-badge--limited">LIMITED</span>
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Bag de Ombro</p>
+                <p class="shop-card__price">R$ 99,90</p>
+              </div>
+            </div>
+          </li>
+
+          <!-- ── PITEIRAS DE PAPEL ── -->
+          <li class="shop-card" data-category="piteiras-papel">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://smokea.com/cdn/shop/files/raw-perforated-gummed-tips-29691302379622.jpg" alt="RAW Tips Clássico" loading="lazy">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">RAW Tips Clássico</p>
+                <p class="shop-card__price">R$ 4,90</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="piteiras-papel">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://dankstop.com/cdn/shop/products/raw-rolling-paper-tips-filter-tips-28149888614474.jpg" alt="OCB Filter Tips" loading="lazy">
+                <span class="shop-badge shop-badge--novo">NOVO</span>
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old">R$ 6,90</p>
+                <p class="shop-card__name">OCB Filter Tips</p>
+                <p class="shop-card__price">R$ 5,90</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="piteiras-papel">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://lionrollingcircus.com/img_grandes/20210119193214-1.jpg" alt="Smoking Deluxe Tips" loading="lazy">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Smoking Deluxe Tips</p>
+                <p class="shop-card__price">R$ 4,50</p>
+              </div>
+            </div>
+          </li>
+
+          <!-- ── PITEIRAS DE VIDRO ── -->
+          <li class="shop-card" data-category="piteiras-vidro">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://hippiebong.com.br/cdn/shop/files/Piteira-de-vidro-transparente-basica-hippiebong-padrao-1.webp?crop=center&height=461&v=1746119168&width=461" alt="Piteira Vidro 6mm" loading="lazy">
+                <span class="shop-badge shop-badge--novo">NOVO</span>
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old">R$ 9,90</p>
+                <p class="shop-card__name">Piteira Vidro 6mm</p>
+                <p class="shop-card__price">R$ 7,90</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="piteiras-vidro">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://hippiebong.com.br/cdn/shop/files/Piteira-de-vidro-transparente-longa-hippiebong-XXL-Hippie-Bong-01.webp?v=1775056243" alt="Piteira Colorida 8mm" loading="lazy">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Piteira Colorida 8mm</p>
+                <p class="shop-card__price">R$ 9,90</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="piteiras-vidro">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://hippiebong.com.br/cdn/shop/files/Piteira-de-vidro-transparente-basica-hippiebong-padrao-1.webp?v=1746119168" alt="Piteira Borossilicato" loading="lazy">
+                <span class="shop-badge shop-badge--limited">LIMITED</span>
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Piteira Borossilicato</p>
+                <p class="shop-card__price">R$ 14,90</p>
+              </div>
+            </div>
+          </li>
+
+          <!-- ── BOINGS ── -->
+          <li class="shop-card" data-category="boings">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://smokea.com/cdn/shop/products/headway-8-straight-acrylic-bong-clear-534385164318_400x.jpg" alt="Bong Acrílico 30cm" loading="lazy">
+                <span class="shop-badge shop-badge--novo">NOVO</span>
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old">R$ 99,90</p>
+                <p class="shop-card__name">Bong Acrílico 30cm</p>
+                <p class="shop-card__price">R$ 79,90</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="boings">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://smokea.com/cdn/shop/files/seshgear-lean-back-bent-tube-colored-glass-bong-1242912506_400x.jpg?v=1780683071" alt="Bong de Vidro Artístico" loading="lazy">
+                <span class="shop-badge shop-badge--limited">LIMITED</span>
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Bong de Vidro Artístico</p>
+                <p class="shop-card__price">R$ 189,90</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="boings">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://smokea.com/cdn/shop/files/seshgear-pastel-mini-glass-bong-1242717719_400x.jpg?v=1780603630" alt="Mini Bong 20cm" loading="lazy">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Mini Bong 20cm</p>
+                <p class="shop-card__price">R$ 59,90</p>
+              </div>
+            </div>
+          </li>
+
+          <!-- ── KITS ── -->
+          <li class="shop-card" data-category="kits">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://dankstop.com/cdn/shop/files/RawSeshCombo.jpg?v=1744308567" alt="Kit Fumante RAW" loading="lazy">
+                <span class="shop-badge shop-badge--novo">NOVO</span>
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old">R$ 49,90</p>
+                <p class="shop-card__name">Kit Fumante RAW</p>
+                <p class="shop-card__price">R$ 39,90</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="kits">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://smokea.com/cdn/shop/files/seshgear-positive-twist-beaker-glass-bong-1242717732_400x.jpg?v=1780604409" alt="Kit Starter Pack" loading="lazy">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Kit Starter Pack</p>
+                <p class="shop-card__price">R$ 79,90</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="kits">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://smokea.com/cdn/shop/files/seshgear-shorty-color-beaker-bong-blue-1182506545_400x.jpg?v=1753985794" alt="Kit Complete 420" loading="lazy">
+                <span class="shop-badge shop-badge--limited">LIMITED</span>
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Kit Complete 420</p>
+                <p class="shop-card__price">R$ 119,90</p>
+              </div>
+            </div>
+          </li>
+
+          <!-- ── TESOURAS ── -->
+          <li class="shop-card" data-category="tesouras">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://santacruzshredder.com/cdn/shop/files/SCS_METAL_4PC_M_AQUA_EXPLODED_2048x.jpg?v=1747246072" alt="Tesoura Trim 170mm" loading="lazy">
+                <span class="shop-badge shop-badge--novo">NOVO</span>
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old">R$ 59,90</p>
+                <p class="shop-card__name">Tesoura Trim 170mm</p>
+                <p class="shop-card__price">R$ 49,90</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="tesouras">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://santacruzshredder.com/cdn/shop/files/SCS_METAL_4PC_M_GR_EXPLODED_2048x.jpg?v=1747246108" alt="Tesoura Grinder" loading="lazy">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Tesoura Grinder</p>
+                <p class="shop-card__price">R$ 29,90</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="tesouras">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://santacruzshredder.com/cdn/shop/files/SCS_METAL_4PC_M_SILVER_EXPLODED_2048x.jpg?v=1747246108" alt="Tesoura Multitool" loading="lazy">
+                <span class="shop-badge shop-badge--limited">LIMITED</span>
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Tesoura Multitool</p>
+                <p class="shop-card__price">R$ 69,90</p>
+              </div>
+            </div>
+          </li>
+
+          <!-- ── CINZEIROS ── -->
+          <li class="shop-card" data-category="cinzeiros">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://smokea.com/cdn/shop/products/king-palm-black-glass-ashtray-28491938562150.jpg?v=1635187908" alt="Cinzeiro de Vidro" loading="lazy">
+                <span class="shop-badge shop-badge--novo">NOVO</span>
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old">R$ 24,90</p>
+                <p class="shop-card__name">Cinzeiro de Vidro</p>
+                <p class="shop-card__price">R$ 19,90</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="cinzeiros">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://smokea.com/cdn/shop/products/king-palm-black-glass-ashtray-28491951865958.jpg?v=1635188085" alt="Cinzeiro Metal Clipper" loading="lazy">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Cinzeiro Metal Clipper</p>
+                <p class="shop-card__price">R$ 34,90</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="cinzeiros">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://smokea.com/cdn/shop/products/debowler-ashtray-28424799879270_400x.jpg?v=1632340312" alt="Cinzeiro Triplo" loading="lazy">
+                <span class="shop-badge shop-badge--limited">LIMITED</span>
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Cinzeiro Triplo</p>
+                <p class="shop-card__price">R$ 44,90</p>
+              </div>
+            </div>
+          </li>
+
+          <!-- ── SLICKS ── -->
+          <li class="shop-card" data-category="slicks">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://smokea.com/cdn/shop/products/smokea-silicone-storage-container-5ml-28319683870822.jpg" alt="Slick Silicone 10ml" loading="lazy">
+                <span class="shop-badge shop-badge--novo">NOVO</span>
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old">R$ 19,90</p>
+                <p class="shop-card__name">Slick Silicone 10ml</p>
+                <p class="shop-card__price">R$ 14,90</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="slicks">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://smokea.com/cdn/shop/products/smokea-silicone-storage-container-3ml-28336379920486.jpg" alt="Slick Container Set" loading="lazy">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Slick Container Set</p>
+                <p class="shop-card__price">R$ 29,90</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="slicks">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://smokea.com/cdn/shop/products/smokea-silicone-storage-container-7ml-28336382279782.jpg" alt="Slick Pote Colorido" loading="lazy">
+                <span class="shop-badge shop-badge--limited">LIMITED</span>
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Slick Pote Colorido</p>
+                <p class="shop-card__price">R$ 12,90</p>
+              </div>
+            </div>
+          </li>
+
+          <!-- ── CUIA ── -->
+          <li class="shop-card" data-category="cuia">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://yerbamatelab.com/cdn/shop/files/brazilian_cuia_white_background.jpg?v=1775927360" alt="Cuia Artesanal" loading="lazy">
+                <span class="shop-badge shop-badge--novo">NOVO</span>
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old">R$ 39,90</p>
+                <p class="shop-card__name">Cuia Artesanal</p>
+                <p class="shop-card__price">R$ 29,90</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="cuia">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://yerbamatelab.com/cdn/shop/files/cuia_ceramic_base.jpg?v=1775927413" alt="Cuia Premium Inox" loading="lazy">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Cuia Premium Inox</p>
+                <p class="shop-card__price">R$ 49,90</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="cuia">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://yerbamatelab.com/cdn/shop/files/cuia-for-chimarrao.jpg?v=1760307250" alt="Kit Cuia + Bomba" loading="lazy">
+                <span class="shop-badge shop-badge--limited">LIMITED</span>
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Kit Cuia + Bomba</p>
+                <p class="shop-card__price">R$ 69,90</p>
+              </div>
+            </div>
+          </li>
+
+          <!-- ── TABACO ── -->
+          <li class="shop-card" data-category="tabaco">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://www.smoke-king.co.uk/cdn/shop/files/Amsterdamer-Original-Hand-Rolling-Tobacco-30g-Pouch.png" alt="Amsterdamer Original" loading="lazy">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Amsterdamer Original</p>
+                <p class="shop-card__price">R$ 29,90</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="tabaco">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://lionrollingcircus.com/img_grandes/20230921162108-1.png" alt="Captain Black Whiskey" loading="lazy">
+                <span class="shop-badge shop-badge--limited">LIMITED</span>
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Captain Black Whiskey</p>
+                <p class="shop-card__price">R$ 39,90</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="tabaco">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://lionrollingcircus.com/img_grandes/20210119193222-1.jpg" alt="Don Aurelio Suave" loading="lazy">
+                <span class="shop-badge shop-badge--novo">NOVO</span>
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old">R$ 29,90</p>
+                <p class="shop-card__name">Don Aurelio Suave</p>
+                <p class="shop-card__price">R$ 24,90</p>
+              </div>
+            </div>
+          </li>
+
+          <!-- ── ISQUEIROS ── -->
+          <li class="shop-card" data-category="isqueiros">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://thehigheststreet.com/cdn/shop/files/Clipper_Jet_Flame_Nebula_Design_Lighter.jpg?v=1740564605" alt="Clipper Estampado" loading="lazy">
+                <span class="shop-badge shop-badge--novo">NOVO</span>
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old">R$ 15,90</p>
+                <p class="shop-card__name">Clipper Estampado</p>
+                <p class="shop-card__price">R$ 12,90</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="isqueiros">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://thehigheststreet.com/cdn/shop/files/Clipper_Black_Crystal_Gradient_Design.jpg?v=1740564428" alt="Clipper Liso" loading="lazy">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Clipper Liso</p>
+                <p class="shop-card__price">R$ 9,90</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="isqueiros">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://thehigheststreet.com/cdn/shop/files/Clipper_Classic_420_Girly.png?v=1740564375" alt="Clipper Mega Edição" loading="lazy">
+                <span class="shop-badge shop-badge--limited">LIMITED</span>
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Clipper Mega Edição</p>
+                <p class="shop-card__price">R$ 18,90</p>
+              </div>
+            </div>
+          </li>
+
+        </ul>
+
+        <!-- destino das seções por categoria (geradas dinamicamente por js/shop.js) -->
+        <div id="shop-cats"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="w footer__in">
+      <div class="footer__brand">
+        <img src="logo/logoSemFundo.png" alt="Tabacrazy" width="80" height="32" loading="lazy">
+        <p class="footer__tag">O rolê mais louco da cidade.</p>
+      </div>
+      <nav class="footer__links" aria-label="Links do rodapé">
+        <a href="https://instagram.com/tabacrazy"   target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://wa.me/55XXXXXXXXXXX"        target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      </nav>
+      <div class="footer__meta">
+        <span class="badge-18" aria-label="+18 — proibido vender a menores de 18 anos">+18</span>
+        <address>Rua Dom Pedro II, nº&nbsp;568 A · Piumhi/MG<br>Seg–Sáb · 13h às 01h</address>
+        <p class="footer__copy">© <span id="ano"></span> Tabacrazy. Todos os direitos.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+
+  <!-- ░ CARRINHO — overlay ░ -->
+  <div class="cart-overlay" id="cartOverlay" aria-hidden="true"></div>
+
+  <!-- ░ CARRINHO — sidebar ░ -->
+  <aside class="cart-drawer" id="cartDrawer"
+         role="dialog" aria-modal="true" aria-label="Carrinho de compras" tabindex="-1">
+    <div class="cart-drawer__head">
+      <h2 class="cart-drawer__title">CARRINHO</h2>
+      <button class="cart-drawer__close" id="cartClose" aria-label="Fechar carrinho">✕</button>
+    </div>
+    <div class="cart-drawer__body" id="cartBody"></div>
+    <div class="cart-drawer__foot" id="cartFoot"></div>
+  </aside>
+
+  <!-- motor compartilhado Loja+Adega: agrupa categorias + filtro + carrinho -->
+  <script src="js/shop.js"></script>
+</body>
+</html>

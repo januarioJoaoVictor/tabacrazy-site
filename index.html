@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Tabacrazy — smoke shop em Piumhi/MG. Narguiles, fumos premium, acessórios. Seg–Sáb 13h às 01h.">
+  <meta property="og:title"       content="Tabacrazy – Smoke Shop">
+  <meta property="og:description" content="O rolê mais louco da cidade.">
+  <meta property="og:type"        content="website">
+  <meta name="theme-color"        content="#0b0a0f">
+  <title>Tabacrazy – Smoke Shop · Piumhi/MG</title>
+
+  <link rel="icon" type="image/png" href="logo/logoSemFundo.png">
+  <link rel="apple-touch-icon"      href="logo/logoSemFundo.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bangers&family=Permanent+Marker&family=Space+Grotesk:wght@300;400;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ░ LOADER ░ -->
+  <div id="loader" class="loader" aria-hidden="true">
+    <video
+        id="loader-video"
+        class="loader__video"
+        src="logo/logoAnimadaHero.webm"
+        autoplay
+        loop
+        muted
+        playsinline
+        preload="auto"
+      ></video>
+    <canvas id="loader-vignette" class="loader__vignette"></canvas>
+    <p class="loader__since">Since 2021</p>
+  </div>
+
+  <a class="skip-link" href="#main">Ir ao conteúdo</a>
+
+  <!-- ░ ATMOSFERA ░ -->
+  <div class="grain"  aria-hidden="true"></div>
+  <div class="blobs"  aria-hidden="true">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+  </div>
+
+  <!-- ░ NAV ░ -->
+  <header class="nav" role="banner">
+    <div class="nav__in">
+      <a href="index.html" class="nav__logo" aria-label="Tabacrazy — início">
+        <span class="nav__dot" aria-hidden="true"></span>
+        <span class="nav__brand">TABA <span class="nav__brand--neon">CRAZY</span></span>
+      </a>
+      <nav aria-label="Principal">
+        <button class="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="navlist">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="navlist" id="navlist" role="list">
+          <li><a href="#store">Loja</a></li>
+          <li><a href="adega.html">Adega</a></li>
+          <li><a href="#jogo">Jogo</a></li>
+          <li><a href="#role">O Rolê</a></li>
+          <li><a href="#vem">Localização</a></li>
+          <li>
+            <button class="cart-btn" id="cartBtn" aria-label="Abrir carrinho">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                   stroke-linecap="round" stroke-linejoin="round" width="22" height="22" aria-hidden="true">
+                <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <path d="M16 10a4 4 0 01-8 0"/>
+              </svg>
+              <span class="cart-count" id="cartCount" aria-live="polite" hidden>0</span>
+            </button>
+          </li>
+          <li class="navlist__cta"><a href="https://wa.me/55XXXXXXXXXXX" target="_blank" rel="noopener noreferrer" class="btn btn--neon">BATER UM PAPO</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ░░ HERO ░░ -->
+    <section id="hero" class="hero" aria-label="Hero">
+      <div class="hero__inner">
+
+        <div class="hero__copy">
+          <p class="hero__eyebrow">
+            PIUMHI&nbsp;·&nbsp;MG&nbsp;—&nbsp;TABACARIA
+            <span class="hero__since">Since 2021</span>
+          </p>
+
+          <h1 class="hero__title">
+            <span class="hero__title--white">A TABACARIA</span>
+            <span class="hero__title--neon" aria-label="MAIS LOUCA">MAIS LOUCA</span>
+            <span class="hero__title--purple">DE PIUMHI</span>
+          </h1>
+
+          <p class="hero__sub">
+            Acessório de primeira, copão gelado, sinuca, video
+            game e aquele bate-papo. O ponto de encontro da rua
+            — onde a resenha não para.
+          </p>
+
+          <div class="hero__ctas">
+            <a href="#vem" class="btn btn--neon">COMO CHEGAR →</a>
+            <a href="#role" class="btn btn--ghost">VER O ROLÊ</a>
+          </div>
+        </div>
+
+        <div class="hero__media">
+          <video
+            class="hero__video"
+            src="logo/logoAnimadaHero.webm"
+            autoplay
+            loop
+            muted
+            playsinline
+            aria-hidden="true"
+          ></video>
+        </div>
+
+      </div>
+
+      <span class="scroll-cue" aria-hidden="true">↓ &nbsp; scroll</span>
+    </section>
+
+ <!-- ░ TICKER ░ -->
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="ti-item ti-brand"><img src="https://ocb.net/wp-content/themes/templatePLG/dist/images/logoOCB.svg" alt="OCB" class="ti-brand__img" loading="lazy"></span>
+    <span class="ti-item ti-brand ti-brand--text">RAW</span>
+    <span class="ti-item ti-brand"><img src="https://lionrollingcircus.com/img/logo.svg" alt="Lion Rolling Circus" class="ti-brand__img" loading="lazy"></span>
+    <span class="ti-item ti-brand ti-brand--text">ZOMO</span>
+    <span class="ti-item ti-brand ti-brand--text">CLIPPER</span>
+    <span class="ti-item ti-brand ti-brand--text">SANTA CRUZ</span>
+    <span class="ti-item ti-brand ti-brand--text">HQ</span>
+    <span class="ti-item ti-brand ti-brand--text">GORILLA</span>
+    <span class="ti-item ti-brand ti-brand--text">BLUE ICE</span>
+    <span class="ti-item ti-brand"><img src="https://ocb.net/wp-content/themes/templatePLG/dist/images/logoOCB.svg" alt="OCB" class="ti-brand__img" loading="lazy"></span>
+    <span class="ti-item ti-brand ti-brand--text">RAW</span>
+    <span class="ti-item ti-brand"><img src="https://lionrollingcircus.com/img/logo.svg" alt="Lion Rolling Circus" class="ti-brand__img" loading="lazy"></span>
+    <span class="ti-item ti-brand ti-brand--text">ZOMO</span>
+    <span class="ti-item ti-brand ti-brand--text">CLIPPER</span>
+    <span class="ti-item ti-brand ti-brand--text">SANTA CRUZ</span>
+    <span class="ti-item ti-brand ti-brand--text">HQ</span>
+    <span class="ti-item ti-brand ti-brand--text">GORILLA</span>
+    <span class="ti-item ti-brand ti-brand--text">BLUE ICE</span>
+    <span class="ti-item ti-brand"><img src="https://ocb.net/wp-content/themes/templatePLG/dist/images/logoOCB.svg" alt="OCB" class="ti-brand__img" loading="lazy"></span>
+    <span class="ti-item ti-brand ti-brand--text">RAW</span>
+    <span class="ti-item ti-brand"><img src="https://lionrollingcircus.com/img/logo.svg" alt="Lion Rolling Circus" class="ti-brand__img" loading="lazy"></span>
+    <span class="ti-item ti-brand ti-brand--text">ZOMO</span>
+    <span class="ti-item ti-brand ti-brand--text">CLIPPER</span>
+    <span class="ti-item ti-brand ti-brand--text">SANTA CRUZ</span>
+    <span class="ti-item ti-brand ti-brand--text">HQ</span>
+    <span class="ti-item ti-brand ti-brand--text">GORILLA</span>
+    <span class="ti-item ti-brand ti-brand--text">BLUE ICE</span>
+  
+  </div>
+</div>
+
+    <!-- ░░ LOJA — vitrine única (3 subseções) ░░ -->
+<section id="store" class="vitrine" aria-label="Loja">
+
+  <div class="w vitrine__head">
+    <h2 class="vitrine__heading">
+      <span class="vitrine__heading--outline">NOSSA</span>
+      <span class="vitrine__heading--neon">LOJA</span>
+    </h2>
+    <p class="vitrine__lead">Do drop novo à promoção do balcão — e o combo pronto pra fechar no zap.</p>
+  </div>
+
+  <!-- 01 — NOVIDADES -->
+  <div class="vitrine__band drop-sec">
+    <div class="w">
+
+    <div class="band-head drop-head">
+      <p class="vitrine__num">01 / NOVIDADES</p>
+      <span class="drop-stamp" aria-hidden="true">
+        <span class="drop-stamp__kicker">FRESH</span>
+        <span class="drop-stamp__big">DROP</span>
+        <span class="drop-stamp__date">JUN · 26</span>
+      </span>
+    </div>
+
+    <ul class="drop-grid" role="list">
+
+      <!-- RAW Classic 1¼ -->
+      <li class="drop-card">
+        <div class="drop-card__media">
+          <img src="https://smokea.com/cdn/shop/products/raw-classic-1-1-4-rolling-papers-28321625079910.jpg" alt="RAW Classic 1¼" loading="lazy">
+          <span class="drop-card__tag">NEW DROP</span>
+        </div>
+        <div class="drop-card__body">
+          <p class="drop-card__name">RAW Classic 1¼</p>
+          <p class="drop-card__price">R$ 8,90</p>
+          <a class="drop-card__link" href="store.html">VER NA LOJA →</a>
+        </div>
+      </li>
+
+      <!-- Bong Acrílico 30cm -->
+      <li class="drop-card">
+        <div class="drop-card__media">
+          <img src="https://smokea.com/cdn/shop/products/headway-8-straight-acrylic-bong-clear-534385164318_400x.jpg" alt="Bong Acrílico 30cm" loading="lazy">
+          <span class="drop-card__tag">NEW DROP</span>
+        </div>
+        <div class="drop-card__body">
+          <p class="drop-card__name">Bong Acrílico 30cm</p>
+          <p class="drop-card__price">R$ 79,90</p>
+          <a class="drop-card__link" href="store.html">VER NA LOJA →</a>
+        </div>
+      </li>
+
+      <!-- Clipper Estampado -->
+      <li class="drop-card">
+        <div class="drop-card__media">
+          <img src="https://thehigheststreet.com/cdn/shop/files/Clipper_Jet_Flame_Nebula_Design_Lighter.jpg?v=1740564605" alt="Clipper Estampado" loading="lazy">
+          <span class="drop-card__tag">NEW DROP</span>
+        </div>
+        <div class="drop-card__body">
+          <p class="drop-card__name">Clipper Estampado</p>
+          <p class="drop-card__price">R$ 12,90</p>
+          <a class="drop-card__link" href="store.html">VER NA LOJA →</a>
+        </div>
+      </li>
+
+      <!-- Cuia Artesanal -->
+      <li class="drop-card">
+        <div class="drop-card__media">
+          <img src="https://yerbamatelab.com/cdn/shop/files/brazilian_cuia_white_background.jpg?v=1775927360" alt="Cuia Artesanal" loading="lazy">
+          <span class="drop-card__tag">NEW DROP</span>
+        </div>
+        <div class="drop-card__body">
+          <p class="drop-card__name">Cuia Artesanal</p>
+          <p class="drop-card__price">R$ 29,90</p>
+          <a class="drop-card__link" href="store.html">VER NA LOJA →</a>
+        </div>
+      </li>
+
+    </ul>
+    </div>
+  </div><!-- /01 NOVIDADES -->
+
+  <!-- 02 — PROMOÇÕES -->
+  <div class="vitrine__band promo-sec">
+    <div class="w">
+
+    <div class="band-head promo-head">
+      <p class="vitrine__num vitrine__num--chalk">02 / PROMOÇÕES</p>
+    </div>
+
+    <ul class="promo-grid" role="list">
+
+      <!-- Pochete Streetwear -->
+      <li class="promo-card">
+        <div class="promo-card__media">
+          <img src="https://www.grasscity.com/cdn/shop/files/QWCP04_1_1.jpg?v=1769563288" alt="Pochete Streetwear" loading="lazy">
+        </div>
+        <div class="promo-card__body">
+          <p class="promo-card__name">Pochete Streetwear</p>
+          <p class="promo-card__old">
+            <span class="promo-card__old-num">R$ 89,90</span>
+            <svg class="promo-strike" viewBox="0 0 140 28" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M4 19 C 36 7, 72 25, 136 11" />
+            </svg>
+          </p>
+          <p class="promo-card__new">R$ 69,90</p>
+          <a class="promo-card__link" href="store.html">VER NA LOJA →</a>
+        </div>
+      </li>
+
+      <!-- Tesoura Trim 170mm -->
+      <li class="promo-card">
+        <div class="promo-card__media">
+          <img src="https://santacruzshredder.com/cdn/shop/files/SCS_METAL_4PC_M_AQUA_EXPLODED_2048x.jpg?v=1747246072" alt="Tesoura Trim 170mm" loading="lazy">
+        </div>
+        <div class="promo-card__body">
+          <p class="promo-card__name">Tesoura Trim 170mm</p>
+          <p class="promo-card__old">
+            <span class="promo-card__old-num">R$ 59,90</span>
+            <svg class="promo-strike" viewBox="0 0 140 28" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M4 15 C 40 24, 78 6, 136 18" />
+            </svg>
+          </p>
+          <p class="promo-card__new">R$ 49,90</p>
+          <a class="promo-card__link" href="store.html">VER NA LOJA →</a>
+        </div>
+      </li>
+
+      <!-- Cinzeiro de Vidro -->
+      <li class="promo-card">
+        <div class="promo-card__media">
+          <img src="https://smokea.com/cdn/shop/products/king-palm-black-glass-ashtray-28491938562150.jpg?v=1635187908" alt="Cinzeiro de Vidro" loading="lazy">
+        </div>
+        <div class="promo-card__body">
+          <p class="promo-card__name">Cinzeiro de Vidro</p>
+          <p class="promo-card__old">
+            <span class="promo-card__old-num">R$ 24,90</span>
+            <svg class="promo-strike" viewBox="0 0 140 28" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M4 18 C 34 8, 80 22, 136 12" />
+            </svg>
+          </p>
+          <p class="promo-card__new">R$ 19,90</p>
+          <a class="promo-card__link" href="store.html">VER NA LOJA →</a>
+        </div>
+      </li>
+
+      <!-- Slick Silicone 10ml -->
+      <li class="promo-card">
+        <div class="promo-card__media">
+          <img src="https://smokea.com/cdn/shop/products/smokea-silicone-storage-container-5ml-28319683870822.jpg" alt="Slick Silicone 10ml" loading="lazy">
+        </div>
+        <div class="promo-card__body">
+          <p class="promo-card__name">Slick Silicone 10ml</p>
+          <p class="promo-card__old">
+            <span class="promo-card__old-num">R$ 19,90</span>
+            <svg class="promo-strike" viewBox="0 0 140 28" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M4 16 C 38 23, 76 7, 136 17" />
+            </svg>
+          </p>
+          <p class="promo-card__new">R$ 14,90</p>
+          <a class="promo-card__link" href="store.html">VER NA LOJA →</a>
+        </div>
+      </li>
+
+    </ul>
+    </div>
+  </div><!-- /02 PROMOÇÕES -->
+
+  <!-- 03 — MONTE SEU KIT -->
+  <div class="vitrine__band kit-sec">
+    <div class="w">
+
+    <div class="band-head kit-head">
+      <p class="vitrine__num">03 / MONTE SEU KIT</p>
+    </div>
+
+    <ul class="kit-grid" role="list">
+
+      <!-- Kit Iniciante -->
+      <li class="kit-card">
+        <div class="kit-card__media">
+          <img src="https://dankstop.com/cdn/shop/files/RawSeshCombo.jpg?v=1744308567" alt="Kit Iniciante montado" loading="lazy">
+          <span class="kit-card__tag">KIT</span>
+        </div>
+        <div class="kit-card__body">
+          <p class="kit-card__name">Kit Iniciante</p>
+          <p class="kit-card__sub">Pra começar com o pé direito.</p>
+          <ul class="kit-card__list" role="list">
+            <li>Seda RAW Classic 1¼</li>
+            <li>Piteira de papel</li>
+            <li>Dichavador</li>
+            <li>Isqueiro Clipper</li>
+          </ul>
+          <p class="kit-card__price"><span class="kit-card__price-old">R$ 69,90</span> R$ 49,90</p>
+          <a class="kit-card__wa" href="https://wa.me/55XXXXXXXXXXX?text=Ol%C3%A1!%20Quero%20fechar%20o%20Kit%20Iniciante%20(R%24%2049%2C90).%20Pode%20me%20ajudar%3F" target="_blank" rel="noopener noreferrer">
+            FECHAR NO WHATSAPP →
+          </a>
+        </div>
+      </li>
+
+      <!-- Kit Premium -->
+      <li class="kit-card kit-card--featured">
+        <div class="kit-card__media">
+          <img src="https://smokea.com/cdn/shop/files/seshgear-positive-twist-beaker-glass-bong-1242717732_400x.jpg?v=1780604409" alt="Kit Premium montado" loading="lazy">
+          <span class="kit-card__tag kit-card__tag--top">TOP</span>
+        </div>
+        <div class="kit-card__body">
+          <p class="kit-card__name">Kit Premium</p>
+          <p class="kit-card__sub">O balcão completo, sem economia.</p>
+          <ul class="kit-card__list" role="list">
+            <li>Bong de vidro artístico</li>
+            <li>Dichavador de metal 4 partes</li>
+            <li>Cinzeiro de vidro</li>
+            <li>Slick de silicone</li>
+          </ul>
+          <p class="kit-card__price">R$ 159,90</p>
+          <a class="kit-card__wa" href="https://wa.me/55XXXXXXXXXXX?text=Ol%C3%A1!%20Quero%20fechar%20o%20Kit%20Premium%20(R%24%20159%2C90).%20Pode%20me%20ajudar%3F" target="_blank" rel="noopener noreferrer">
+            FECHAR NO WHATSAPP →
+          </a>
+        </div>
+      </li>
+
+      <!-- Kit Presente -->
+      <li class="kit-card">
+        <div class="kit-card__media">
+          <img src="https://smokea.com/cdn/shop/files/seshgear-shorty-color-beaker-bong-blue-1182506545_400x.jpg?v=1753985794" alt="Kit Presente montado" loading="lazy">
+          <span class="kit-card__tag">KIT</span>
+        </div>
+        <div class="kit-card__body">
+          <p class="kit-card__name">Kit Presente</p>
+          <p class="kit-card__sub">Pra dar de presente pra quem é do rolê.</p>
+          <ul class="kit-card__list" role="list">
+            <li>Cuia + bomba</li>
+            <li>Boné Tabacrazy</li>
+            <li>Bag de ombro</li>
+            <li>Isqueiro Clipper</li>
+          </ul>
+          <p class="kit-card__price">R$ 119,90</p>
+          <a class="kit-card__wa" href="https://wa.me/55XXXXXXXXXXX?text=Ol%C3%A1!%20Quero%20fechar%20o%20Kit%20Presente%20(R%24%20119%2C90).%20Pode%20me%20ajudar%3F" target="_blank" rel="noopener noreferrer">
+            FECHAR NO WHATSAPP →
+          </a>
+        </div>
+      </li>
+
+    </ul>
+
+    <div class="shop-cta-wrap">
+      <a href="store.html" class="shop-see-all">VER LOJA COMPLETA →</a>
+    </div>
+    </div>
+  </div><!-- /03 KIT -->
+</section>
+
+    <!-- ░░ ADEGA — teaser (página completa: adega.html, a criar) ░░ -->
+<section class="adega" aria-label="Adega">
+
+  <div class="w adega__head">
+    <h2 class="adega__heading">
+      <span class="adega__heading--outline">NOSSA</span>
+      <span class="adega__heading--purple">ADEGA</span>
+    </h2>
+    <p class="adega__lead">Copão gelado, dose e o drink da casa — pra acompanhar o rolê.</p>
+  </div>
+
+  <div class="w">
+    <ul class="adega-grid" role="list">
+
+      <!-- Cerveja Long Neck -->
+      <li class="adega-card">
+        <div class="adega-card__media">
+          <img src="https://images.unsplash.com/photo-1608270586620-248524c67de9?auto=format&fit=crop&w=600&q=80" alt="Cerveja Long Neck gelada" loading="lazy">
+          <span class="adega-card__tag">GELADA</span>
+        </div>
+        <div class="adega-card__body">
+          <p class="adega-card__name">Cerveja Long Neck</p>
+          <p class="adega-card__price">R$ 9,90</p>
+        </div>
+      </li>
+
+      <!-- Drink da Casa -->
+      <li class="adega-card">
+        <div class="adega-card__media">
+          <img src="https://images.unsplash.com/photo-1748674747180-842f31b5a619?auto=format&fit=crop&w=600&q=80" alt="Drink da casa" loading="lazy">
+          <span class="adega-card__tag">DA CASA</span>
+        </div>
+        <div class="adega-card__body">
+          <p class="adega-card__name">Drink da Casa</p>
+          <p class="adega-card__price">R$ 19,90</p>
+        </div>
+      </li>
+
+      <!-- Dose de Whisky -->
+      <li class="adega-card">
+        <div class="adega-card__media">
+          <img src="https://images.unsplash.com/photo-1569529465841-dfecdab7503b?auto=format&fit=crop&w=600&q=80" alt="Dose de whisky" loading="lazy">
+          <span class="adega-card__tag">DOSE</span>
+        </div>
+        <div class="adega-card__body">
+          <p class="adega-card__name">Dose de Whisky</p>
+          <p class="adega-card__price">R$ 15,90</p>
+        </div>
+      </li>
+
+      <!-- Energético Gelado -->
+      <li class="adega-card">
+        <div class="adega-card__media">
+          <img src="https://images.unsplash.com/photo-1622543925917-763c34d1a86e?auto=format&fit=crop&w=600&q=80" alt="Energético gelado" loading="lazy">
+          <span class="adega-card__tag">GELADO</span>
+        </div>
+        <div class="adega-card__body">
+          <p class="adega-card__name">Energético Gelado</p>
+          <p class="adega-card__price">R$ 12,90</p>
+        </div>
+      </li>
+
+    </ul>
+
+    <div class="shop-cta-wrap">
+      <a href="adega.html" class="shop-see-all shop-see-all--purple">VER ADEGA COMPLETA →</a>
+    </div>
+  </div>
+</section>
+
+  <!-- ░ SEÇÃO X — Grafite + Scroll Horizontal ░ -->
+  <div class="role-hs-wrap">
+  <section id="role" class="role-hs" aria-label="O Rolê — grafite e espaço">
+      <div class="role-hs__track" id="roleTrack">
+
+        <!-- Painel 1 — Entrada -->
+        <div class="role-panel role-panel--intro" aria-label="Introdução — O Rolê">
+          <div class="role-panel__ctr">
+            <img src="logo/entradaSeçãoQuemSomos.png" alt="Isso aqui é Tabacrazy — Piumhi/MG, since 2021"
+                 class="role-intro__fig" width="669" height="373" loading="lazy" decoding="async">
+            <p class="role-intro__hint">
+              deslize <span class="role-intro__arrow" aria-hidden="true">→</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Painel 2 — Sinuca -->
+        <div class="role-panel role-panel--sinuca"
+             style="background-image:url('https://images.unsplash.com/photo-1645318589244-1651d341689f?auto=format&fit=crop&w=1920&q=80')"
+             aria-label="Sinuca — Uma mesa. Muita resenha.">
+          <div class="role-panel__overlay" aria-hidden="true"></div>
+          <div class="role-panel__info">
+            <p class="role-panel__num">01 / SINUCA</p>
+            <p class="role-panel__sub">Uma mesa. Muita resenha.</p>
+            <button type="button" class="role-badge" title="Em breve — campeonatos">INSCREVER-SE</button>
+          </div>
+        </div>
+
+        <!-- Painel 3 — PS5 -->
+        <div class="role-panel role-panel--ps5"
+             style="background-image:url('https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1920&q=80')"
+             aria-label="PS5 — Partidas, campeonatos e aquele game raiz.">
+          <div class="role-panel__overlay" aria-hidden="true"></div>
+          <div class="role-panel__info">
+            <p class="role-panel__num">02 / PS5</p>
+            <p class="role-panel__sub">Partidas, campeonatos e aquele game raiz.</p>
+            <button type="button" class="role-badge" title="Em breve — campeonatos">INSCREVER-SE</button>
+          </div>
+        </div>
+
+        <!-- Painel 4 — Drinks -->
+        <div class="role-panel role-panel--drinks"
+             style="background-image:url('https://images.unsplash.com/photo-1748674747180-842f31b5a619?auto=format&fit=crop&w=1920&q=80')"
+             aria-label="Drinks — Gelado, colorido e na medida certa.">
+          <div class="role-panel__overlay" aria-hidden="true"></div>
+          <div class="role-panel__info">
+            <p class="role-panel__num">03 / DRINKS</p>
+            <p class="role-panel__sub">Gelado, colorido e na medida certa.</p>
+            <a href="adega.html" class="role-badge">VER A ADEGA →</a>
+          </div>
+        </div>
+
+        <!-- Painel 5 — O Kit -->
+        <div class="role-panel role-panel--kit"
+             style="background-image:url('https://images.unsplash.com/photo-1598052162797-ba3530cc75b1?auto=format&fit=crop&w=1920&q=80')"
+             aria-label="O Kit — Monte o seu kit completo na store.">
+          <div class="role-panel__overlay" aria-hidden="true"></div>
+          <div class="role-panel__info">
+            <p class="role-panel__num">04 / O KIT</p>
+            <p class="role-panel__sub">Tudo que você precisa, num lugar só.</p>
+            <a href="store.html" class="role-badge">MONTE O SEU →</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Barra de progresso -->
+      <div class="role-progress" aria-hidden="true">
+        <div class="role-progress__fill" id="roleProgress"></div>
+      </div>
+
+    </section>
+  </div><!-- /.role-hs-wrap -->
+
+  <!-- ░ CONSCIENTIZAÇÃO — DESATIVADA (ALT 4) ░
+       Removida do fluxo de renderização, mas PRESERVADA para reativação futura.
+       Para reativar: apague a linha <template ...> abaixo e a </template> ao final
+       da seção. O conteúdo dentro de <template> não é renderizado pelo browser. -->
+  <template id="consciencia-disabled">
+  <section id="consciencia" class="cons-sec" aria-label="Cultura e Conscientização">
+    <div class="w">
+
+      <div class="cons-head">
+        <p class="cons-eyebrow">SAÚDE · HARM REDUCTION · NOTÍCIAS THC</p>
+        <h2 class="cons-title">
+          <span class="cons-title--outline">FUMA</span>
+          <span class="cons-title--neon">COM</span>
+          <span class="cons-title--purple">CABEÇA</span>
+        </h2>
+        <p class="cons-lead">Informação é o maior acessório. Descubra por que usar piteira faz diferença, acompanhe as últimas do universo cannabis e eleve sua cultura.</p>
+      </div>
+
+      <!-- Destaque — Canal THC: substitua href pelo link real do canal -->
+      <a href="#" target="_blank" rel="noopener noreferrer" class="cons-feature" aria-label="Canal de notícias THC">
+        <span class="cons-feature__ribbon">CANAL THC</span>
+        <div class="cons-feature__body">
+          <p class="cons-feature__kicker">CANAL DE NOTÍCIAS</p>
+          <h3 class="cons-feature__title">THC Brasil — Notícias, legislação e cultura cannabis</h3>
+          <p class="cons-feature__text">Entrevistas, atualizações legais e cultura do cânhamo num canal só. Conteúdo de qualidade para quem quer entender de verdade — sem sensacionalismo, sem fake news.</p>
+          <span class="cons-feature__cta">ACESSAR O CANAL →</span>
+        </div>
+      </a>
+
+      <!-- Grade de reportagens: substitua cada href="#" pelo link real do artigo -->
+      <div class="cons-grid">
+
+        <article class="cons-card">
+          <p class="cons-card__cat">SAÚDE</p>
+          <h3 class="cons-card__title">Por que usar piteira protege seus pulmões</h3>
+          <p class="cons-card__text">A piteira filtra alcatrão, resfria a fumaça e reduz a exposição a resíduos da combustão. Um hábito pequeno com impacto enorme na sua saúde.</p>
+          <a href="#" class="cons-card__link" aria-label="Leia sobre piteiras e saúde">LER MAIS →</a>
+        </article>
+
+        <article class="cons-card">
+          <p class="cons-card__cat">HARM REDUCTION</p>
+          <h3 class="cons-card__title">Vidro ou papel? Qual piteira escolher?</h3>
+          <p class="cons-card__text">O vidro resfria melhor e é reutilizável; o papel é prático e descartável. Conheça as diferenças antes de escolher a certa pra você.</p>
+          <a href="#" class="cons-card__link" aria-label="Compare piteiras de vidro e papel">LER MAIS →</a>
+        </article>
+
+        <article class="cons-card">
+          <p class="cons-card__cat">LEGISLAÇÃO</p>
+          <h3 class="cons-card__title">Cannabis no Brasil: o que mudou?</h3>
+          <p class="cons-card__text">Das primeiras licenças médicas ao debate sobre regulamentação, o cenário mudou muito. Fique por dentro sem fake news e com fontes confiáveis.</p>
+          <a href="#" class="cons-card__link" aria-label="Leia sobre legislação cannabis">LER MAIS →</a>
+        </article>
+
+        <article class="cons-card">
+          <p class="cons-card__cat">DICAS</p>
+          <h3 class="cons-card__title">Guia do primeiro fumante de cachimbo</h3>
+          <p class="cons-card__text">Do fumo certo ao cachimbo ideal, passando pela brasa perfeita. Sem pressa, sem desperdício — tudo o que você precisa saber pra começar bem.</p>
+          <a href="#" class="cons-card__link" aria-label="Guia para iniciantes no cachimbo">LER MAIS →</a>
+        </article>
+
+        <article class="cons-card">
+          <p class="cons-card__cat">CULTURA</p>
+          <h3 class="cons-card__title">Narguilé: a arte de compartilhar o rolê</h3>
+          <p class="cons-card__text">Do Oriente Médio para Piumhi — o narguilé virou sinônimo de papo bom. Saiba escolher o tabaco, regular o calor e curtir o momento.</p>
+          <a href="#" class="cons-card__link" aria-label="Leia sobre cultura de narguilé">LER MAIS →</a>
+        </article>
+
+        <article class="cons-card">
+          <p class="cons-card__cat">SAÚDE</p>
+          <h3 class="cons-card__title">Redução de danos: o que é e por que importa</h3>
+          <p class="cons-card__text">Harm reduction não é incentivo ao uso — é respeito. Conheça os princípios que guiam uma cultura de consumo mais consciente e segura.</p>
+          <a href="#" class="cons-card__link" aria-label="Leia sobre redução de danos">LER MAIS →</a>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+  </template><!-- /#consciencia-disabled -->
+
+  <!-- ░ JOGO — TABACRAZY FLAP ░ -->
+  <section id="jogo" class="game-sec" aria-label="Tabacrazy Flap — minigame da casa">
+    <div class="w">
+
+      <div class="shop-head">
+        <h2 class="shop-heading shop-heading--inline">
+          <span class="shop-heading--outline">TABACRAZY</span>
+          <span class="shop-heading--neon">FLAP</span>
+        </h2>
+        <p class="shop-lead">Toca pra subir, desvia dos tubos e mita no ranking da temporada.</p>
+      </div>
+
+      <div class="game-layout">
+
+        <!-- ── Palco do jogo ── -->
+        <div class="game-stage">
+          <div class="gframe">
+            <canvas id="gc" width="600" height="360" tabindex="0" aria-label="Tabacrazy Flap — área de jogo"></canvas>
+
+            <!-- HUD -->
+            <div class="ghud" aria-hidden="true">
+              <span class="ghud__chip">PTS <b id="g-pts">0</b></span>
+              <span class="ghud__chip">REC <b id="g-rec">—</b></span>
+            </div>
+
+            <!-- Overlays (início / game over) -->
+            <div class="gover" id="gover">
+
+              <div class="gscreen" id="screen-start">
+                <p class="gscreen__kicker">🐙 MINIGAME DA CASA</p>
+                <p class="gscreen__rec" id="rec-start"></p>
+                <label class="gscreen__label" for="pl-name">Seu nome / apelido</label>
+                <input id="pl-name" class="gscreen__input" type="text" maxlength="14"
+                       placeholder="ex.: POLVÃO" autocomplete="off" autocapitalize="characters"
+                       spellcheck="false" inputmode="text" aria-label="Seu nome ou apelido (até 14 caracteres)">
+                <button class="btn btn--neon" id="btn-start" type="button">TOQUE PRA COMEÇAR</button>
+                <p class="gscreen__hint">toque / clique / espaço = subir</p>
+              </div>
+
+              <div class="gscreen" id="screen-over" hidden>
+                <p class="gscreen__medal" id="over-medal">💀</p>
+                <p class="gscreen__title" id="over-title">CAIU!</p>
+                <p class="gscreen__sub" id="over-sub"></p>
+                <p class="gscreen__rec" id="rec-over"></p>
+                <div class="gscreen__btns">
+                  <button class="btn btn--neon" id="btn-again" type="button">JOGAR DE NOVO</button>
+                  <button class="btn btn--ghost" id="btn-rename" type="button">TROCAR NOME</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Ranking / Torneio ── -->
+        <aside class="lb" aria-label="Ranking da temporada">
+          <div class="lb__head">
+            <h3 class="lb__title">RANKING</h3>
+            <span class="lb__season" id="lb-season">—</span>
+          </div>
+          <ol class="lb__list" id="lb-list" role="list">
+            <li class="lb__empty">Carregando…</li>
+          </ol>
+          <p class="lb__note" id="lb-note"></p>
+          <p class="lb__legend">Top 10 da temporada · reseta todo mês 🏆</p>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ░ VEM PRA CÁ ░ -->
+  <section id="vem" class="vem-sec">
+    <div class="w">
+
+      <h2 class="vem-sec__h">
+        <span class="vem-sec__h--outline">VEM</span>
+        <span class="vem-sec__h--neon">PRA CÁ</span>
+      </h2>
+
+      <div class="vem-grid">
+
+        <div class="vem-info">
+          <address class="vem-info__addr">
+            Rua Dom Pedro II, 568-A<br>Piumhi/MG
+          </address>
+          <p class="vem-info__hours">Seg–Sáb: 13h às 00h</p>
+          <div class="vem-info__btns">
+            <a href="https://www.google.com/maps/search/Tabacrazy+Piumhi"
+               target="_blank" rel="noopener noreferrer"
+               class="btn btn--neon">COMO CHEGAR →</a>
+            <a href="https://instagram.com/taba_crazy"
+               target="_blank" rel="noopener noreferrer"
+               class="btn btn--ghost">VER NO INSTAGRAM ↗</a>
+          </div>
+        </div>
+
+        <div class="vem-map" role="img" aria-label="Localização: Rua Dom Pedro II, 568-A, Piumhi/MG">
+          <svg class="vem-map__pin" viewBox="0 0 32 42" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M16 0C7.16 0 0 7.16 0 16c0 10.8 14.4 24.8 15.4 25.7a.8.8 0 0 0 1.2 0C17.6 40.8 32 26.8 32 16 32 7.16 24.84 0 16 0z" fill="#B6FF3C"/>
+            <circle cx="16" cy="16" r="6" fill="#0A0A0A"/>
+          </svg>
+          <p class="vem-map__addr">Rua Dom Pedro II, 568-A</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ░ FOOTER ░ -->
+  <footer class="footer" role="contentinfo">
+    <div class="w footer__in">
+      <div class="footer__brand">
+        <img src="logo/logoSemFundo.png" alt="Tabacrazy" width="80" height="32" loading="lazy">
+        <p class="footer__tag">O rolê mais louco da cidade.</p>
+      </div>
+      <nav class="footer__links" aria-label="Links do rodapé">
+        <a href="https://instagram.com/tabacrazy"     target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://wa.me/55XXXXXXXXXXX"         target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      </nav>
+      <div class="footer__meta">
+        <span class="badge-18" aria-label="+18 — proibido vender a menores de 18 anos">+18</span>
+        <address>Rua Dom Pedro II, nº&nbsp;568 A · Piumhi/MG<br>Seg–Sáb · 13h às 01h</address>
+        <p class="footer__copy">© <span id="ano"></span> Tabacrazy. Todos os direitos.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    (function roleHScroll() {
+      var wrap  = document.querySelector('.role-hs-wrap');
+      var track = document.getElementById('roleTrack');
+      var bar   = document.getElementById('roleProgress');
+      if (!wrap || !track) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      var total = track.querySelectorAll('.role-panel').length; // 5
+
+      function tick() {
+        var scrolled  = -wrap.getBoundingClientRect().top;
+        var scrollMax = wrap.offsetHeight - window.innerHeight;
+        if (scrollMax <= 0) return;
+
+        var progress = Math.max(0, Math.min(1, scrolled / scrollMax));
+        var xVw      = progress * (total - 1) * 100;
+
+        track.style.transform = 'translateX(-' + xVw + 'vw)';
+        if (bar) bar.style.width = ((progress * (total - 1) + 1) / total * 100) + '%';
+      }
+
+      window.addEventListener('scroll', tick, { passive: true });
+      window.addEventListener('resize', tick, { passive: true });
+      tick();
+    })();
+  </script>
+
+  <!-- ░ CARRINHO — overlay ░ -->
+  <div class="cart-overlay" id="cartOverlay" aria-hidden="true"></div>
+
+  <!-- ░ CARRINHO — sidebar ░ -->
+  <aside class="cart-drawer" id="cartDrawer"
+         role="dialog" aria-modal="true" aria-label="Carrinho de compras" tabindex="-1">
+    <div class="cart-drawer__head">
+      <h2 class="cart-drawer__title">CARRINHO</h2>
+      <button class="cart-drawer__close" id="cartClose" aria-label="Fechar carrinho">✕</button>
+    </div>
+    <div class="cart-drawer__body" id="cartBody"></div>
+    <div class="cart-drawer__foot" id="cartFoot"></div>
+  </aside>
+
+  <!-- motor compartilhado (Vitrine + carrinho integrado Loja/Adega) -->
+  <script src="js/shop.js"></script>
+
+  <!-- Supabase: config pública + client singleton (carregam antes do jogo) -->
+  <script src="js/env.js"></script>
+  <script src="js/supabase.js"></script>
+
+  <!-- minigame Tabacrazy Flap + ranking (seção #jogo) -->
+  <script src="js/game.js"></script>
+</body>
+</html>

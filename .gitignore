@@ -1,0 +1,29 @@
+# Dependências (não usamos build, mas evita commitar se alguém rodar npm)
+node_modules/
+package-lock.json
+
+# Logs
+*.log
+npm-debug.log*
+
+# Arquivos de sistema operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores / IDEs
+.vscode/
+.idea/
+*.swp
+
+# Artefatos temporários de teste (puppeteer, screenshots ad-hoc)
+_*.cjs
+_*.png
+
+# Config/instruções internas — não publicar no site nem no repo
+.claude/
+CLAUDE.md
+# (README.md é mantido versionado — doc padrão do repositório)
+
+# NÃO ignorar js/env.js — contém só a publishable key (pública, protegida por RLS)
+# e o site estático precisa dela publicada para o leaderboard funcionar em produção.

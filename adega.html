@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Tabacrazy Adega — Cervejas, drinks, doses, whisky, vodka e energéticos. Smoke shop em Piumhi/MG.">
+  <meta property="og:title"       content="Tabacrazy — Nossa Adega">
+  <meta property="og:description" content="Copão gelado, dose e o drink da casa. Filtra por bebida.">
+  <meta property="og:type"        content="website">
+  <meta name="theme-color"        content="#0b0a0f">
+  <title>Tabacrazy — Nossa Adega</title>
+
+  <link rel="icon" type="image/png" href="logo/logoSemFundo.png">
+  <link rel="apple-touch-icon"      href="logo/logoSemFundo.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bangers&family=Permanent+Marker&family=Space+Grotesk:wght@300;400;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="grain"  aria-hidden="true"></div>
+  <div class="blobs"  aria-hidden="true">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+  </div>
+
+  <!-- ░ NAV ░ -->
+  <header class="nav" role="banner">
+    <div class="nav__in">
+      <a href="index.html" class="nav__logo" aria-label="Tabacrazy — início">
+        <span class="nav__dot" aria-hidden="true"></span>
+        <span class="nav__brand">TABA <span class="nav__brand--neon">CRAZY</span></span>
+      </a>
+      <nav aria-label="Principal">
+        <button class="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="navlist">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="navlist" id="navlist" role="list">
+          <li><a href="store.html">Loja</a></li>
+          <li><a href="adega.html" aria-current="page">Adega</a></li>
+          <li><a href="index.html#jogo">Jogo</a></li>
+          <li><a href="index.html#role">O Rolê</a></li>
+          <li><a href="index.html#vem">Localização</a></li>
+          <li>
+            <button class="cart-btn" id="cartBtn" aria-label="Abrir carrinho">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                   stroke-linecap="round" stroke-linejoin="round" width="22" height="22" aria-hidden="true">
+                <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <path d="M16 10a4 4 0 01-8 0"/>
+              </svg>
+              <span class="cart-count" id="cartCount" aria-live="polite" hidden>0</span>
+            </button>
+          </li>
+          <li class="navlist__cta"><a href="https://wa.me/55XXXXXXXXXXX" target="_blank" rel="noopener noreferrer" class="btn btn--neon">BATER UM PAPO</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ░░ ADEGA COMPLETA ░░ -->
+    <section id="adega" class="shop-section shop-section--adega">
+      <div class="w">
+
+        <a href="index.html" class="store-back">← Voltar ao início</a>
+
+        <div class="shop-head">
+          <h2 class="shop-heading">
+            <span class="shop-heading--outline">NOSSA</span>
+            <span class="shop-heading--purple">ADEGA</span>
+          </h2>
+          <p class="shop-lead">Filtra a bebida e vê o que tá gelado no balcão.</p>
+        </div>
+
+        <div class="shop-filters" role="group" aria-label="Filtrar bebidas">
+          <button class="shop-pill active" data-filter="todos">Todos</button>
+          <button class="shop-pill" data-filter="cervejas">Cervejas</button>
+          <button class="shop-pill" data-filter="drinks">Drinks</button>
+          <button class="shop-pill" data-filter="doses">Doses</button>
+          <button class="shop-pill" data-filter="whisky">Whisky</button>
+          <button class="shop-pill" data-filter="vodka">Vodka</button>
+          <button class="shop-pill" data-filter="energeticos">Energéticos</button>
+        </div>
+
+        <!-- ⚠ CATÁLOGO PLACEHOLDER — nomes/preços/imagens são EXEMPLOS a revisar.
+             Substituir pelos produtos reais da Adega quando disponíveis. As seções
+             por categoria são geradas dinamicamente por js/shop.js a partir destes
+             cards (data-category) e das pills acima. -->
+        <ul class="shop-grid" id="shop-grid" role="list">
+
+          <!-- ── CERVEJAS ── -->
+          <li class="shop-card" data-category="cervejas">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://images.unsplash.com/photo-1608270586620-248524c67de9?auto=format&fit=crop&w=600&q=80" alt="Heineken Long Neck gelada" loading="lazy">
+                <span class="shop-badge shop-badge--novo">GELADA</span>
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Heineken Long Neck</p>
+                <p class="shop-card__price">R$ 9,90</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="cervejas">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://images.unsplash.com/photo-1608270586620-248524c67de9?auto=format&fit=crop&w=600&q=80" alt="Budweiser 350ml" loading="lazy">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old">R$ 8,90</p>
+                <p class="shop-card__name">Budweiser 350ml</p>
+                <p class="shop-card__price">R$ 6,90</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="cervejas">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://images.unsplash.com/photo-1608270586620-248524c67de9?auto=format&fit=crop&w=600&q=80" alt="Corona Extra" loading="lazy">
+                <span class="shop-badge shop-badge--limited">IMPORTADA</span>
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Corona Extra</p>
+                <p class="shop-card__price">R$ 12,90</p>
+              </div>
+            </div>
+          </li>
+
+          <!-- ── DRINKS ── -->
+          <li class="shop-card" data-category="drinks">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://images.unsplash.com/photo-1748674747180-842f31b5a619?auto=format&fit=crop&w=600&q=80" alt="Caipirinha da Casa" loading="lazy">
+                <span class="shop-badge shop-badge--novo">DA CASA</span>
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Caipirinha da Casa</p>
+                <p class="shop-card__price">R$ 19,90</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="drinks">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://images.unsplash.com/photo-1748674747180-842f31b5a619?auto=format&fit=crop&w=600&q=80" alt="Gin Tônica" loading="lazy">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Gin Tônica</p>
+                <p class="shop-card__price">R$ 24,90</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="drinks">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://images.unsplash.com/photo-1748674747180-842f31b5a619?auto=format&fit=crop&w=600&q=80" alt="Mojito" loading="lazy">
+                <span class="shop-badge shop-badge--limited">TOP</span>
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Mojito</p>
+                <p class="shop-card__price">R$ 22,90</p>
+              </div>
+            </div>
+          </li>
+
+          <!-- ── DOSES ── -->
+          <li class="shop-card" data-category="doses">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://images.unsplash.com/photo-1569529465841-dfecdab7503b?auto=format&fit=crop&w=600&q=80" alt="Dose de Tequila" loading="lazy">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Dose de Tequila</p>
+                <p class="shop-card__price">R$ 14,90</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="doses">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://images.unsplash.com/photo-1569529465841-dfecdab7503b?auto=format&fit=crop&w=600&q=80" alt="Dose de Cachaça Premium" loading="lazy">
+                <span class="shop-badge shop-badge--novo">ARTESANAL</span>
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Cachaça Premium</p>
+                <p class="shop-card__price">R$ 11,90</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="doses">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://images.unsplash.com/photo-1569529465841-dfecdab7503b?auto=format&fit=crop&w=600&q=80" alt="Dose de Licor 43" loading="lazy">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Dose de Licor 43</p>
+                <p class="shop-card__price">R$ 16,90</p>
+              </div>
+            </div>
+          </li>
+
+          <!-- ── WHISKY ── -->
+          <li class="shop-card" data-category="whisky">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://images.unsplash.com/photo-1569529465841-dfecdab7503b?auto=format&fit=crop&w=600&q=80" alt="Dose de Red Label" loading="lazy">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Red Label (dose)</p>
+                <p class="shop-card__price">R$ 15,90</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="whisky">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://images.unsplash.com/photo-1569529465841-dfecdab7503b?auto=format&fit=crop&w=600&q=80" alt="Dose de Black Label" loading="lazy">
+                <span class="shop-badge shop-badge--limited">12 ANOS</span>
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Black Label (dose)</p>
+                <p class="shop-card__price">R$ 29,90</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="whisky">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://images.unsplash.com/photo-1569529465841-dfecdab7503b?auto=format&fit=crop&w=600&q=80" alt="Dose de Jack Daniel's" loading="lazy">
+                <span class="shop-badge shop-badge--novo">NOVO</span>
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old">R$ 24,90</p>
+                <p class="shop-card__name">Jack Daniel's (dose)</p>
+                <p class="shop-card__price">R$ 19,90</p>
+              </div>
+            </div>
+          </li>
+
+          <!-- ── VODKA ── -->
+          <li class="shop-card" data-category="vodka">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://images.unsplash.com/photo-1748674747180-842f31b5a619?auto=format&fit=crop&w=600&q=80" alt="Dose de Smirnoff" loading="lazy">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Smirnoff (dose)</p>
+                <p class="shop-card__price">R$ 12,90</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="vodka">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://images.unsplash.com/photo-1748674747180-842f31b5a619?auto=format&fit=crop&w=600&q=80" alt="Dose de Absolut" loading="lazy">
+                <span class="shop-badge shop-badge--limited">IMPORTADA</span>
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Absolut (dose)</p>
+                <p class="shop-card__price">R$ 18,90</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="vodka">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://images.unsplash.com/photo-1748674747180-842f31b5a619?auto=format&fit=crop&w=600&q=80" alt="Dose de Ciroc" loading="lazy">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Ciroc (dose)</p>
+                <p class="shop-card__price">R$ 26,90</p>
+              </div>
+            </div>
+          </li>
+
+          <!-- ── ENERGÉTICOS ── -->
+          <li class="shop-card" data-category="energeticos">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://images.unsplash.com/photo-1622543925917-763c34d1a86e?auto=format&fit=crop&w=600&q=80" alt="Red Bull gelado" loading="lazy">
+                <span class="shop-badge shop-badge--novo">GELADO</span>
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Red Bull</p>
+                <p class="shop-card__price">R$ 12,90</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="energeticos">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://images.unsplash.com/photo-1622543925917-763c34d1a86e?auto=format&fit=crop&w=600&q=80" alt="Monster Energy" loading="lazy">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old">R$ 13,90</p>
+                <p class="shop-card__name">Monster Energy</p>
+                <p class="shop-card__price">R$ 10,90</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="energeticos">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="https://images.unsplash.com/photo-1622543925917-763c34d1a86e?auto=format&fit=crop&w=600&q=80" alt="TNT Energy Drink" loading="lazy">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">TNT Energy</p>
+                <p class="shop-card__price">R$ 8,90</p>
+              </div>
+            </div>
+          </li>
+
+        </ul>
+
+        <!-- destino das seções por categoria (geradas dinamicamente por js/shop.js) -->
+        <div id="shop-cats"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="w footer__in">
+      <div class="footer__brand">
+        <img src="logo/logoSemFundo.png" alt="Tabacrazy" width="80" height="32" loading="lazy">
+        <p class="footer__tag">O rolê mais louco da cidade.</p>
+      </div>
+      <nav class="footer__links" aria-label="Links do rodapé">
+        <a href="https://instagram.com/tabacrazy"   target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://wa.me/55XXXXXXXXXXX"        target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      </nav>
+      <div class="footer__meta">
+        <span class="badge-18" aria-label="+18 — proibido vender a menores de 18 anos">+18</span>
+        <address>Rua Dom Pedro II, nº&nbsp;568 A · Piumhi/MG<br>Seg–Sáb · 13h às 01h</address>
+        <p class="footer__copy">© <span id="ano"></span> Tabacrazy. Todos os direitos.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+
+  <!-- ░ CARRINHO — overlay ░ -->
+  <div class="cart-overlay" id="cartOverlay" aria-hidden="true"></div>
+
+  <!-- ░ CARRINHO — sidebar ░ -->
+  <aside class="cart-drawer" id="cartDrawer"
+         role="dialog" aria-modal="true" aria-label="Carrinho de compras" tabindex="-1">
+    <div class="cart-drawer__head">
+      <h2 class="cart-drawer__title">CARRINHO</h2>
+      <button class="cart-drawer__close" id="cartClose" aria-label="Fechar carrinho">✕</button>
+    </div>
+    <div class="cart-drawer__body" id="cartBody"></div>
+    <div class="cart-drawer__foot" id="cartFoot"></div>
+  </aside>
+
+  <!-- motor compartilhado Loja+Adega: agrupa categorias + filtro + carrinho -->
+  <script src="js/shop.js"></script>
+</body>
+</html>
