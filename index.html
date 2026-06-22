@@ -23,16 +23,18 @@
 
   <!-- ░ LOADER ░ -->
   <div id="loader" class="loader" aria-hidden="true">
+    <!-- desktop: vídeo animado (src promovido via JS p/ não baixar no mobile);
+         mobile: PNG transparente (webm não tem alpha em mobile → fundo preto) -->
     <video
         id="loader-video"
         class="loader__video"
-        src="logo/logoAnimadaHero.webm"
+        data-src="logo/logoAnimadaHero.webm"
         autoplay
-        loop
         muted
         playsinline
         preload="auto"
       ></video>
+    <img class="loader__img" src="logo/logoSemFundo.png" alt="" width="500" height="500" aria-hidden="true">
     <canvas id="loader-vignette" class="loader__vignette"></canvas>
     <p class="loader__since">Since 2021</p>
   </div>
@@ -112,15 +114,19 @@
         </div>
 
         <div class="hero__media">
+          <!-- desktop: vídeo (preload metadata, src promovido via JS);
+               mobile: PNG transparente (sem baixar o webm de 3,6MB) -->
           <video
             class="hero__video"
-            src="logo/logoAnimadaHero.webm"
+            data-src="logo/logoAnimadaHero.webm"
             autoplay
             loop
             muted
             playsinline
+            preload="metadata"
             aria-hidden="true"
           ></video>
+          <img class="hero__img" src="logo/logoSemFundo.png" alt="Tabacrazy" width="500" height="500">
         </div>
 
       </div>

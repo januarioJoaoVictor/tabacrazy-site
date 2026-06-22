@@ -123,6 +123,39 @@ address    { font-style: normal; }
 
 .loader__vignette { display: none; }
 
+/* logo PNG transparente — fallback do vídeo no MOBILE
+   (o webm não renderiza alpha em mobile → apareceria fundo preto) */
+.loader__img, .hero__img { display: none; }
+
+@media (max-width: 768px) {
+  /* mobile: esconde os vídeos (nem baixa o webm de 3,6MB) e mostra o PNG */
+  .loader__video { display: none; }
+  .loader__img {
+    display: block;
+    width: min(72vw, 72vh);
+    height: auto;
+    position: relative;
+    z-index: 1;
+    animation: loader-pulse 1.6s ease-in-out infinite;
+  }
+  .hero__video { display: none; }
+  .hero__img {
+    display: block;
+    width: 100%;
+    max-width: 260px;
+    height: auto;
+    margin-inline: auto;
+  }
+}
+
+@keyframes loader-pulse {
+  0%, 100% { transform: scale(1);    opacity: .9; }
+  50%      { transform: scale(1.05); opacity: 1;  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .loader__img { animation: none; }
+}
+
 body.loader-active { overflow: hidden; }
 
 @media (max-width: 480px) {

@@ -7,47 +7,50 @@
 
 /* ── § LOADER ─────────────────────────────────────── */
 (function loader() {
-  const el     = document.getElementById('loader');
-  const video  = document.getElementById('loader-video');
-  if (!el || !video) return;
+  const el    = document.getElementById('loader');
+  const video = document.getElementById('loader-video');
+  if (!el) return;
 
   document.body.classList.add('loader-active');
 
-  const VIDEO_DURATION = 1500;  // corta o vídeo em 1.5s
-  const GLITCH_DURATION = 450;  // duração do efeito glitch
+  const GLITCH_DURATION = 450;
   let dismissed = false;
-
   function dismiss() {
     if (dismissed) return;
     dismissed = true;
-
-    // dispara o glitch
     el.classList.add('glitch-out');
-
-    // ao fim do glitch, remove o loader
     setTimeout(() => {
       document.body.classList.remove('loader-active');
       el.remove();
     }, GLITCH_DURATION);
   }
 
-  // corta o vídeo em 3s independente da duração real
-  const cutTimer = setTimeout(dismiss, VIDEO_DURATION);
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
-  // se o vídeo acabar antes dos 3s, sai junto
-  video.addEventListener('ended', () => {
-    clearTimeout(cutTimer);
-    dismiss();
-  }, { once: true });
+  if (!isMobile && video && video.dataset.src) {
+    // DESKTOP: promove o vídeo (data-src → src), toca e sai ao terminar.
+    // (No mobile NÃO setamos src → o webm de 3,6MB não é baixado.)
+    video.src = video.dataset.src;
+    const pr = video.play();
+    if (pr && pr.catch) pr.catch(() => {});      // ignora bloqueio de autoplay
+    video.addEventListener('ended', dismiss, { once: true });  // agora dispara (sem loop)
+    video.addEventListener('error', dismiss, { once: true });
+    setTimeout(dismiss, 1800);                   // corta o intro curto
+  } else {
+    // MOBILE: mostra só o PNG transparente e entra rápido
+    setTimeout(dismiss, 1500);
+  }
 
-  // fallback: erro de carregamento
-  video.addEventListener('error', () => {
-    clearTimeout(cutTimer);
-    dismiss();
-  }, { once: true });
+  // timeout MÁXIMO de segurança — nunca deixa o usuário preso no loader
+  setTimeout(dismiss, 4000);
+})();
 
-  // hard-stop de segurança
-  setTimeout(dismiss, 5000);
+/* ── § HERO VIDEO (promove só no desktop; mobile usa PNG) ── */
+(function heroVideo() {
+  const v = document.querySelector('.hero__video');
+  if (!v || !v.dataset.src) return;
+  if (window.matchMedia('(max-width: 768px)').matches) return;  // mobile → PNG (CSS)
+  v.src = v.dataset.src;                                        // desktop carrega o webm
 })();
 
 /* ── § BURGER ─────────────────────────────────────── */
