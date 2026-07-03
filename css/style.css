@@ -3108,6 +3108,32 @@ address {
   line-height: 1.8;
 }
 
+/* confirmação após finalizar o pedido (vai pro Instagram) */
+.cart-done {
+  text-align: center;
+  padding: 2.4rem .5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .9rem;
+}
+.cart-done__title {
+  font-family: var(--f-bangers);
+  font-size: 1.5rem;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.cart-done__txt {
+  font-family: var(--f-body);
+  font-size: .9rem;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 34ch;
+}
+.cart-done__txt b { color: var(--text); }
+.cart-done__ig { margin-top: .3rem; }
+
 .cart-item {
   padding: 1rem 0;
   border-bottom: 1px solid rgba(255,255,255,.055);

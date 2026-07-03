@@ -95,7 +95,8 @@
   var elBtn = document.getElementById('cartBtn');
   if (!elBtn) return; // página sem carrinho → não faz nada
 
-  var WA = '5535999999999';
+  var IG_USER = 'taba_crazy';                 // pedidos chegam pela DM do Instagram
+  var IG_DM   = 'https://ig.me/m/' + IG_USER; // deep link oficial p/ abrir a conversa
   var STORE_KEY = 'tabacrazy_cart';
   /* origem desta página (p/ agrupar o pedido único): Adega tem .shop-section--adega */
   var PAGE_ORIGIN = document.querySelector('.shop-section--adega') ? 'Adega' : 'Loja';
@@ -260,14 +261,49 @@
     var msg = 'Olá! Quero fazer o seguinte pedido:\n\n' +
               blocks.join('\n\n') +
               '\n\nTOTAL: ' + fmt(total);
-    window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+
+    /* O Instagram não aceita texto pré-preenchido na DM (diferente do zap):
+       copiamos o resumo do pedido e abrimos a conversa pro cliente só colar. */
+    window.open(IG_DM, '_blank', 'noopener'); // síncrono, dentro do gesto de clique
+    copyText(msg);
 
     /* esvazia ao finalizar (em ambas as páginas, via localStorage) */
     cart.length = 0;
     saveCart();
     syncBadge();
-    render();
+
+    /* confirmação no lugar do carrinho (não chama render p/ manter o aviso) */
+    elBody.innerHTML =
+      '<div class="cart-done">' +
+        '<p class="cart-done__title">Pedido copiado! 📋</p>' +
+        '<p class="cart-done__txt">Abrimos a DM do nosso Instagram — é só <b>colar</b> o resumo lá e enviar que a gente confirma tudinho. 💬</p>' +
+        '<a class="btn btn--neon cart-done__ig" href="' + IG_DM + '" target="_blank" rel="noopener noreferrer">ABRIR INSTAGRAM ↗</a>' +
+      '</div>';
+    elFoot.innerHTML = '';
   });
+
+  /* copia o resumo do pedido (Clipboard API + fallback execCommand) */
+  function copyText(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text)['catch'](function () { fallbackCopy(text); });
+    }
+    fallbackCopy(text);
+    return null;
+  }
+  function fallbackCopy(text) {
+    try {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.top = '-1000px';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+    } catch (e) {}
+  }
 
   function openCart() {
     elDrawer.classList.add('cart-drawer--open');
