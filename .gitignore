@@ -20,6 +20,12 @@ desktop.ini
 _*.cjs
 _*.png
 
+# Fotos-fonte dos produtos (JPGs originais ~4MB cada, ~780MB).
+# O site usa as versões otimizadas em assets/produtos/*.webp (essas SIM são versionadas).
+# Barra inicial = ancora na raiz, pra NÃO ignorar assets/produtos/.
+/produtos/
+/produtos_selecionadas/
+
 # Config/instruções internas — não publicar no site nem no repo
 .claude/
 CLAUDE.md

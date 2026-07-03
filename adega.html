@@ -91,186 +91,229 @@
         <div class="shop-filters" role="group" aria-label="Filtrar bebidas">
           <button class="shop-pill active" data-filter="todos">Todos</button>
           <button class="shop-pill" data-filter="cervejas">Cervejas</button>
-          <button class="shop-pill" data-filter="drinks">Drinks</button>
-          <button class="shop-pill" data-filter="doses">Doses</button>
-          <button class="shop-pill" data-filter="whisky">Whisky</button>
+          <button class="shop-pill" data-filter="ice">Ice / Combos</button>
+          <button class="shop-pill" data-filter="gin">Gin</button>
           <button class="shop-pill" data-filter="vodka">Vodka</button>
+          <button class="shop-pill" data-filter="whisky">Whisky</button>
+          <button class="shop-pill" data-filter="cachaca">Cachaça</button>
+          <button class="shop-pill" data-filter="vinhos">Vinhos</button>
+          <button class="shop-pill" data-filter="aperitivos">Aperitivos</button>
           <button class="shop-pill" data-filter="energeticos">Energéticos</button>
-        </div>
-
-        <!-- ⚠ CATÁLOGO PLACEHOLDER — nomes/preços/imagens são EXEMPLOS a revisar.
-             Substituir pelos produtos reais da Adega quando disponíveis. As seções
-             por categoria são geradas dinamicamente por js/shop.js a partir destes
-             cards (data-category) e das pills acima. -->
+          <button class="shop-pill" data-filter="refrigerantes">Refrigerantes</button>
+          <button class="shop-pill" data-filter="gelos">Gelos</button>
+                </div>
         <ul class="shop-grid" id="shop-grid" role="list">
 
           <!-- ── CERVEJAS ── -->
           <li class="shop-card" data-category="cervejas">
             <div class="shop-card__inner">
               <div class="shop-card__media">
-                <img src="https://images.unsplash.com/photo-1608270586620-248524c67de9?auto=format&fit=crop&w=600&q=80" alt="Heineken Long Neck gelada" loading="lazy">
-                <span class="shop-badge shop-badge--novo">GELADA</span>
+                <img src="assets/produtos/skol-beats-laranja.webp" alt="Skol Beats Laranja" loading="lazy" width="900" height="900">
                 <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
               </div>
               <div class="shop-card__body">
                 <p class="shop-card__old"></p>
-                <p class="shop-card__name">Heineken Long Neck</p>
-                <p class="shop-card__price">R$ 9,90</p>
-              </div>
-            </div>
-          </li>
-          <li class="shop-card" data-category="cervejas">
-            <div class="shop-card__inner">
-              <div class="shop-card__media">
-                <img src="https://images.unsplash.com/photo-1608270586620-248524c67de9?auto=format&fit=crop&w=600&q=80" alt="Budweiser 350ml" loading="lazy">
-                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
-              </div>
-              <div class="shop-card__body">
-                <p class="shop-card__old">R$ 8,90</p>
-                <p class="shop-card__name">Budweiser 350ml</p>
-                <p class="shop-card__price">R$ 6,90</p>
-              </div>
-            </div>
-          </li>
-          <li class="shop-card" data-category="cervejas">
-            <div class="shop-card__inner">
-              <div class="shop-card__media">
-                <img src="https://images.unsplash.com/photo-1608270586620-248524c67de9?auto=format&fit=crop&w=600&q=80" alt="Corona Extra" loading="lazy">
-                <span class="shop-badge shop-badge--limited">IMPORTADA</span>
-                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
-              </div>
-              <div class="shop-card__body">
-                <p class="shop-card__old"></p>
-                <p class="shop-card__name">Corona Extra</p>
-                <p class="shop-card__price">R$ 12,90</p>
+                <p class="shop-card__name">Skol Beats Laranja</p>
+                <p class="shop-card__price">R$ 11,00</p>
               </div>
             </div>
           </li>
 
-          <!-- ── DRINKS ── -->
-          <li class="shop-card" data-category="drinks">
+          <!-- ── ICE / COMBOS ── -->
+          <li class="shop-card" data-category="ice">
             <div class="shop-card__inner">
               <div class="shop-card__media">
-                <img src="https://images.unsplash.com/photo-1748674747180-842f31b5a619?auto=format&fit=crop&w=600&q=80" alt="Caipirinha da Casa" loading="lazy">
-                <span class="shop-badge shop-badge--novo">DA CASA</span>
+                <img src="assets/produtos/corote-combo-wisky.webp" alt="Corote Combo Wisky" loading="lazy" width="900" height="900">
                 <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
               </div>
               <div class="shop-card__body">
                 <p class="shop-card__old"></p>
-                <p class="shop-card__name">Caipirinha da Casa</p>
-                <p class="shop-card__price">R$ 19,90</p>
+                <p class="shop-card__name">Corote Combo Wisky</p>
+                <p class="shop-card__price">R$ 20,00</p>
               </div>
             </div>
           </li>
-          <li class="shop-card" data-category="drinks">
+          <li class="shop-card" data-category="ice">
             <div class="shop-card__inner">
               <div class="shop-card__media">
-                <img src="https://images.unsplash.com/photo-1748674747180-842f31b5a619?auto=format&fit=crop&w=600&q=80" alt="Gin Tônica" loading="lazy">
+                <img src="assets/produtos/corote-combo-wisky-melancia.webp" alt="Corote Combo Wisky Melancia" loading="lazy" width="900" height="900">
                 <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
               </div>
               <div class="shop-card__body">
                 <p class="shop-card__old"></p>
-                <p class="shop-card__name">Gin Tônica</p>
-                <p class="shop-card__price">R$ 24,90</p>
+                <p class="shop-card__name">Corote Combo Wisky Melancia</p>
+                <p class="shop-card__price">R$ 25,00</p>
               </div>
             </div>
           </li>
-          <li class="shop-card" data-category="drinks">
+          <li class="shop-card" data-category="ice">
             <div class="shop-card__inner">
               <div class="shop-card__media">
-                <img src="https://images.unsplash.com/photo-1748674747180-842f31b5a619?auto=format&fit=crop&w=600&q=80" alt="Mojito" loading="lazy">
-                <span class="shop-badge shop-badge--limited">TOP</span>
+                <img src="assets/produtos/mansao-maromba-job.webp" alt="Mansao Maromba JOB" loading="lazy" width="900" height="900">
                 <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
               </div>
               <div class="shop-card__body">
                 <p class="shop-card__old"></p>
-                <p class="shop-card__name">Mojito</p>
-                <p class="shop-card__price">R$ 22,90</p>
+                <p class="shop-card__name">Mansao Maromba JOB</p>
+                <p class="shop-card__price">R$ 24,99</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="ice">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="assets/produtos/mansao-maromba-combo-wisky.webp" alt="Mansão Maromba Combo Wisky" loading="lazy" width="900" height="900">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Mansão Maromba Combo Wisky</p>
+                <p class="shop-card__price">R$ 25,00</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="ice">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="assets/produtos/mansao-maromba-tigrinho.webp" alt="Mansão Maromba Tigrinho" loading="lazy" width="900" height="900">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Mansão Maromba Tigrinho</p>
+                <p class="shop-card__price">R$ 24,99</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="ice">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="assets/produtos/mansao-maromba-vodka.webp" alt="Mansão Maromba Vodka" loading="lazy" width="900" height="900">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Mansão Maromba Vodka</p>
+                <p class="shop-card__price">R$ 24,99</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="ice">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="assets/produtos/masao-maromba-melancia.webp" alt="Masão Maromba Melancia" loading="lazy" width="900" height="900">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Masão Maromba Melancia</p>
+                <p class="shop-card__price">R$ 25,00</p>
               </div>
             </div>
           </li>
 
-          <!-- ── DOSES ── -->
-          <li class="shop-card" data-category="doses">
+          <!-- ── GIN ── -->
+          <li class="shop-card" data-category="gin">
             <div class="shop-card__inner">
               <div class="shop-card__media">
-                <img src="https://images.unsplash.com/photo-1569529465841-dfecdab7503b?auto=format&fit=crop&w=600&q=80" alt="Dose de Tequila" loading="lazy">
+                <img src="assets/produtos/gin-gordons.webp" alt="Gin Gordons" loading="lazy" width="900" height="900">
                 <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
               </div>
               <div class="shop-card__body">
                 <p class="shop-card__old"></p>
-                <p class="shop-card__name">Dose de Tequila</p>
-                <p class="shop-card__price">R$ 14,90</p>
+                <p class="shop-card__name">Gin Gordons</p>
+                <p class="shop-card__price">R$ 100,00</p>
               </div>
             </div>
           </li>
-          <li class="shop-card" data-category="doses">
+          <li class="shop-card" data-category="gin">
             <div class="shop-card__inner">
               <div class="shop-card__media">
-                <img src="https://images.unsplash.com/photo-1569529465841-dfecdab7503b?auto=format&fit=crop&w=600&q=80" alt="Dose de Cachaça Premium" loading="lazy">
-                <span class="shop-badge shop-badge--novo">ARTESANAL</span>
+                <img src="assets/produtos/gin-gordons-2.webp" alt="Gin Gordons" loading="lazy" width="900" height="900">
                 <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
               </div>
               <div class="shop-card__body">
                 <p class="shop-card__old"></p>
-                <p class="shop-card__name">Cachaça Premium</p>
-                <p class="shop-card__price">R$ 11,90</p>
+                <p class="shop-card__name">Gin Gordons</p>
+                <p class="shop-card__price">R$ 95,00</p>
               </div>
             </div>
           </li>
-          <li class="shop-card" data-category="doses">
+          <li class="shop-card" data-category="gin">
             <div class="shop-card__inner">
               <div class="shop-card__media">
-                <img src="https://images.unsplash.com/photo-1569529465841-dfecdab7503b?auto=format&fit=crop&w=600&q=80" alt="Dose de Licor 43" loading="lazy">
+                <img src="assets/produtos/gin-invictus.webp" alt="Gin Invictus" loading="lazy" width="900" height="900">
                 <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
               </div>
               <div class="shop-card__body">
                 <p class="shop-card__old"></p>
-                <p class="shop-card__name">Dose de Licor 43</p>
-                <p class="shop-card__price">R$ 16,90</p>
+                <p class="shop-card__name">Gin Invictus</p>
+                <p class="shop-card__price">R$ 50,00</p>
               </div>
             </div>
           </li>
-
-          <!-- ── WHISKY ── -->
-          <li class="shop-card" data-category="whisky">
+          <li class="shop-card" data-category="gin">
             <div class="shop-card__inner">
               <div class="shop-card__media">
-                <img src="https://images.unsplash.com/photo-1569529465841-dfecdab7503b?auto=format&fit=crop&w=600&q=80" alt="Dose de Red Label" loading="lazy">
+                <img src="assets/produtos/gin-invictus-morango.webp" alt="Gin Invictus - Morango" loading="lazy" width="900" height="900">
                 <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
               </div>
               <div class="shop-card__body">
                 <p class="shop-card__old"></p>
-                <p class="shop-card__name">Red Label (dose)</p>
-                <p class="shop-card__price">R$ 15,90</p>
+                <p class="shop-card__name">Gin Invictus - Morango</p>
+                <p class="shop-card__price">R$ 50,00</p>
               </div>
             </div>
           </li>
-          <li class="shop-card" data-category="whisky">
+          <li class="shop-card" data-category="gin">
             <div class="shop-card__inner">
               <div class="shop-card__media">
-                <img src="https://images.unsplash.com/photo-1569529465841-dfecdab7503b?auto=format&fit=crop&w=600&q=80" alt="Dose de Black Label" loading="lazy">
-                <span class="shop-badge shop-badge--limited">12 ANOS</span>
+                <img src="assets/produtos/gin-invictus-melancia.webp" alt="Gin Invictus Melancia" loading="lazy" width="900" height="900">
                 <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
               </div>
               <div class="shop-card__body">
                 <p class="shop-card__old"></p>
-                <p class="shop-card__name">Black Label (dose)</p>
-                <p class="shop-card__price">R$ 29,90</p>
+                <p class="shop-card__name">Gin Invictus Melancia</p>
+                <p class="shop-card__price">R$ 50,00</p>
               </div>
             </div>
           </li>
-          <li class="shop-card" data-category="whisky">
+          <li class="shop-card" data-category="gin">
             <div class="shop-card__inner">
               <div class="shop-card__media">
-                <img src="https://images.unsplash.com/photo-1569529465841-dfecdab7503b?auto=format&fit=crop&w=600&q=80" alt="Dose de Jack Daniel's" loading="lazy">
-                <span class="shop-badge shop-badge--novo">NOVO</span>
+                <img src="assets/produtos/gin-lady-jocker.webp" alt="Gin Lady Jocker" loading="lazy" width="900" height="900">
                 <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
               </div>
               <div class="shop-card__body">
-                <p class="shop-card__old">R$ 24,90</p>
-                <p class="shop-card__name">Jack Daniel's (dose)</p>
-                <p class="shop-card__price">R$ 19,90</p>
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Gin Lady Jocker</p>
+                <p class="shop-card__price">R$ 30,00</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="gin">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="assets/produtos/gin-lady-jocker-amarelo.webp" alt="Gin Lady Jocker Amarelo" loading="lazy" width="900" height="900">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Gin Lady Jocker Amarelo</p>
+                <p class="shop-card__price">R$ 30,00</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="gin">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="assets/produtos/gin-tanqueray.webp" alt="Gin Tanqueray" loading="lazy" width="900" height="900">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Gin Tanqueray</p>
+                <p class="shop-card__price">R$ 140,00</p>
               </div>
             </div>
           </li>
@@ -279,40 +322,216 @@
           <li class="shop-card" data-category="vodka">
             <div class="shop-card__inner">
               <div class="shop-card__media">
-                <img src="https://images.unsplash.com/photo-1748674747180-842f31b5a619?auto=format&fit=crop&w=600&q=80" alt="Dose de Smirnoff" loading="lazy">
+                <img src="assets/produtos/vodka-sminorfi.webp" alt="Vodka Sminorfi" loading="lazy" width="900" height="900">
                 <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
               </div>
               <div class="shop-card__body">
                 <p class="shop-card__old"></p>
-                <p class="shop-card__name">Smirnoff (dose)</p>
-                <p class="shop-card__price">R$ 12,90</p>
+                <p class="shop-card__name">Vodka Sminorfi</p>
+                <p class="shop-card__price">R$ 55,00</p>
               </div>
             </div>
           </li>
-          <li class="shop-card" data-category="vodka">
+
+          <!-- ── WHISKY ── -->
+          <li class="shop-card" data-category="whisky">
             <div class="shop-card__inner">
               <div class="shop-card__media">
-                <img src="https://images.unsplash.com/photo-1748674747180-842f31b5a619?auto=format&fit=crop&w=600&q=80" alt="Dose de Absolut" loading="lazy">
-                <span class="shop-badge shop-badge--limited">IMPORTADA</span>
+                <img src="assets/produtos/jack-daniels-black-beuer.webp" alt="Jack Daniels Black Beuer" loading="lazy" width="900" height="900">
                 <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
               </div>
               <div class="shop-card__body">
                 <p class="shop-card__old"></p>
-                <p class="shop-card__name">Absolut (dose)</p>
-                <p class="shop-card__price">R$ 18,90</p>
+                <p class="shop-card__name">Jack Daniels Black Beuer</p>
+                <p class="shop-card__price">R$ 240,00</p>
               </div>
             </div>
           </li>
-          <li class="shop-card" data-category="vodka">
+          <li class="shop-card" data-category="whisky">
             <div class="shop-card__inner">
               <div class="shop-card__media">
-                <img src="https://images.unsplash.com/photo-1748674747180-842f31b5a619?auto=format&fit=crop&w=600&q=80" alt="Dose de Ciroc" loading="lazy">
+                <img src="assets/produtos/jack-daniels-de-maca.webp" alt="Jack Daniels de Maça" loading="lazy" width="900" height="900">
                 <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
               </div>
               <div class="shop-card__body">
                 <p class="shop-card__old"></p>
-                <p class="shop-card__name">Ciroc (dose)</p>
-                <p class="shop-card__price">R$ 26,90</p>
+                <p class="shop-card__name">Jack Daniels de Maça</p>
+                <p class="shop-card__price">R$ 200,00</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="whisky">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="assets/produtos/wisky-black-label.webp" alt="Wisky Black Label" loading="lazy" width="900" height="900">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Wisky Black Label</p>
+                <p class="shop-card__price">R$ 230,00</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="whisky">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="assets/produtos/wisky-bucanas.webp" alt="Wisky Bucanas" loading="lazy" width="900" height="900">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Wisky Bucanas</p>
+                <p class="shop-card__price">R$ 220,00</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="whisky">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="assets/produtos/wisky-gold-label.webp" alt="Wisky Gold Label" loading="lazy" width="900" height="900">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Wisky Gold Label</p>
+                <p class="shop-card__price">R$ 315,00</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="whisky">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="assets/produtos/wisky-jack-daniels.webp" alt="Wisky Jack Daniels" loading="lazy" width="900" height="900">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Wisky Jack Daniels</p>
+                <p class="shop-card__price">R$ 190,00</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="whisky">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="assets/produtos/wisky-jack-daniels-honey.webp" alt="Wisky Jack Daniels Honey" loading="lazy" width="900" height="900">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Wisky Jack Daniels Honey</p>
+                <p class="shop-card__price">R$ 200,00</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="whisky">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="assets/produtos/wisky-jack-jemes.webp" alt="Wisky Jack Jemes" loading="lazy" width="900" height="900">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Wisky Jack Jemes</p>
+                <p class="shop-card__price">R$ 60,00</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="whisky">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="assets/produtos/wisky-passaport.webp" alt="Wisky Passaport" loading="lazy" width="900" height="900">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Wisky Passaport</p>
+                <p class="shop-card__price">R$ 75,00</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="whisky">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="assets/produtos/wisky-red-label.webp" alt="Wisky Red Label" loading="lazy" width="900" height="900">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Wisky Red Label</p>
+                <p class="shop-card__price">R$ 110,00</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="whisky">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="assets/produtos/wisky-white-horse.webp" alt="Wisky White Horse" loading="lazy" width="900" height="900">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Wisky White Horse</p>
+                <p class="shop-card__price">R$ 95,00</p>
+              </div>
+            </div>
+          </li>
+
+          <!-- ── CACHAÇA ── -->
+          <li class="shop-card" data-category="cachaca">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="assets/produtos/bob-pinga.webp" alt="Bob Pinga" loading="lazy" width="900" height="900">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Bob Pinga</p>
+                <p class="shop-card__price">R$ 50,00</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="cachaca">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="assets/produtos/pinga-51.webp" alt="Pinga 51" loading="lazy" width="900" height="900">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Pinga 51</p>
+                <p class="shop-card__price">R$ 25,00</p>
+              </div>
+            </div>
+          </li>
+
+          <!-- ── VINHOS ── -->
+          <li class="shop-card" data-category="vinhos">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="assets/produtos/vinho-pergola.webp" alt="Vinho Pergola" loading="lazy" width="900" height="900">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Vinho Pergola</p>
+                <p class="shop-card__price">R$ 33,00</p>
+              </div>
+            </div>
+          </li>
+
+          <!-- ── APERITIVOS ── -->
+          <li class="shop-card" data-category="aperitivos">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="assets/produtos/aperol.webp" alt="Aperol" loading="lazy" width="900" height="900">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Aperol</p>
+                <p class="shop-card__price">R$ 75,00</p>
               </div>
             </div>
           </li>
@@ -321,40 +540,329 @@
           <li class="shop-card" data-category="energeticos">
             <div class="shop-card__inner">
               <div class="shop-card__media">
-                <img src="https://images.unsplash.com/photo-1622543925917-763c34d1a86e?auto=format&fit=crop&w=600&q=80" alt="Red Bull gelado" loading="lazy">
-                <span class="shop-badge shop-badge--novo">GELADO</span>
+                <img src="assets/produtos/baly-tadaly-lata.webp" alt="Baly Tadaly Lata" loading="lazy" width="900" height="900">
                 <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
               </div>
               <div class="shop-card__body">
                 <p class="shop-card__old"></p>
-                <p class="shop-card__name">Red Bull</p>
-                <p class="shop-card__price">R$ 12,90</p>
+                <p class="shop-card__name">Baly Tadaly Lata</p>
+                <p class="shop-card__price">R$ 14,00</p>
               </div>
             </div>
           </li>
           <li class="shop-card" data-category="energeticos">
             <div class="shop-card__inner">
               <div class="shop-card__media">
-                <img src="https://images.unsplash.com/photo-1622543925917-763c34d1a86e?auto=format&fit=crop&w=600&q=80" alt="Monster Energy" loading="lazy">
+                <img src="assets/produtos/energetico-fusion-2-litros.webp" alt="Energetico Fusion 2 Litros" loading="lazy" width="900" height="900">
                 <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
               </div>
               <div class="shop-card__body">
-                <p class="shop-card__old">R$ 13,90</p>
-                <p class="shop-card__name">Monster Energy</p>
-                <p class="shop-card__price">R$ 10,90</p>
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Energetico Fusion 2 Litros</p>
+                <p class="shop-card__price">R$ 25,00</p>
               </div>
             </div>
           </li>
           <li class="shop-card" data-category="energeticos">
             <div class="shop-card__inner">
               <div class="shop-card__media">
-                <img src="https://images.unsplash.com/photo-1622543925917-763c34d1a86e?auto=format&fit=crop&w=600&q=80" alt="TNT Energy Drink" loading="lazy">
+                <img src="assets/produtos/energetico-fusion-menor.webp" alt="Energetico Fusion Menor" loading="lazy" width="900" height="900">
                 <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
               </div>
               <div class="shop-card__body">
                 <p class="shop-card__old"></p>
-                <p class="shop-card__name">TNT Energy</p>
-                <p class="shop-card__price">R$ 8,90</p>
+                <p class="shop-card__name">Energetico Fusion Menor</p>
+                <p class="shop-card__price">R$ 14,00</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="energeticos">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="assets/produtos/energetico-monster-azul.webp" alt="Energetico Monster Azul" loading="lazy" width="900" height="900">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Energetico Monster Azul</p>
+                <p class="shop-card__price">R$ 14,00</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="energeticos">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="assets/produtos/energetico-monster-lata.webp" alt="Energetico Monster Lata" loading="lazy" width="900" height="900">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Energetico Monster Lata</p>
+                <p class="shop-card__price">R$ 14,00</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="energeticos">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="assets/produtos/energetico-monster-vermelho.webp" alt="Energetico Monster Vermelho" loading="lazy" width="900" height="900">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Energetico Monster Vermelho</p>
+                <p class="shop-card__price">R$ 14,00</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="energeticos">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="assets/produtos/energetico-red-bul-lata.webp" alt="Energetico Red Bul Lata" loading="lazy" width="900" height="900">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Energetico Red Bul Lata</p>
+                <p class="shop-card__price">R$ 13,00</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="energeticos">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="assets/produtos/energetico-red-bul-rosa.webp" alt="Energetico Red Bul Rosa" loading="lazy" width="900" height="900">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Energetico Red Bul Rosa</p>
+                <p class="shop-card__price">R$ 13,00</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="energeticos">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="assets/produtos/energetico-red-bull-laranja.webp" alt="Energetico Red Bull Laranja" loading="lazy" width="900" height="900">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Energetico Red Bull Laranja</p>
+                <p class="shop-card__price">R$ 13,00</p>
+              </div>
+            </div>
+          </li>
+
+          <!-- ── REFRIGERANTES ── -->
+          <li class="shop-card" data-category="refrigerantes">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="assets/produtos/agua-com-gas.webp" alt="Agua com Gas" loading="lazy" width="900" height="900">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Agua com Gas</p>
+                <p class="shop-card__price">R$ 4,00</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="refrigerantes">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="assets/produtos/coca-lata.webp" alt="Coca Lata" loading="lazy" width="900" height="900">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Coca Lata</p>
+                <p class="shop-card__price">R$ 6,00</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="refrigerantes">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="assets/produtos/coca-normal-ks-vidro.webp" alt="Coca Normal KS Vidro" loading="lazy" width="900" height="900">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Coca Normal KS Vidro</p>
+                <p class="shop-card__price">R$ 6,00</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="refrigerantes">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="assets/produtos/coca-normal-lata.webp" alt="Coca Normal Lata" loading="lazy" width="900" height="900">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Coca Normal Lata</p>
+                <p class="shop-card__price">R$ 6,00</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="refrigerantes">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="assets/produtos/fanta-laranja-lata.webp" alt="Fanta Laranja Lata" loading="lazy" width="900" height="900">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Fanta Laranja Lata</p>
+                <p class="shop-card__price">R$ 6,00</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="refrigerantes">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="assets/produtos/fanta-uva-ks-vidro.webp" alt="Fanta Uva KS Vidro" loading="lazy" width="900" height="900">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Fanta Uva KS Vidro</p>
+                <p class="shop-card__price">R$ 6,00</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="refrigerantes">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="assets/produtos/fanta-uva-lata.webp" alt="Fanta Uva Lata" loading="lazy" width="900" height="900">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Fanta Uva Lata</p>
+                <p class="shop-card__price">R$ 6,00</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="refrigerantes">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="assets/produtos/guarana-antartica-lata.webp" alt="Guarana Antartica Lata" loading="lazy" width="900" height="900">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Guarana Antartica Lata</p>
+                <p class="shop-card__price">R$ 6,00</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="refrigerantes">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="assets/produtos/mister-hemp-lata.webp" alt="Mister Hemp Lata" loading="lazy" width="900" height="900">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Mister Hemp Lata</p>
+                <p class="shop-card__price">R$ 15,00</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="refrigerantes">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="assets/produtos/sprite-ks-de-vidro.webp" alt="Sprite KS de Vidro" loading="lazy" width="900" height="900">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Sprite KS de Vidro</p>
+                <p class="shop-card__price">R$ 6,00</p>
+              </div>
+            </div>
+          </li>
+
+          <!-- ── GELOS ── -->
+          <li class="shop-card" data-category="gelos">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="assets/produtos/gelo-sabor-coco.webp" alt="Gelo Sabor Coco" loading="lazy" width="900" height="900">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Gelo Sabor Coco</p>
+                <p class="shop-card__price">R$ 5,00</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="gelos">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="assets/produtos/gelo-sabor-maracuja.webp" alt="Gelo Sabor Maracuja" loading="lazy" width="900" height="900">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Gelo Sabor Maracuja</p>
+                <p class="shop-card__price">R$ 5,00</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="gelos">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="assets/produtos/gelo-sabor-maca-verde.webp" alt="Gelo Sabor Maça Verde" loading="lazy" width="900" height="900">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Gelo Sabor Maça Verde</p>
+                <p class="shop-card__price">R$ 5,00</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="gelos">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="assets/produtos/gelo-sabor-melancia.webp" alt="Gelo Sabor Melancia" loading="lazy" width="900" height="900">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Gelo Sabor Melancia</p>
+                <p class="shop-card__price">R$ 5,00</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="gelos">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="assets/produtos/gelo-de-laranja.webp" alt="Gelo de Laranja" loading="lazy" width="900" height="900">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Gelo de Laranja</p>
+                <p class="shop-card__price">R$ 5,00</p>
+              </div>
+            </div>
+          </li>
+          <li class="shop-card" data-category="gelos">
+            <div class="shop-card__inner">
+              <div class="shop-card__media">
+                <img src="assets/produtos/gelo-de-morango.webp" alt="Gelo de Morango" loading="lazy" width="900" height="900">
+                <div class="shop-card__cta"><a href="https://www.instagram.com/taba_crazy/" target="_blank" rel="noopener noreferrer">VER NO INSTAGRAM ↗</a></div>
+              </div>
+              <div class="shop-card__body">
+                <p class="shop-card__old"></p>
+                <p class="shop-card__name">Gelo de Morango</p>
+                <p class="shop-card__price">R$ 5,00</p>
               </div>
             </div>
           </li>
