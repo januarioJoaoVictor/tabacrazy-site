@@ -2175,6 +2175,144 @@ address {
   letter-spacing: .04em;
 }
 
+/* botão da CTA (abre a foto ampliada) — mesmo visual do antigo link */
+.shop-card__media { cursor: zoom-in; }
+
+.shop-card__cta button {
+  font-family: var(--f-mono);
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  background: var(--store-neon);
+  color: #0A0A0A;
+  padding: .65rem 1.1rem;
+  border: none;
+  border-radius: var(--r);
+  cursor: pointer;
+  transition: background var(--dur);
+  white-space: nowrap;
+}
+.shop-card__cta button:hover { background: #cfff6e; }
+
+/* ── § LIGHTBOX — foto ampliada do produto ───────────
+   Clicar na foto de um .shop-card abre a imagem maior num
+   modal (nome + preço + atalho pra pedir no Instagram). */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 950;                 /* acima do carrinho (900/901) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 4vw, 3rem);
+  background: rgba(6,5,10,.86);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur) var(--ease);
+}
+.lightbox--open { opacity: 1; pointer-events: auto; }
+
+.lightbox__dialog {
+  position: relative;
+  width: 100%;
+  max-width: min(560px, 100%);
+  background: var(--panel);
+  border: 1px solid rgba(182,255,60,.14);
+  border-radius: calc(var(--r) * 1.5);
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,.6);
+  transform: scale(.94);
+  transition: transform var(--dur) var(--ease);
+}
+.lightbox--open .lightbox__dialog { transform: scale(1); }
+
+.lightbox__media {
+  background: #0d0b12;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-height: 70vh;
+}
+.lightbox__media img {
+  width: 100%;
+  height: auto;
+  max-height: 70vh;
+  object-fit: contain;
+  display: block;
+}
+
+.lightbox__body {
+  padding: 1rem 1.15rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: .45rem;
+}
+.lightbox__name {
+  font-family: var(--f-bangers);
+  font-size: 1.35rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: #fff;
+  line-height: 1.05;
+}
+.lightbox__price {
+  font-family: var(--f-mono);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--store-neon);
+}
+.lightbox__ig {
+  margin-top: .4rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .4rem;
+  font-family: var(--f-mono);
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: .8rem 1rem;
+  border-radius: var(--r);
+  background: var(--store-neon);
+  color: #0A0A0A;
+  transition: background var(--dur);
+}
+.lightbox__ig:hover { background: #cfff6e; }
+
+.lightbox__close {
+  position: absolute;
+  top: .6rem;
+  right: .6rem;
+  width: 2.2rem;
+  height: 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 999px;
+  background: rgba(10,10,10,.6);
+  color: #fff;
+  font-size: 1.05rem;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 1;
+  transition: background var(--dur);
+}
+.lightbox__close:hover { background: rgba(139,63,209,.9); }
+
+/* Adega usa o roxo da casa no destaque */
+.lightbox--adega .lightbox__price { color: var(--store-purple); }
+.lightbox--adega .lightbox__ig { background: var(--store-purple); color: #fff; }
+.lightbox--adega .lightbox__ig:hover { background: #a05de0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .lightbox, .lightbox__dialog { transition: none; }
+}
+
 /* ── § O ROLÊ ──────────────────────────────────── */
 .role-sec {
   background: var(--black);

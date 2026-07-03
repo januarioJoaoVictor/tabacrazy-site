@@ -295,3 +295,74 @@
   syncBadge(); /* reflete itens já salvos (ex.: adicionados na outra página) */
   render();    /* estado inicial — pode já ter itens vindos do localStorage */
 })();
+
+/* ── § LIGHTBOX (amplia a foto do produto) ────────────
+   Clicar na imagem de um .shop-card abre a foto maior num
+   modal, com nome, preço e um atalho pra pedir no Instagram
+   (por enquanto os pedidos chegam por lá). Sem link "Ver no
+   Instagram" — o clique passa a abrir a própria foto. */
+(function productLightbox() {
+  if (!document.querySelector('.shop-card')) return; // páginas sem grade → ignora
+
+  var IG = 'https://www.instagram.com/taba_crazy/';
+  var isAdega = !!document.querySelector('.shop-section--adega');
+
+  var box = document.createElement('div');
+  box.className = 'lightbox' + (isAdega ? ' lightbox--adega' : '');
+  box.setAttribute('aria-hidden', 'true');
+  box.innerHTML =
+    '<div class="lightbox__dialog" role="dialog" aria-modal="true" aria-label="Foto do produto" tabindex="-1">' +
+      '<button class="lightbox__close" type="button" aria-label="Fechar">✕</button>' +
+      '<div class="lightbox__media"><img src="" alt=""></div>' +
+      '<div class="lightbox__body">' +
+        '<p class="lightbox__name"></p>' +
+        '<p class="lightbox__price"></p>' +
+        '<a class="lightbox__ig" href="' + IG + '" target="_blank" rel="noopener noreferrer">PEDIR NO INSTAGRAM ↗</a>' +
+      '</div>' +
+    '</div>';
+  document.body.appendChild(box);
+
+  var imgEl   = box.querySelector('.lightbox__media img');
+  var nameEl  = box.querySelector('.lightbox__name');
+  var priceEl = box.querySelector('.lightbox__price');
+  var closeB  = box.querySelector('.lightbox__close');
+  var lastFocus = null;
+
+  function open(card) {
+    var src   = card.querySelector('.shop-card__media img');
+    var name  = card.querySelector('.shop-card__name');
+    var price = card.querySelector('.shop-card__price');
+    if (!src) return;
+    imgEl.src = src.currentSrc || src.src;
+    imgEl.alt = name ? name.textContent : '';
+    nameEl.textContent  = name ? name.textContent : '';
+    priceEl.textContent = price ? price.textContent : '';
+    lastFocus = document.activeElement;
+    box.classList.add('lightbox--open');
+    box.removeAttribute('aria-hidden');
+    document.body.style.overflow = 'hidden';
+    closeB.focus();
+  }
+
+  function close() {
+    box.classList.remove('lightbox--open');
+    box.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  document.addEventListener('click', function (e) {
+    var media = e.target.closest('.shop-card__media');
+    if (media) {                       // clicou na foto (ou no botão "Ver foto")
+      e.preventDefault();
+      var card = media.closest('.shop-card');
+      if (card) open(card);
+      return;
+    }
+    if (e.target === box || e.target.closest('.lightbox__close')) close(); // fundo/✕
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && box.classList.contains('lightbox--open')) close();
+  });
+})();
