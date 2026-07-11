@@ -33,3 +33,9 @@ CLAUDE.md
 
 # NÃO ignorar js/env.js — contém só a publishable key (pública, protegida por RLS)
 # e o site estático precisa dela publicada para o leaderboard funcionar em produção.
+
+# Mídias de marketing geradas (fotos/vídeos ~80MB) — uso interno, não publicar no site
+marketing/
+
+# Planilhas internas (tabela de preços etc.) — não publicar
+*.xlsx

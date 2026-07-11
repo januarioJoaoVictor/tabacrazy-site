@@ -159,7 +159,7 @@
         e.stopPropagation();
         var price = parseFloat(priceEl.textContent.replace('R$', '').trim().replace(',', '.'));
         if (isNaN(price)) return;
-        addToCart(nameEl.textContent.trim(), price, t.origin);
+        addToCart(nameEl.textContent.trim(), price, card.dataset.origin || t.origin);
 
         btn.textContent = '✓ Adicionado';
         btn.classList.add('card-add-btn--added');

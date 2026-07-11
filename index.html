@@ -182,11 +182,14 @@
 <section id="store" class="vitrine" aria-label="Loja">
 
   <div class="w vitrine__head">
-    <h2 class="vitrine__heading">
-      <span class="vitrine__heading--outline">NOSSA</span>
-      <span class="vitrine__heading--neon">LOJA</span>
-    </h2>
-    <p class="vitrine__lead">Do drop novo à promoção do balcão — e o combo pronto pra fechar no zap.</p>
+    <div class="vitrine__head-text">
+      <h2 class="vitrine__heading">
+        <span class="vitrine__heading--outline">NOSSA</span>
+        <span class="vitrine__heading--neon">LOJA</span>
+      </h2>
+      <p class="vitrine__lead">Do drop novo à promoção do balcão — e o combo pronto pra fechar no zap.</p>
+    </div>
+    <a href="store.html" class="shop-see-all vitrine__cta">ACESSAR A LOJA →</a>
   </div>
 
   <!-- 01 — NOVIDADES -->
@@ -266,59 +269,171 @@
 
     <div class="band-head promo-head">
       <p class="vitrine__num vitrine__num--chalk">02 / PROMOÇÕES</p>
+      <div class="promo-nav">
+        <button type="button" class="promo-nav__btn" data-dir="prev" aria-label="Ver promoções anteriores">‹</button>
+        <button type="button" class="promo-nav__btn" data-dir="next" aria-label="Ver próximas promoções">›</button>
+      </div>
     </div>
 
-    <ul class="promo-grid" role="list">
+    <ul class="promo-grid" id="promoTrack" role="list">
 
-      <!-- Isqueiro RAW -->
+      <!-- Blunt Krush -->
       <li class="promo-card">
         <div class="promo-card__media">
-          <img src="assets/produtos/isqueiro-raw.webp" alt="Isqueiro RAW" loading="lazy" width="900" height="900">
+          <img src="assets/produtos/blunt-krush.webp" alt="Blunt Krush" loading="lazy" width="900" height="900">
         </div>
         <div class="promo-card__body">
-          <p class="promo-card__name">Isqueiro RAW</p>
-          <p class="promo-card__old"></p>
-          <p class="promo-card__new">R$ 48,00</p>
+          <p class="promo-card__name">Blunt Krush</p>
+          <p class="promo-card__old">
+            <span class="promo-card__old-num">R$ 11,00</span>
+            <svg class="promo-strike" viewBox="0 0 100 20" preserveAspectRatio="none" aria-hidden="true"><path pathLength="200" d="M2,11 C22,6 42,15 62,9 78,5 90,13 98,10"/></svg>
+          </p>
+          <p class="promo-card__new">R$ 8,00</p>
           <a class="promo-card__link" href="store.html">VER NA LOJA →</a>
         </div>
       </li>
 
-      <!-- Cinzeiro Metal RAW -->
+      <!-- Filtro Dark Horse -->
       <li class="promo-card">
         <div class="promo-card__media">
-          <img src="assets/produtos/cinzeiro-metal-raw.webp" alt="Cinzeiro Metal RAW" loading="lazy" width="900" height="900">
+          <img src="assets/produtos/filtro-dark-horse.webp" alt="Filtro Dark Horse" loading="lazy" width="900" height="900">
         </div>
         <div class="promo-card__body">
-          <p class="promo-card__name">Cinzeiro Metal RAW</p>
-          <p class="promo-card__old"></p>
-          <p class="promo-card__new">R$ 30,00</p>
+          <p class="promo-card__name">Filtro Dark Horse</p>
+          <p class="promo-card__old">
+            <span class="promo-card__old-num">R$ 8,00</span>
+            <svg class="promo-strike" viewBox="0 0 100 20" preserveAspectRatio="none" aria-hidden="true"><path pathLength="200" d="M2,11 C22,6 42,15 62,9 78,5 90,13 98,10"/></svg>
+          </p>
+          <p class="promo-card__new">R$ 5,00</p>
           <a class="promo-card__link" href="store.html">VER NA LOJA →</a>
         </div>
       </li>
 
-      <!-- Tesoura de Metal -->
+      <!-- Seda Gizeh Mini -->
       <li class="promo-card">
         <div class="promo-card__media">
-          <img src="assets/produtos/tesoura-de-metal.webp" alt="Tesoura de Metal" loading="lazy" width="900" height="900">
+          <img src="assets/produtos/seda-gizeh-mini.webp" alt="Seda Gizeh Mini" loading="lazy" width="900" height="900">
         </div>
         <div class="promo-card__body">
-          <p class="promo-card__name">Tesoura de Metal</p>
-          <p class="promo-card__old"></p>
-          <p class="promo-card__new">R$ 38,00</p>
+          <p class="promo-card__name">Seda Gizeh Mini</p>
+          <p class="promo-card__old">
+            <span class="promo-card__old-num">R$ 7,00</span>
+            <svg class="promo-strike" viewBox="0 0 100 20" preserveAspectRatio="none" aria-hidden="true"><path pathLength="200" d="M2,11 C22,6 42,15 62,9 78,5 90,13 98,10"/></svg>
+          </p>
+          <p class="promo-card__new">R$ 4,00</p>
           <a class="promo-card__link" href="store.html">VER NA LOJA →</a>
         </div>
       </li>
 
-      <!-- Cuia RAW -->
+      <!-- Seda Suave World Cup 2022 -->
       <li class="promo-card">
         <div class="promo-card__media">
-          <img src="assets/produtos/cuia-raw.webp" alt="Cuia RAW" loading="lazy" width="900" height="900">
+          <img src="assets/produtos/seda-suave-world-cup-2022.webp" alt="Seda Suave World Cup 2022" loading="lazy" width="900" height="900">
         </div>
         <div class="promo-card__body">
-          <p class="promo-card__name">Cuia RAW</p>
-          <p class="promo-card__old"></p>
-          <p class="promo-card__new">R$ 45,00</p>
+          <p class="promo-card__name">Seda Suave World Cup 2022</p>
+          <p class="promo-card__old">
+            <span class="promo-card__old-num">R$ 13,00</span>
+            <svg class="promo-strike" viewBox="0 0 100 20" preserveAspectRatio="none" aria-hidden="true"><path pathLength="200" d="M2,11 C22,6 42,15 62,9 78,5 90,13 98,10"/></svg>
+          </p>
+          <p class="promo-card__new">R$ 10,00</p>
           <a class="promo-card__link" href="store.html">VER NA LOJA →</a>
+        </div>
+      </li>
+
+      <!-- Cuia Silicone Redodando Diversas -->
+      <li class="promo-card">
+        <div class="promo-card__media">
+          <img src="assets/produtos/cuia-silicone-redodando-diversas.webp" alt="Cuia Silicone Redodando Diversas" loading="lazy" width="900" height="900">
+        </div>
+        <div class="promo-card__body">
+          <p class="promo-card__name">Cuia Silicone Redodando Diversas</p>
+          <p class="promo-card__old">
+            <span class="promo-card__old-num">R$ 38,00</span>
+            <svg class="promo-strike" viewBox="0 0 100 20" preserveAspectRatio="none" aria-hidden="true"><path pathLength="200" d="M2,11 C22,6 42,15 62,9 78,5 90,13 98,10"/></svg>
+          </p>
+          <p class="promo-card__new">R$ 35,00</p>
+          <a class="promo-card__link" href="store.html">VER NA LOJA →</a>
+        </div>
+      </li>
+
+      <!-- Mansao Maromba JOB -->
+      <li class="promo-card" data-origin="Adega">
+        <div class="promo-card__media">
+          <img src="assets/produtos/mansao-maromba-job.webp" alt="Mansao Maromba JOB" loading="lazy" width="900" height="900">
+        </div>
+        <div class="promo-card__body">
+          <p class="promo-card__name">Mansao Maromba JOB</p>
+          <p class="promo-card__old">
+            <span class="promo-card__old-num">R$ 27,99</span>
+            <svg class="promo-strike" viewBox="0 0 100 20" preserveAspectRatio="none" aria-hidden="true"><path pathLength="200" d="M2,11 C22,6 42,15 62,9 78,5 90,13 98,10"/></svg>
+          </p>
+          <p class="promo-card__new">R$ 24,99</p>
+          <a class="promo-card__link" href="adega.html">VER NA ADEGA →</a>
+        </div>
+      </li>
+
+      <!-- Mansão Maromba Combo Wisky -->
+      <li class="promo-card" data-origin="Adega">
+        <div class="promo-card__media">
+          <img src="assets/produtos/mansao-maromba-combo-wisky.webp" alt="Mansão Maromba Combo Wisky" loading="lazy" width="900" height="900">
+        </div>
+        <div class="promo-card__body">
+          <p class="promo-card__name">Mansão Maromba Combo Wisky</p>
+          <p class="promo-card__old">
+            <span class="promo-card__old-num">R$ 28,00</span>
+            <svg class="promo-strike" viewBox="0 0 100 20" preserveAspectRatio="none" aria-hidden="true"><path pathLength="200" d="M2,11 C22,6 42,15 62,9 78,5 90,13 98,10"/></svg>
+          </p>
+          <p class="promo-card__new">R$ 25,00</p>
+          <a class="promo-card__link" href="adega.html">VER NA ADEGA →</a>
+        </div>
+      </li>
+
+      <!-- Mansão Maromba Tigrinho -->
+      <li class="promo-card" data-origin="Adega">
+        <div class="promo-card__media">
+          <img src="assets/produtos/mansao-maromba-tigrinho.webp" alt="Mansão Maromba Tigrinho" loading="lazy" width="900" height="900">
+        </div>
+        <div class="promo-card__body">
+          <p class="promo-card__name">Mansão Maromba Tigrinho</p>
+          <p class="promo-card__old">
+            <span class="promo-card__old-num">R$ 27,99</span>
+            <svg class="promo-strike" viewBox="0 0 100 20" preserveAspectRatio="none" aria-hidden="true"><path pathLength="200" d="M2,11 C22,6 42,15 62,9 78,5 90,13 98,10"/></svg>
+          </p>
+          <p class="promo-card__new">R$ 24,99</p>
+          <a class="promo-card__link" href="adega.html">VER NA ADEGA →</a>
+        </div>
+      </li>
+
+      <!-- Mansão Maromba Vodka -->
+      <li class="promo-card" data-origin="Adega">
+        <div class="promo-card__media">
+          <img src="assets/produtos/mansao-maromba-vodka.webp" alt="Mansão Maromba Vodka" loading="lazy" width="900" height="900">
+        </div>
+        <div class="promo-card__body">
+          <p class="promo-card__name">Mansão Maromba Vodka</p>
+          <p class="promo-card__old">
+            <span class="promo-card__old-num">R$ 27,99</span>
+            <svg class="promo-strike" viewBox="0 0 100 20" preserveAspectRatio="none" aria-hidden="true"><path pathLength="200" d="M2,11 C22,6 42,15 62,9 78,5 90,13 98,10"/></svg>
+          </p>
+          <p class="promo-card__new">R$ 24,99</p>
+          <a class="promo-card__link" href="adega.html">VER NA ADEGA →</a>
+        </div>
+      </li>
+
+      <!-- Masão Maromba Melancia -->
+      <li class="promo-card" data-origin="Adega">
+        <div class="promo-card__media">
+          <img src="assets/produtos/masao-maromba-melancia.webp" alt="Masão Maromba Melancia" loading="lazy" width="900" height="900">
+        </div>
+        <div class="promo-card__body">
+          <p class="promo-card__name">Masão Maromba Melancia</p>
+          <p class="promo-card__old">
+            <span class="promo-card__old-num">R$ 28,00</span>
+            <svg class="promo-strike" viewBox="0 0 100 20" preserveAspectRatio="none" aria-hidden="true"><path pathLength="200" d="M2,11 C22,6 42,15 62,9 78,5 90,13 98,10"/></svg>
+          </p>
+          <p class="promo-card__new">R$ 25,00</p>
+          <a class="promo-card__link" href="adega.html">VER NA ADEGA →</a>
         </div>
       </li>
 
@@ -713,6 +828,7 @@
   <section id="vem" class="vem-sec">
     <div class="w">
 
+      <p class="vem-sec__eyebrow">// PASSA LÁ NA LOJA</p>
       <h2 class="vem-sec__h">
         <span class="vem-sec__h--outline">VEM</span>
         <span class="vem-sec__h--neon">PRA CÁ</span>
@@ -720,11 +836,23 @@
 
       <div class="vem-grid">
 
-        <div class="vem-info">
-          <address class="vem-info__addr">
-            Rua Dom Pedro II, 568-A<br>Piumhi/MG
-          </address>
-          <p class="vem-info__hours">Seg–Sáb: 13h às 00h</p>
+        <div class="vem-card">
+          <span class="venue__status closed" id="vstatus">Fechado agora</span>
+
+          <dl class="venue__dl">
+            <dt>Endereço</dt>
+            <dd>Rua Dom Pedro II, 568-A<br>Centro · Piumhi/MG</dd>
+
+            <dt>Horário</dt>
+            <dd>Seg a Sáb · <span class="vem-hi">13h → 01h</span><br>Domingo · fechado</dd>
+
+            <dt>Contato</dt>
+            <dd>
+              <a href="https://instagram.com/taba_crazy" target="_blank" rel="noopener noreferrer">@taba_crazy</a><br>
+              <a href="https://wa.me/55XXXXXXXXXXX" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+            </dd>
+          </dl>
+
           <div class="vem-info__btns">
             <a href="https://www.google.com/maps/search/Tabacrazy+Piumhi"
                target="_blank" rel="noopener noreferrer"
@@ -735,12 +863,11 @@
           </div>
         </div>
 
-        <div class="vem-map" role="img" aria-label="Localização: Rua Dom Pedro II, 568-A, Piumhi/MG">
-          <svg class="vem-map__pin" viewBox="0 0 32 42" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M16 0C7.16 0 0 7.16 0 16c0 10.8 14.4 24.8 15.4 25.7a.8.8 0 0 0 1.2 0C17.6 40.8 32 26.8 32 16 32 7.16 24.84 0 16 0z" fill="#B6FF3C"/>
-            <circle cx="16" cy="16" r="6" fill="#0A0A0A"/>
-          </svg>
-          <p class="vem-map__addr">Rua Dom Pedro II, 568-A</p>
+        <div class="vem-map">
+          <iframe
+            src="https://www.google.com/maps?q=Tabacrazy%2C%20Piumhi%20-%20MG&hl=pt-BR&z=16&output=embed"
+            title="Mapa — Tabacrazy, Rua Dom Pedro II, 568-A, Piumhi/MG"
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
 
       </div>
@@ -749,19 +876,40 @@
 
   <!-- ░ FOOTER ░ -->
   <footer class="footer" role="contentinfo">
-    <div class="w footer__in">
-      <div class="footer__brand">
-        <img src="logo/logoSemFundo.png" alt="Tabacrazy" width="80" height="32" loading="lazy">
-        <p class="footer__tag">O rolê mais louco da cidade.</p>
+    <div class="w">
+      <div class="footer__top">
+
+        <div class="footer__brand">
+          <img src="logo/logoSemFundo.png" alt="Tabacrazy" width="130" height="52" loading="lazy">
+          <p class="footer__tag">O rolê mais louco da cidade.&nbsp;🔥</p>
+        </div>
+
+        <div class="footer__col">
+          <h3 class="footer__col-title">Onde</h3>
+          <address class="footer__addr">Rua Dom Pedro II, 568-A<br>Centro · Piumhi/MG</address>
+        </div>
+
+        <div class="footer__col">
+          <h3 class="footer__col-title">Quando</h3>
+          <p class="footer__hours"><span>Seg a Sáb</span><strong>13h → 01h</strong><span>Domingo · fechado</span></p>
+        </div>
+
+        <nav class="footer__col footer__links" aria-label="Redes sociais">
+          <h3 class="footer__col-title">Cola com a gente</h3>
+          <a href="https://instagram.com/taba_crazy" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+          <a href="https://wa.me/55XXXXXXXXXXX" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a>
+        </nav>
+
       </div>
-      <nav class="footer__links" aria-label="Links do rodapé">
-        <a href="https://instagram.com/tabacrazy"     target="_blank" rel="noopener noreferrer">Instagram</a>
-        <a href="https://wa.me/55XXXXXXXXXXX"         target="_blank" rel="noopener noreferrer">WhatsApp</a>
-      </nav>
-      <div class="footer__meta">
+
+      <div class="footer__bottom">
         <span class="badge-18" aria-label="+18 — proibido vender a menores de 18 anos">+18</span>
-        <address>Rua Dom Pedro II, nº&nbsp;568 A · Piumhi/MG<br>Seg–Sáb · 13h às 01h</address>
-        <p class="footer__copy">© <span id="ano"></span> Tabacrazy. Todos os direitos.</p>
+        <p class="footer__legal">Venda proibida para menores de 18 anos. Curta com responsa.</p>
+        <p class="footer__copy">© <span id="ano"></span> Tabacrazy · Todos os direitos reservados.</p>
+        <div class="footer__maker">
+          <span class="footer__maker-label">feito por</span>
+          <img src="logo/logoJoaoVictor.png" alt="João Victor — Web Design Craft" width="40" height="40" loading="lazy">
+        </div>
       </div>
     </div>
   </footer>
@@ -794,6 +942,66 @@
       window.addEventListener('scroll', tick, { passive: true });
       window.addEventListener('resize', tick, { passive: true });
       tick();
+    })();
+
+    /* carrossel de Promoções: setas + arrastar (barra escondida via CSS) */
+    (function promoCarousel() {
+      var track = document.getElementById('promoTrack');
+      if (!track) return;
+      var prev   = document.querySelector('.promo-nav__btn[data-dir="prev"]');
+      var next   = document.querySelector('.promo-nav__btn[data-dir="next"]');
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      /* largura de 1 card + gap; avança ~1 "tela" de cards por clique */
+      function pageDist() {
+        var card = track.querySelector('.promo-card');
+        var cs   = getComputedStyle(track);
+        var gap  = parseFloat(cs.columnGap || cs.gap) || 20;
+        var step = card ? card.getBoundingClientRect().width + gap : track.clientWidth * 0.8;
+        var per  = Math.max(1, Math.floor(track.clientWidth / step));
+        return step * per;
+      }
+      function go(dir) {
+        track.scrollBy({ left: dir * pageDist(), behavior: reduce ? 'auto' : 'smooth' });
+      }
+      function sync() {
+        var max = track.scrollWidth - track.clientWidth - 1;
+        if (prev) prev.disabled = track.scrollLeft <= 1;
+        if (next) next.disabled = track.scrollLeft >= max;
+      }
+      if (prev) prev.addEventListener('click', function () { go(-1); });
+      if (next) next.addEventListener('click', function () { go(1); });
+      track.addEventListener('scroll', sync, { passive: true });
+      window.addEventListener('resize', sync, { passive: true });
+      sync();
+
+      /* arrastar com o mouse (desktop); no toque a rolagem já é nativa */
+      var down = false, startX = 0, startLeft = 0, moved = false;
+      track.addEventListener('pointerdown', function (e) {
+        if (e.pointerType === 'touch') return;
+        down = true; moved = false;
+        startX = e.clientX; startLeft = track.scrollLeft;
+        track.classList.add('is-dragging');
+        track.setPointerCapture(e.pointerId);
+      });
+      track.addEventListener('pointermove', function (e) {
+        if (!down) return;
+        var dx = e.clientX - startX;
+        if (Math.abs(dx) > 3) moved = true;
+        track.scrollLeft = startLeft - dx;
+      });
+      function endDrag(e) {
+        if (!down) return;
+        down = false;
+        track.classList.remove('is-dragging');
+        try { track.releasePointerCapture(e.pointerId); } catch (err) {}
+      }
+      track.addEventListener('pointerup', endDrag);
+      track.addEventListener('pointercancel', endDrag);
+      /* se soltou depois de arrastar, cancela o clique no card/link */
+      track.addEventListener('click', function (e) {
+        if (moved) { e.preventDefault(); e.stopPropagation(); }
+      }, true);
     })();
   </script>
 

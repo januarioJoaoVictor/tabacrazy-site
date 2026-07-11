@@ -260,12 +260,15 @@
   }
   function onScroll() {
     var y = window.scrollY || 0;
+    // fora do topo → fundo opaco/blur (evita a navbar transparente sobre fotos/texto)
+    nav.classList.toggle('scrolled', y > 80);
     if (y <= 80) setHidden(false);              // topo: navbar sempre visível
     else if (y > lastY + 4) setHidden(true);    // rolando p/ baixo: esconde
     else if (y < lastY - 4) setHidden(false);   // rolando p/ cima: mostra
     lastY = y;
   }
   window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll(); // estado inicial (ex.: recarregar já rolado)
 
   // o carrinho flutuante abre o MESMO drawer do carrinho da navbar
   if (fab) {
