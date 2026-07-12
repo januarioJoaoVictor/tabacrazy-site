@@ -975,26 +975,30 @@
       window.addEventListener('resize', sync, { passive: true });
       sync();
 
-      /* arrastar com o mouse (desktop); no toque a rolagem já é nativa */
-      var down = false, startX = 0, startLeft = 0, moved = false;
+      /* arrastar com o mouse (desktop); no toque a rolagem já é nativa.
+         Só captura o ponteiro DEPOIS que vira arrasto (>6px) — senão o
+         clique nos botões internos (ex.: "+ Adicionar") era engolido. */
+      var down = false, startX = 0, startLeft = 0, moved = false, captured = false;
       track.addEventListener('pointerdown', function (e) {
         if (e.pointerType === 'touch') return;
-        down = true; moved = false;
+        down = true; moved = false; captured = false;
         startX = e.clientX; startLeft = track.scrollLeft;
-        track.classList.add('is-dragging');
-        track.setPointerCapture(e.pointerId);
       });
       track.addEventListener('pointermove', function (e) {
         if (!down) return;
         var dx = e.clientX - startX;
-        if (Math.abs(dx) > 3) moved = true;
-        track.scrollLeft = startLeft - dx;
+        if (!moved && Math.abs(dx) > 6) {
+          moved = true;
+          track.classList.add('is-dragging');
+          try { track.setPointerCapture(e.pointerId); captured = true; } catch (err) {}
+        }
+        if (moved) track.scrollLeft = startLeft - dx;
       });
       function endDrag(e) {
         if (!down) return;
         down = false;
         track.classList.remove('is-dragging');
-        try { track.releasePointerCapture(e.pointerId); } catch (err) {}
+        if (captured) { try { track.releasePointerCapture(e.pointerId); } catch (err) {} captured = false; }
       }
       track.addEventListener('pointerup', endDrag);
       track.addEventListener('pointercancel', endDrag);

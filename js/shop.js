@@ -95,8 +95,9 @@
   var elBtn = document.getElementById('cartBtn');
   if (!elBtn) return; // página sem carrinho → não faz nada
 
-  var IG_USER = 'taba_crazy';                 // pedidos chegam pela DM do Instagram
-  var IG_DM   = 'https://ig.me/m/' + IG_USER; // deep link oficial p/ abrir a conversa
+  /* pedidos agora chegam pelo WhatsApp da tabacaria (wa.me aceita texto pré-preenchido).
+     TODO: trocar 55XXXXXXXXXXX pelo número real (só dígitos, com DDI 55 + DDD). */
+  var WA_NUMBER = '55XXXXXXXXXXX';
   var STORE_KEY = 'tabacrazy_cart';
   /* origem desta página (p/ agrupar o pedido único): Adega tem .shop-section--adega */
   var PAGE_ORIGIN = document.querySelector('.shop-section--adega') ? 'Adega' : 'Loja';
@@ -238,10 +239,8 @@
     if (rb) { cart.splice(+rb.dataset.i, 1); saveCart(); syncBadge(); render(); }
   });
 
-  elFoot.addEventListener('click', function (e) {
-    if (!e.target.closest('#cartCheckout')) return;
-
-    /* agrupa o pedido único por origem (Loja / Adega) */
+  /* ── resumo dos itens agrupados por origem (Loja / Adega) ── */
+  function buildItemsBlock() {
     var groups = {};
     cart.forEach(function (item) {
       var g = item.origin || 'Loja';
@@ -256,54 +255,141 @@
       });
       blocks.push(pair[1] + ' ' + pair[0].toUpperCase() + ':\n' + lines.join('\n'));
     });
+    return blocks.join('\n\n');
+  }
 
-    var total = cart.reduce(function (s, i) { return s + i.price * i.qty; }, 0);
+  function cartTotal() { return cart.reduce(function (s, i) { return s + i.price * i.qty; }, 0); }
+  function showErr(msg) { var el = document.getElementById('coErr'); if (el) { el.textContent = msg; el.hidden = false; } }
+
+  /* ── tela de checkout: entrega/retirada · pagamento · troco ── */
+  function showCheckout() {
+    if (!cart.length) return;
+
+    elBody.innerHTML =
+      '<form class="checkout" id="checkoutForm">' +
+        '<button type="button" class="checkout__back" id="coBack">← voltar ao carrinho</button>' +
+
+        '<fieldset class="checkout__group">' +
+          '<legend class="checkout__legend">Entrega ou retirada?</legend>' +
+          '<label class="checkout__opt"><input type="radio" name="modo" value="Retirada" checked><span>Retirar na loja</span></label>' +
+          '<label class="checkout__opt"><input type="radio" name="modo" value="Entrega"><span>Entrega</span></label>' +
+        '</fieldset>' +
+
+        '<div class="checkout__field" id="coAddrWrap" hidden>' +
+          '<label class="checkout__lbl" for="coAddr">Endereço de entrega</label>' +
+          '<textarea class="checkout__input" id="coAddr" rows="2" placeholder="Rua, número, bairro e um ponto de referência"></textarea>' +
+        '</div>' +
+
+        '<fieldset class="checkout__group">' +
+          '<legend class="checkout__legend">Forma de pagamento</legend>' +
+          '<label class="checkout__opt"><input type="radio" name="pag" value="Pix" checked><span>Pix</span></label>' +
+          '<label class="checkout__opt"><input type="radio" name="pag" value="Cartão"><span>Cartão</span></label>' +
+          '<label class="checkout__opt"><input type="radio" name="pag" value="Dinheiro"><span>Dinheiro</span></label>' +
+        '</fieldset>' +
+
+        '<div class="checkout__field" id="coTrocoWrap" hidden>' +
+          '<label class="checkout__opt"><input type="checkbox" id="coTrocoChk"><span>Preciso de troco</span></label>' +
+          '<div id="coTrocoBox" hidden>' +
+            '<label class="checkout__lbl" for="coTroco">Troco para quanto?</label>' +
+            '<input class="checkout__input" type="number" id="coTroco" min="0" step="0.01" inputmode="decimal" placeholder="Ex.: 50,00">' +
+            '<p class="checkout__troco" id="coTrocoOut"></p>' +
+          '</div>' +
+        '</div>' +
+
+        '<p class="checkout__err" id="coErr" hidden></p>' +
+      '</form>';
+
+    elFoot.innerHTML =
+      '<div class="cart-total-line">' +
+        '<span class="cart-total-label">TOTAL</span>' +
+        '<span class="cart-total-val">' + fmt(cartTotal()) + '</span>' +
+      '</div>' +
+      '<button class="btn btn--neon cart-checkout" id="coSend">ENVIAR PELO WHATSAPP →</button>';
+
+    var form = document.getElementById('checkoutForm');
+    form.querySelector('#coBack').addEventListener('click', render);
+
+    form.querySelectorAll('input[name="modo"]').forEach(function (r) {
+      r.addEventListener('change', function () {
+        var ent = form.querySelector('input[name="modo"]:checked').value === 'Entrega';
+        document.getElementById('coAddrWrap').hidden = !ent;
+      });
+    });
+    form.querySelectorAll('input[name="pag"]').forEach(function (r) {
+      r.addEventListener('change', function () {
+        var din = form.querySelector('input[name="pag"]:checked').value === 'Dinheiro';
+        document.getElementById('coTrocoWrap').hidden = !din;
+      });
+    });
+    form.querySelector('#coTrocoChk').addEventListener('change', function (e) {
+      document.getElementById('coTrocoBox').hidden = !e.target.checked;
+      computeTroco();
+    });
+    form.querySelector('#coTroco').addEventListener('input', computeTroco);
+
+    function computeTroco() {
+      var out = document.getElementById('coTrocoOut');
+      var v = parseFloat((document.getElementById('coTroco').value || '').replace(',', '.'));
+      if (isNaN(v)) { out.textContent = ''; out.className = 'checkout__troco'; return; }
+      if (v < cartTotal()) { out.textContent = 'Valor menor que o total (' + fmt(cartTotal()) + ').'; out.className = 'checkout__troco checkout__troco--bad'; }
+      else { out.textContent = 'Troco: ' + fmt(v - cartTotal()); out.className = 'checkout__troco checkout__troco--ok'; }
+    }
+  }
+
+  /* ── monta o pedido completo e abre o WhatsApp já preenchido ── */
+  function submitOrder() {
+    var form = document.getElementById('checkoutForm');
+    if (!form) return;
+    var total = cartTotal();
+    var modo = form.querySelector('input[name="modo"]:checked').value;
+    var pag  = form.querySelector('input[name="pag"]:checked').value;
+
+    var entregaLine;
+    if (modo === 'Entrega') {
+      var addr = (document.getElementById('coAddr').value || '').trim();
+      if (!addr) { showErr('Escreva o endereço para a entrega.'); return; }
+      entregaLine = '🛵 Entrega: ' + addr;
+    } else {
+      entregaLine = '🏬 Retirada na loja';
+    }
+
+    var pagLine = '💳 Pagamento: ' + pag;
+    if (pag === 'Dinheiro') {
+      var chk = document.getElementById('coTrocoChk');
+      if (chk && chk.checked) {
+        var v = parseFloat((document.getElementById('coTroco').value || '').replace(',', '.'));
+        if (isNaN(v) || v < total) { showErr('Informe um valor de troco maior ou igual ao total (' + fmt(total) + ').'); return; }
+        pagLine += ' — troco para ' + fmt(v) + ' (levar ' + fmt(v - total) + ' de troco)';
+      } else {
+        pagLine += ' — não precisa de troco';
+      }
+    }
+
     var msg = 'Olá! Quero fazer o seguinte pedido:\n\n' +
-              blocks.join('\n\n') +
-              '\n\nTOTAL: ' + fmt(total);
+              buildItemsBlock() +
+              '\n\nTOTAL: ' + fmt(total) +
+              '\n\n———\n' + entregaLine + '\n' + pagLine;
 
-    /* O Instagram não aceita texto pré-preenchido na DM (diferente do zap):
-       copiamos o resumo do pedido e abrimos a conversa pro cliente só colar. */
-    window.open(IG_DM, '_blank', 'noopener'); // síncrono, dentro do gesto de clique
-    copyText(msg);
+    /* wa.me aceita o texto pré-preenchido: o cliente só confirma e envia */
+    window.open('https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
 
-    /* esvazia ao finalizar (em ambas as páginas, via localStorage) */
     cart.length = 0;
     saveCart();
     syncBadge();
 
-    /* confirmação no lugar do carrinho (não chama render p/ manter o aviso) */
     elBody.innerHTML =
       '<div class="cart-done">' +
-        '<p class="cart-done__title">Pedido copiado! 📋</p>' +
-        '<p class="cart-done__txt">Abrimos a DM do nosso Instagram — é só <b>colar</b> o resumo lá e enviar que a gente confirma tudinho. 💬</p>' +
-        '<a class="btn btn--neon cart-done__ig" href="' + IG_DM + '" target="_blank" rel="noopener noreferrer">ABRIR INSTAGRAM ↗</a>' +
+        '<p class="cart-done__title">Pedido enviado! 🎉</p>' +
+        '<p class="cart-done__txt">Abrimos o <b>WhatsApp</b> com o resumo já preenchido — é só apertar <b>enviar</b> que a gente confirma tudinho. 💬</p>' +
+        '<a class="btn btn--neon cart-done__ig" href="https://wa.me/' + WA_NUMBER + '" target="_blank" rel="noopener noreferrer">ABRIR WHATSAPP ↗</a>' +
       '</div>';
     elFoot.innerHTML = '';
-  });
+  }
 
-  /* copia o resumo do pedido (Clipboard API + fallback execCommand) */
-  function copyText(text) {
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      return navigator.clipboard.writeText(text)['catch'](function () { fallbackCopy(text); });
-    }
-    fallbackCopy(text);
-    return null;
-  }
-  function fallbackCopy(text) {
-    try {
-      var ta = document.createElement('textarea');
-      ta.value = text;
-      ta.setAttribute('readonly', '');
-      ta.style.position = 'fixed';
-      ta.style.top = '-1000px';
-      ta.style.opacity = '0';
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand('copy');
-      document.body.removeChild(ta);
-    } catch (e) {}
-  }
+  elFoot.addEventListener('click', function (e) {
+    if (e.target.closest('#cartCheckout')) { showCheckout(); return; }
+    if (e.target.closest('#coSend'))       { submitOrder(); return; }
+  });
 
   function openCart() {
     elDrawer.classList.add('cart-drawer--open');
