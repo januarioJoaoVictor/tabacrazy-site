@@ -1837,6 +1837,19 @@ body.nav-hidden .cart-fab { display: inline-flex; }
 
       window.addEventListener('scroll', tick, { passive: true });
       window.addEventListener('resize', function () { medir(); tick(); }, { passive: true });
+
+      /* ⚠️ Medir só na inicialização NÃO basta: o style.css carrega de forma
+         não-bloqueante, e é ele que dá height:100vh aos painéis. No instante em
+         que este script roda, wrap.offsetHeight ainda é o layout sem essa folha
+         — scrollMax saía <= 0 e o pintar() abortava pra sempre.
+         O ResizeObserver refaz a medida sempre que a caixa muda de verdade
+         (CSS chegando, fonte trocando, imagem carregando), sem custo por scroll. */
+      if ('ResizeObserver' in window) {
+        new ResizeObserver(function () { medir(); tick(); }).observe(wrap);
+      } else {
+        window.addEventListener('load', function () { medir(); tick(); });
+      }
+
       medir();
       tick();
     })();
