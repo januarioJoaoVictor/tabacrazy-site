@@ -40,6 +40,13 @@
        ⚠️ Editou alguma dessas seções lá? Atualize este espelho. O style.css completo carrega logo abaixo,
        de forma não-bloqueante, e reaplica estas mesmas regras. -->
   <style>
+/* ⚠️ SINCRONIA: as seções § TOKENS até § HERO (tudo daqui até o banner
+   "§ SECTIONS (base)"), mais o bloco § LOADER SINCE, estão ESPELHADOS inline
+   no <head> do index.html como CSS crítico da primeira dobra.
+   Mexeu em qualquer uma dessas seções? Atualize o espelho lá também.
+   O espelho é intencional: o navegador pinta o hero sem esperar esta folha,
+   que carrega em seguida de forma não-bloqueante e reaplica as mesmas regras. */
+
 /* ═══════════════════════════════════════════════════
    TABACRAZY · style.css
    Tokens → Reset → Atmosphere → Nav → Hero
@@ -255,12 +262,27 @@ body.loader-active { overflow: hidden; }
 }
 
 /* MOBILE: saída do loader por fade limpo (sobrepõe o glitch do desktop).
-   Vem depois das regras de .glitch-out → vence por ordem de fonte no mobile. */
+   Vem depois das regras de .glitch-out → vence por ordem de fonte no mobile.
+
+   ⚡ A saída é dirigida por CSS, não por JS. Antes o fade só começava quando
+   o main.js rodava; com os scripts em `defer` isso caía depois do parse
+   inteiro e o Lighthouse acusava ~2.128ms de "element render delay" no LCP
+   — o octopus do hero já estava baixado (160ms) e ficava coberto esperando.
+   Agora o relógio começa na primeira pintura. Mesmo hold, mesmo fade.
+   O JS segue responsável só por soltar o scroll e remover o nó. */
 @media (max-width: 768px) {
-  .loader { transition: opacity .4s ease; }
+  .loader {
+    transition: opacity .4s ease;
+    animation: loader-fade-out .4s ease var(--loader-hold, 700ms) forwards;
+    pointer-events: none;          /* nunca precisou capturar clique */
+  }
   .loader.glitch-out { animation: none; opacity: 0; }
   .loader.glitch-out::before,
   .loader.glitch-out::after { display: none; }
+}
+
+@keyframes loader-fade-out {
+  to { opacity: 0; visibility: hidden; }
 }
 
 @keyframes glitch-shift-r {
@@ -776,7 +798,6 @@ body.nav-hidden .cart-fab { display: inline-flex; }
   position: relative;
   z-index: 1;
 }
-
   </style>
 
   <!-- resto do CSS: não bloqueia o render (media=print engana o parser; o
@@ -1369,8 +1390,12 @@ body.nav-hidden .cart-fab { display: inline-flex; }
         <!-- Painel 1 — Entrada -->
         <div class="role-panel role-panel--intro" aria-label="Introdução — O Rolê">
           <div class="role-panel__ctr">
-            <img src="logo/intro-quem-somos.webp" alt="Isso aqui é Tabacrazy — Piumhi/MG, since 2021"
-                 class="role-intro__fig" width="669" height="373" loading="lazy" decoding="async">
+            <picture>
+              <!-- AVIF corta 65% aqui: a arte tem canal alpha, que é caro no WebP. -->
+              <source srcset="logo/intro-quem-somos.avif" type="image/avif">
+              <img src="logo/intro-quem-somos.webp" alt="Isso aqui é Tabacrazy — Piumhi/MG, since 2021"
+                   class="role-intro__fig" width="669" height="373" loading="lazy" decoding="async">
+            </picture>
             <p class="role-intro__hint">
               <span class="rih-web">deslize</span>
               <span class="rih-mob">role</span>
@@ -1382,7 +1407,7 @@ body.nav-hidden .cart-fab { display: inline-flex; }
 
         <!-- Painel 2 — Sinuca -->
         <div class="role-panel role-panel--sinuca"
-             style="background-image:url('assets/role/sinuca.webp')"
+             data-bg="assets/role/sinuca.webp"
              aria-label="Sinuca — Uma mesa. Muita resenha.">
           <div class="role-panel__overlay" aria-hidden="true"></div>
           <div class="role-panel__info">
@@ -1394,7 +1419,7 @@ body.nav-hidden .cart-fab { display: inline-flex; }
 
         <!-- Painel 3 — PS5 -->
         <div class="role-panel role-panel--ps5"
-             style="background-image:url('assets/role/ps5.webp')"
+             data-bg="assets/role/ps5.webp"
              aria-label="PS5 — Partidas, campeonatos e aquele game raiz.">
           <div class="role-panel__overlay" aria-hidden="true"></div>
           <div class="role-panel__info">
@@ -1406,7 +1431,7 @@ body.nav-hidden .cart-fab { display: inline-flex; }
 
         <!-- Painel 4 — Drinks -->
         <div class="role-panel role-panel--drinks"
-             style="background-image:url('assets/role/drinks.webp')"
+             data-bg="assets/role/drinks.webp"
              aria-label="Drinks — Gelado, colorido e na medida certa.">
           <div class="role-panel__overlay" aria-hidden="true"></div>
           <div class="role-panel__info">
@@ -1418,7 +1443,7 @@ body.nav-hidden .cart-fab { display: inline-flex; }
 
         <!-- Painel 5 — O Kit -->
         <div class="role-panel role-panel--kit"
-             style="background-image:url('assets/role/kit.webp')"
+             data-bg="assets/role/kit.webp"
              aria-label="O Kit — Monte o seu kit completo na store.">
           <div class="role-panel__overlay" aria-hidden="true"></div>
           <div class="role-panel__info">

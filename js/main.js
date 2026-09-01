@@ -36,14 +36,17 @@
     video.addEventListener('ended', dismiss, { once: true });  // agora dispara (sem loop)
     video.addEventListener('error', dismiss, { once: true });
     setTimeout(dismiss, 1800);                   // corta o intro curto
+    setTimeout(dismiss, 4000);                   // rede de segurança
   } else {
-    // MOBILE: só PNG estático — splash curtíssimo (entrada CSS .6s) e sai
-    // em 700ms pra liberar a tela rápido (sem prender o usuário).
-    setTimeout(dismiss, 700);
+    /* MOBILE: quem faz o loader sumir é o CSS (animation loader-fade-out,
+       hold 700ms + fade .4s), disparado já na primeira pintura. O JS não
+       participa mais do visual — se ele atrasar ou falhar, o hero aparece
+       do mesmo jeito. Aqui só soltamos o scroll e limpamos o nó.
+       Sem glitch-out: a animação do CSS já termina em opacity 0. */
+    document.body.classList.remove('loader-active');
+    dismissed = true;                            // trava o dismiss() do desktop
+    setTimeout(() => { if (el.isConnected) el.remove(); }, 1200);
   }
-
-  // timeout MÁXIMO de segurança — nunca deixa o usuário preso no loader
-  setTimeout(dismiss, 4000);
 })();
 
 /* ── § HERO VIDEO (promove só no desktop; mobile usa PNG) ── */
@@ -52,6 +55,42 @@
   if (!v || !v.dataset.src) return;
   if (window.matchMedia('(max-width: 768px)').matches) return;  // mobile → PNG (CSS)
   v.src = v.dataset.src;                                        // desktop carrega o webm
+})();
+
+/* ── § LAZY BACKGROUNDS ───────────────────────────
+   Os painéis de "O Rolê" usam background-image, e `loading="lazy"` NÃO vale
+   pra background — o navegador baixa assim que o elemento entra no layout,
+   mesmo muito abaixo da dobra. Eram 418 KB no carregamento inicial.
+
+   Aqui o caminho fica em data-bg e só vira background-image quando o painel
+   chega perto da viewport. rootMargin generoso (200%) pra imagem já estar
+   pronta antes de aparecer — o usuário não vê "pop-in". */
+(function lazyBackgrounds() {
+  var alvos = document.querySelectorAll('[data-bg]');
+  if (!alvos.length) return;
+
+  function aplicar(el) {
+    if (el.dataset.bg) {
+      el.style.backgroundImage = "url('" + el.dataset.bg + "')";
+      delete el.dataset.bg;          // não reprocessa
+    }
+  }
+
+  // sem IntersectionObserver (navegador antigo): carrega tudo e segue o baile
+  if (!('IntersectionObserver' in window)) {
+    alvos.forEach(aplicar);
+    return;
+  }
+
+  var obs = new IntersectionObserver(function (entradas) {
+    entradas.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      aplicar(e.target);
+      obs.unobserve(e.target);
+    });
+  }, { rootMargin: '200% 0px' });
+
+  alvos.forEach(function (el) { obs.observe(el); });
 })();
 
 /* ── § BURGER ─────────────────────────────────────── */

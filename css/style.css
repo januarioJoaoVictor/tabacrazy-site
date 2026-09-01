@@ -220,12 +220,27 @@ body.loader-active { overflow: hidden; }
 }
 
 /* MOBILE: saída do loader por fade limpo (sobrepõe o glitch do desktop).
-   Vem depois das regras de .glitch-out → vence por ordem de fonte no mobile. */
+   Vem depois das regras de .glitch-out → vence por ordem de fonte no mobile.
+
+   ⚡ A saída é dirigida por CSS, não por JS. Antes o fade só começava quando
+   o main.js rodava; com os scripts em `defer` isso caía depois do parse
+   inteiro e o Lighthouse acusava ~2.128ms de "element render delay" no LCP
+   — o octopus do hero já estava baixado (160ms) e ficava coberto esperando.
+   Agora o relógio começa na primeira pintura. Mesmo hold, mesmo fade.
+   O JS segue responsável só por soltar o scroll e remover o nó. */
 @media (max-width: 768px) {
-  .loader { transition: opacity .4s ease; }
+  .loader {
+    transition: opacity .4s ease;
+    animation: loader-fade-out .4s ease var(--loader-hold, 700ms) forwards;
+    pointer-events: none;          /* nunca precisou capturar clique */
+  }
   .loader.glitch-out { animation: none; opacity: 0; }
   .loader.glitch-out::before,
   .loader.glitch-out::after { display: none; }
+}
+
+@keyframes loader-fade-out {
+  to { opacity: 0; visibility: hidden; }
 }
 
 @keyframes glitch-shift-r {
