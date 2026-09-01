@@ -95,9 +95,9 @@
   var elBtn = document.getElementById('cartBtn');
   if (!elBtn) return; // página sem carrinho → não faz nada
 
-  /* pedidos agora chegam pelo WhatsApp da tabacaria (wa.me aceita texto pré-preenchido).
-     TODO: trocar 55XXXXXXXXXXX pelo número real (só dígitos, com DDI 55 + DDD). */
-  var WA_NUMBER = '55XXXXXXXXXXX';
+  /* pedidos chegam pelo WhatsApp da tabacaria (wa.me aceita texto pré-preenchido).
+     Só dígitos, com DDI 55 + DDD — sem +, espaço ou hífen. */
+  var WA_NUMBER = '5537976010739';
   var STORE_KEY = 'tabacrazy_cart';
   /* origem desta página (p/ agrupar o pedido único): Adega tem .shop-section--adega */
   var PAGE_ORIGIN = document.querySelector('.shop-section--adega') ? 'Adega' : 'Loja';

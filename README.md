@@ -71,10 +71,15 @@ cwebp -q 82 foto.jpg -o foto.webp
 
 ## Conteúdo a Atualizar no HTML
 
-- [ ] **Número do endereço** — buscar `nº 00` em `index.html` (aparece 2×) e trocar pelo número real
-- [ ] **Link WhatsApp** — buscar `55XXXXXXXXXXX` (aparece 2×) e trocar pelo número real no formato `55DDD9XXXXXXXX`
-- [ ] **Número do WhatsApp visível** — buscar `(00) 00000-0000` e trocar pelo número formatado
-- [ ] **Fotos dos produtos** — adicionar WebPs em `assets/produtos/` e referenciar como `background-image` nos `.ar-thumb` (via CSS ou atributo `style`)
+- [x] **Número do endereço** — Rua Dom Pedro II, 568-A · Centro · Piumhi/MG
+- [x] **Link WhatsApp** — `5537976010739`, em `index.html`, `store.html`, `adega.html` e em `WA_NUMBER` (`js/shop.js`)
+- [x] **Número do WhatsApp visível** — os links aparecem como “WhatsApp”; não há número formatado na tela
+- [x] **Fotos dos produtos** — 208 WebPs em `assets/produtos/`
+
+### Ainda em aberto
+
+- [ ] **Domínio** — `og:url`, `canonical`, `robots.txt` e `sitemap.xml` estão com `https://tabacrazy.com.br`. Se o domínio for outro, trocar nos 4 lugares.
+- [ ] **Supabase** — o projeto de `js/env.js` não existe mais (DNS NXDOMAIN). O ranking do jogo cai no fallback `localStorage`, então cada visitante vê só o próprio placar.
 
 ---
 

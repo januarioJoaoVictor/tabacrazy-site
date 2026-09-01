@@ -19,6 +19,7 @@ desktop.ini
 # Artefatos temporários de teste (puppeteer, screenshots ad-hoc)
 _*.cjs
 _*.png
+_*.html
 
 # Fotos-fonte dos produtos (JPGs originais ~4MB cada, ~780MB).
 # O site usa as versões otimizadas em assets/produtos/*.webp (essas SIM são versionadas).
@@ -29,6 +30,9 @@ _*.png
 # Config/instruções internas — não publicar no site nem no repo
 .claude/
 CLAUDE.md
+AGENTS.md
+# Listagem gerada de assets (artefato de script, não faz parte do site)
+refs.txt
 # (README.md é mantido versionado — doc padrão do repositório)
 
 # NÃO ignorar js/env.js — contém só a publishable key (pública, protegida por RLS)

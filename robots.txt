@@ -1,0 +1,5 @@
+# Tabacrazy — smoke shop, Piumhi/MG
+User-agent: *
+Allow: /
+
+Sitemap: https://tabacrazy.com.br/sitemap.xml

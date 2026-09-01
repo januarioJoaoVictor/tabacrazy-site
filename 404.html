@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Página não encontrada — Tabacrazy, smoke shop em Piumhi/MG.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#0b0a0f">
+  <title>Perdeu o rolê? — Tabacrazy</title>
+
+  <link rel="icon" type="image/png" href="/logo/logoSemFundo.png">
+  <link rel="apple-touch-icon"      href="/logo/logoSemFundo.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bangers&family=Permanent+Marker&family=Space+Grotesk:wght@300;400;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/style.css">
+
+  <style>
+    /* Página de erro — layout próprio, tokens do :root do style.css */
+    .e404          { min-height: 100svh; display: grid; place-items: center; padding: 6rem 1.25rem 4rem; position: relative; z-index: 1; }
+    .e404__in      { text-align: center; max-width: 46rem; }
+    .e404__num     { font-family: 'Anton', system-ui, sans-serif; font-size: clamp(6rem, 22vw, 14rem);
+                     line-height: .82; letter-spacing: -.02em; color: var(--neon);
+                     text-shadow: .06em .06em 0 var(--purple); margin: 0; }
+    .e404__kicker  { font-family: 'Space Mono', ui-monospace, monospace; font-size: .8rem; letter-spacing: .28em;
+                     color: var(--muted); text-transform: uppercase; margin: 2.25rem 0 .5rem; }
+    .e404__title   { font-family: 'Permanent Marker', cursive; font-size: clamp(1.6rem, 5vw, 2.6rem);
+                     color: var(--text); margin: 0 0 .75rem; }
+    .e404__text    { color: var(--muted); font-size: 1rem; line-height: 1.7; margin: 0 auto 2.25rem; max-width: 34rem; }
+    .e404__acts    { display: flex; gap: .75rem; flex-wrap: wrap; justify-content: center; }
+  </style>
+</head>
+<body>
+
+  <div class="grain"  aria-hidden="true"></div>
+  <div class="blobs"  aria-hidden="true">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+  </div>
+
+  <a class="skip-link" href="#main">Ir ao conteúdo</a>
+
+  <!-- ░ NAV ░ -->
+  <header class="nav" role="banner">
+    <div class="nav__in">
+      <a href="/" class="nav__logo" aria-label="Tabacrazy — início">
+        <span class="nav__dot" aria-hidden="true"></span>
+        <span class="nav__brand">TABA <span class="nav__brand--neon">CRAZY</span></span>
+      </a>
+      <nav aria-label="Principal">
+        <button class="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="navlist">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="navlist" id="navlist" role="list">
+          <li><a href="/#store">Loja</a></li>
+          <li><a href="/adega.html">Adega</a></li>
+          <li><a href="/#jogo">Jogo</a></li>
+          <li><a href="/#role">O Rolê</a></li>
+          <li><a href="/#vem">Localização</a></li>
+          <li class="navlist__cta"><a href="https://wa.me/5537976010739" target="_blank" rel="noopener noreferrer" class="btn btn--neon">BATER UM PAPO</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="e404">
+    <div class="e404__in">
+      <p class="e404__num">404</p>
+      <p class="e404__kicker">Piumhi · MG — Tabacaria</p>
+      <h1 class="e404__title">Perdeu o rolê?</h1>
+      <p class="e404__text">
+        Essa página não existe (ou já foi embora). Mas o balcão continua aberto —
+        dá uma olhada na loja, na adega, ou chama a gente no zap.
+      </p>
+      <div class="e404__acts">
+        <a href="/" class="btn btn--neon">VOLTAR AO INÍCIO →</a>
+        <a href="/store.html" class="btn btn--outline">VER A LOJA</a>
+        <a href="/adega.html" class="btn btn--outline">VER A ADEGA</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="/js/main.js" defer></script>
+</body>
+</html>
