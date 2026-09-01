@@ -1,26 +1,22 @@
 /* ═══════════════════════════════════════════════════
    TABACRAZY · game.js — Tabacrazy Flap (Flappy-like)
-   Canvas 2D puro + leaderboard de temporada no Supabase
-   (com fallback localStorage). Script CLÁSSICO (funciona via
-   file:// e servidor), carregado na seção #jogo do index.html.
+   Canvas 2D puro + ranking local (localStorage). Script CLÁSSICO
+   (funciona via file:// e servidor), carregado na seção #jogo.
+
+   O ranking é POR APARELHO: sem backend, sem requisição de rede.
+   Placar segue fino de propósito — trocar o localStorage por um
+   REST de backend depois não exige tocar na lógica do jogo.
    ═══════════════════════════════════════════════════ */
 'use strict';
-
-/* Client Supabase: usa o SINGLETON compartilhado de js/supabase.js
-   (window.Supa, carregado antes deste script). Sem config → null e o
-   ranking cai no fallback localStorage. */
-async function getSupa() {
-  if (!window.Supa) return null;
-  try { return await window.Supa.getClient(); }
-  catch (e) { console.warn('[game] Supabase indisponível:', e.message); return null; }
-}
 
 const escapeHtml = s => String(s).replace(/[&<>"']/g, c =>
   ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
-/* ── § PLACAR (recorde pessoal — localStorage, síncrono) ── */
+/* ── § PLACAR (recorde pessoal + top 5 do aparelho — localStorage, síncrono) ── */
 const Placar = (function () {
   const K_REC = 'tabacrazy_voa_recorde', K_NOME = 'tabacrazy_voa_nome';
+  const K_TOP = 'tabacrazy_voa_top';     // top 5 local (alimenta o painel RANKING)
+  const TOP_N = 5;
   const _get = k => { try { return localStorage.getItem(k); } catch { return null; } };
   const _set = (k, v) => { try { localStorage.setItem(k, v); } catch {} };
   return {
@@ -32,7 +28,34 @@ const Placar = (function () {
       try { const o = JSON.parse(raw); return { nome: o.nome || '', score: o.score | 0 }; }
       catch { return { nome: '', score: 0 }; }
     },
+    /* top 5 do aparelho, do maior pro menor. Sempre devolve array. */
+    getTop() {
+      const raw = _get(K_TOP);
+      if (!raw) return [];
+      try {
+        const arr = JSON.parse(raw);
+        return Array.isArray(arr) ? arr.filter(r => r && typeof r.score === 'number') : [];
+      } catch { return []; }
+    },
+    /* registra a partida no top 5 (uma linha por nome — fica o melhor dele) */
+    registrar(nome, score) {
+      nome  = (nome || 'VISITANTE').slice(0, 14);
+      score = score | 0;
+      if (score <= 0) return;
+      const top = this.getTop();
+      const chave = nome.trim().toUpperCase();
+      const i = top.findIndex(r => (r.nome || '').trim().toUpperCase() === chave);
+      if (i >= 0) {
+        if (score <= top[i].score) return;   // já tem um melhor desse nome
+        top[i].score = score;
+      } else {
+        top.push({ nome, score });
+      }
+      top.sort((a, b) => b.score - a.score);
+      _set(K_TOP, JSON.stringify(top.slice(0, TOP_N)));
+    },
     salvar(nome, score) {
+      this.registrar(nome, score);           // top 5 sempre; recorde pessoal só se bater
       const atual = this.getRecorde();
       if (score > atual.score) {
         _set(K_REC, JSON.stringify({ nome: (nome || 'VISITANTE').slice(0, 14), score: score | 0, data: Date.now() }));
@@ -43,69 +66,23 @@ const Placar = (function () {
   };
 })();
 
-/* ── § LEADERBOARD (Supabase — temporada, assíncrono) ── */
-const Leaderboard = {
-  /* temporada "AAAA-MM" no fuso BRT → reset mensal sem apagar histórico */
-  season() {
-    const d = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' }));
-    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0');
-  },
-  /* INSERT público (validado também no RLS). Retorna true se gravou. */
-  async submit(nome, score) {
-    const c = await getSupa(); if (!c) return false;
-    nome = (nome || '').trim().slice(0, 14);
-    score = score | 0;
-    if (!nome || score < 0 || score >= 100000) return false;
-    const { error } = await c.from('game_scores').insert({ nome, score, temporada: this.season() });
-    return !error;
-  },
-  /* Top 10 da temporada — UMA linha por jogador (o melhor score dele).
-     O banco guarda todas as partidas (histórico); a dedupe é só na exibição.
-     null = Supabase indisponível (usar fallback). */
-  async top10() {
-    const c = await getSupa(); if (!c) return null;
-    const { data, error } = await c.from('game_scores')
-      .select('nome, score')
-      .eq('temporada', this.season())
-      .order('score', { ascending: false })
-      .order('created_at', { ascending: true })
-      .limit(200); // lote maior pra sobrar nomes distintos após a dedupe
-    if (error) return null;
-
-    // como já vem ordenado por score desc, a 1ª ocorrência de cada nome é o melhor.
-    // dedupe por nome normalizado (trim + maiúsculas) → "Polvão" e "POLVÃO" = mesma pessoa.
-    const best = new Map();
-    (data || []).forEach(function (r) {
-      const key = (r.nome || '').trim().toUpperCase();
-      if (!best.has(key)) best.set(key, r);
-    });
-    return Array.from(best.values()).slice(0, 10);
-  }
-};
-
-/* ── § RENDER DO RANKING ── */
-async function renderLeaderboard() {
+/* ── § RENDER DO RANKING (local, síncrono — sem rede) ── */
+function renderRanking() {
   const list = document.getElementById('lb-list');
   const note = document.getElementById('lb-note');
   const seas = document.getElementById('lb-season');
   if (!list) return;
-  if (seas) seas.textContent = 'Temporada ' + Leaderboard.season();
+  if (seas) seas.textContent = 'neste aparelho';
 
-  let rows = await Leaderboard.top10();
-  if (rows === null) {
-    const r = Placar.getRecorde();
-    rows = r.score > 0 ? [{ nome: r.nome || 'VOCÊ', score: r.score }] : [];
-    if (note) note.textContent = 'Ranking local — Supabase não configurado ainda.';
-  } else if (note) {
-    note.textContent = '';
-  }
+  const rows = Placar.getTop();
+  if (note) note.textContent = '';
 
   if (!rows.length) {
     list.innerHTML = '<li class="lb__empty">Seja o primeiro a pontuar! 🐙</li>';
     return;
   }
   list.innerHTML = rows.map((r, i) => {
-    const rank = i < 3 ? ('lb__row--top' + (i + 1)) : 'lb__row--rest';
+    const rank  = i < 3 ? ('lb__row--top' + (i + 1)) : 'lb__row--rest';
     const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : (i + 1);
     return '<li class="lb__row ' + rank + '">' +
              '<span class="lb__pos">' + medal + '</span>' +
@@ -357,12 +334,8 @@ async function renderLeaderboard() {
     scrStart.hidden = true; scrOver.hidden = false;
     overlay.classList.remove('off');
 
-    /* só envia pro ranking quando BATE o recorde pessoal (bateu) — evita
-       acumular partidas de score baixo no banco. Score menor que o pessoal
-       nunca seria relevante no Top 10 (a dedupe mantém o melhor mesmo). */
-    if (bateu && score > 0) {
-      Leaderboard.submit(nome, score).then(ok => { if (ok) renderLeaderboard(); });
-    }
+    /* Placar.salvar() já registrou a partida no top 5 local — só repinta. */
+    renderRanking();
   }
 
   function pegarNome() {
@@ -411,24 +384,4 @@ async function renderLeaderboard() {
   }, { passive: true });
 })();
 
-renderLeaderboard();
-
-/* ╔══════════════════════════════════════════════════════════╗
-   SQL pra rodar no Supabase (SQL Editor) — tabela + RLS:
-
-   create table public.game_scores (
-     id uuid primary key default gen_random_uuid(),
-     nome text not null check (char_length(nome) between 1 and 14),
-     score integer not null check (score >= 0 and score < 100000),
-     temporada text not null,
-     created_at timestamptz not null default now()
-   );
-   create index on public.game_scores (temporada, score desc);
-   alter table public.game_scores enable row level security;
-   create policy "leitura publica" on public.game_scores
-     for select to anon using (true);
-   create policy "insert publico" on public.game_scores
-     for insert to anon with check (
-       char_length(nome) between 1 and 14 and score >= 0 and score < 100000
-     );
-   ╚══════════════════════════════════════════════════════════╝ */
+renderRanking();

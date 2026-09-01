@@ -18,9 +18,7 @@ tabacrazy_site/
 ├── js/
 │   ├── main.js             ← loader, burger, ano, status aberto/fechado, reveals
 │   ├── shop.js             ← catálogo, filtros, carrinho, checkout no WhatsApp
-│   ├── game.js             ← minigame do arcade
-│   ├── env.js              ← config pública (Supabase)
-│   └── supabase.js         ← client singleton (ranking do jogo)
+│   └── game.js             ← minigame do arcade + ranking local
 ├── logo/                   ← logo animada, favicon, apple-touch-icon
 └── assets/
     ├── produtos/           ← 208 fotos de produtos em WebP
@@ -78,7 +76,7 @@ Sem `cwebp` à mão, [squoosh.app](https://squoosh.app) → WebP, qualidade 82.
 ### Ainda em aberto
 
 - [x] **Domínio** — `og:url`, `canonical`, `robots.txt` e `sitemap.xml` usam `https://www.tabacrazy.com.br`.
-- [ ] **Supabase** — o projeto de `js/env.js` não existe mais (DNS NXDOMAIN). O ranking do jogo cai no fallback `localStorage`, então cada visitante vê só o próprio placar.
+- [x] **Supabase** — removido. O projeto estava morto (NXDOMAIN) e custava 207 KB de JS de terceiro + retentativas condenadas em toda visita à home. O ranking do jogo agora é um top 5 local (`localStorage`), sem rede.
 
 ---
 
