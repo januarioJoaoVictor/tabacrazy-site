@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tabacrazy.com.br/sitemap.xml
+Sitemap: https://www.tabacrazy.com.br/sitemap.xml

@@ -8,64 +8,63 @@ Smoke shop em Piumhi/MG. Site estático, sem dependências, deploy em um clique.
 
 ```
 tabacrazy_site/
-├── index.html              ← marcação semântica, todas as seções
-├── css/
-│   └── style.css           ← tokens de design, atmosfera, componentes
+├── index.html              ← home (hero, vitrine, kits, O Rolê, jogo, localização)
+├── store.html              ← loja  → rota pública /store
+├── adega.html              ← adega → rota pública /adega
+├── 404.html                ← página de erro da Vercel
+├── robots.txt · sitemap.xml
+├── vercel.json             ← cleanUrls (rotas sem .html)
+├── css/style.css           ← tokens de design, atmosfera, componentes
 ├── js/
-│   └── main.js             ← nav scroll, burger, arcade, reveals
-├── assets/
-│   ├── logo.webp           ← logo recortada (fundo transparente)
-│   ├── favicon.webp        ← ícone da aba do navegador
-│   ├── apple-touch.webp    ← ícone para iOS/Android (salvar na tela inicial)
-│   └── produtos/           ← fotos dos produtos em WebP
-│       ├── narguile.webp
-│       ├── fumos.webp
-│       ├── cargas.webp
-│       ├── acessorios.webp
-│       └── descartaveis.webp
-└── README.md               ← você está aqui
+│   ├── main.js             ← loader, burger, ano, status aberto/fechado, reveals
+│   ├── shop.js             ← catálogo, filtros, carrinho, checkout no WhatsApp
+│   ├── game.js             ← minigame do arcade
+│   ├── env.js              ← config pública (Supabase)
+│   └── supabase.js         ← client singleton (ranking do jogo)
+├── logo/                   ← logo animada, favicon, apple-touch-icon
+└── assets/
+    ├── produtos/           ← 208 fotos de produtos em WebP
+    ├── marcas/             ← logos OCB e Lion (SVG)
+    ├── role/               ← fotos dos painéis de "O Rolê"
+    └── og/                 ← imagem de preview de link (1200×630)
 ```
 
 ---
 
 ## Deploy
 
-### Netlify (recomendado — mais fácil)
+O site está na **Vercel**, ligado ao branch `main` deste repo: todo push pra `main`
+publica automaticamente. Não há build — a Vercel serve os arquivos como estão.
 
-1. Acesse [netlify.com](https://netlify.com) e crie uma conta gratuita
-2. No dashboard, clique em **Add new site → Deploy manually**
-3. Arraste a pasta `tabacrazy_site/` inteira para o campo de drop
-4. Pronto — URL pública gerada em ~30 segundos
-5. Para domínio próprio: **Site settings → Domain management → Add custom domain**
+- **Produção:** https://www.tabacrazy.com.br
+- O apex (`tabacrazy.com.br`) faz 308 para `www`; `www` é o domínio canônico.
+- `vercel.json` liga `cleanUrls`, então as rotas públicas são `/`, `/store` e `/adega`
+  (sem `.html`). Os links internos já apontam pra essas rotas.
 
-### GitHub Pages (alternativa gratuita)
+### Preview local
 
-1. Crie um repositório público no GitHub
-2. Faça upload de todos os arquivos (mantendo a estrutura de pastas)
-3. Vá em **Settings → Pages → Source: Deploy from branch → main → / (root)**
-4. Site disponível em `https://seuusuario.github.io/nome-do-repo`
+Como as rotas são sem extensão, **abrir `index.html` via `file://` quebra a navegação
+entre páginas**. Use um servidor que resolva clean URLs:
+
+```sh
+npx serve .          # resolve /store -> store.html  ✅
+```
+
+`python -m http.server` **não** resolve clean URLs (`/store` dá 404) — serve só pra
+conferir a home isolada.
 
 ---
 
-## Assets Pendentes
+## Otimização de imagens
 
-| Arquivo | Pasta | Dimensões recomendadas | Observação |
-|---|---|---|---|
-| `logo.webp` | `assets/` | 240 × 96 px | Fundo transparente, polvo completo |
-| `favicon.webp` | `assets/` | 64 × 64 px | Cabeça do polvo, fundo transparente |
-| `apple-touch.webp` | `assets/` | 180 × 180 px | Fundo `#0b0a0f` (não transparente) |
-| `narguile.webp` | `assets/produtos/` | 800 × 600 px | Item principal do Arsenal (maior) |
-| `fumos.webp` | `assets/produtos/` | 600 × 450 px | — |
-| `cargas.webp` | `assets/produtos/` | 600 × 450 px | — |
-| `acessorios.webp` | `assets/produtos/` | 600 × 450 px | — |
-| `descartaveis.webp` | `assets/produtos/` | 600 × 450 px | — |
+Os produtos já estão todos em WebP. Ao adicionar novos, converta antes de commitar —
+JPG/PNG de câmera tem alguns MB e o site é servido como está, sem build.
 
-**Converter para WebP (linha de comando):**
 ```bash
 cwebp -q 82 foto.jpg -o foto.webp
 ```
 
-**Converter online:** [squoosh.app](https://squoosh.app) → escolha WebP, qualidade 82
+Sem `cwebp` à mão, [squoosh.app](https://squoosh.app) → WebP, qualidade 82.
 
 ---
 
@@ -78,7 +77,7 @@ cwebp -q 82 foto.jpg -o foto.webp
 
 ### Ainda em aberto
 
-- [ ] **Domínio** — `og:url`, `canonical`, `robots.txt` e `sitemap.xml` estão com `https://tabacrazy.com.br`. Se o domínio for outro, trocar nos 4 lugares.
+- [x] **Domínio** — `og:url`, `canonical`, `robots.txt` e `sitemap.xml` usam `https://www.tabacrazy.com.br`.
 - [ ] **Supabase** — o projeto de `js/env.js` não existe mais (DNS NXDOMAIN). O ranking do jogo cai no fallback `localStorage`, então cada visitante vê só o próprio placar.
 
 ---
@@ -108,19 +107,19 @@ Carregadas via Google Fonts — sem instalação necessária.
 
 ---
 
-## Seções
+## Seções da home
 
-| Nº | ID | Conteúdo |
-|---|---|---|
-| — | `#hero` | Título TABA/CRAZY, hero full-height |
-| 01 | `#manifesto` | Texto de marca + citação |
-| 02 | `#role` | 6 cards de diferenciais |
-| 03 | `#arsenal` | Grid assimétrico de produtos (aguardando fotos) |
-| 04 | `#mural` | Stickerbomb com 12 adesivos |
-| 05 | `#arcade` | Mini-game canvas "Pega o Rolê" |
-| 06 | `#vem` | Status aberto/fechado + endereço + mapa |
+| ID | Conteúdo |
+|---|---|
+| `#hero` | Logo animada, título TABA/CRAZY, CTAs |
+| `#store` | Vitrine — novidades, promoções, kits e prévia da adega |
+| `#role` | Carrossel horizontal: intro, sinuca, PS5, drinks, kit |
+| `#consciencia` | Aviso de consumo consciente |
+| `#jogo` | Minigame do arcade (canvas) |
+| `#vem` | Status aberto/fechado + endereço + mapa |
+
+Loja e adega vivem em páginas próprias: `/store` e `/adega`.
 
 ---
 
-*Site desenvolvido sem frameworks ou dependências externas.*  
-*Hospedagem gratuita disponível via Netlify ou GitHub Pages.*
+*Site sem frameworks ou dependências de build. Deploy automático na Vercel a cada push na `main`.*
