@@ -4,7 +4,6 @@
   "trailingSlash": false,
   "headers": [
     {
-      "//": "Midia e fontes: nomes estaveis, conteudo nunca muda no lugar (trocar uma foto = trocar o arquivo). immutable e seguro e evita ate o 304.",
       "source": "/assets/(.*)",
       "headers": [
         {
@@ -23,7 +22,6 @@
       ]
     },
     {
-      "//": "CSS e JS NAO levam immutable: os nomes nao tem hash, entao um deploy de correcao nunca chegaria em quem ja visitou. must-revalidate faz o navegador confirmar com um 304 barato antes de reusar.",
       "source": "/css/(.*)",
       "headers": [
         {
@@ -42,7 +40,6 @@
       ]
     },
     {
-      "//": "Endurecimento basico. Sem HSTS: a Vercel ja envia no dominio.",
       "source": "/(.*)",
       "headers": [
         {

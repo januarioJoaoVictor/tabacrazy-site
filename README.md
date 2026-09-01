@@ -39,6 +39,22 @@ publica automaticamente. Não há build — a Vercel serve os arquivos como est�
 - `vercel.json` liga `cleanUrls`, então as rotas públicas são `/`, `/store` e `/adega`
   (sem `.html`). Os links internos já apontam pra essas rotas.
 
+### Cache e headers (`vercel.json`)
+
+O `vercel.json` não aceita comentários (a Vercel valida o schema e rejeita
+chaves desconhecidas), então a explicação das regras mora aqui:
+
+| Rota | Cache-Control | Por quê |
+|---|---|---|
+| `/assets/*`, `/logo/*` | `max-age=31536000, immutable` | Nomes estáveis e conteúdo que não muda no lugar — trocar uma foto significa trocar o arquivo. `immutable` evita até a revalidação 304. |
+| `/css/*`, `/js/*` | `max-age=0, must-revalidate` | **Não** levam `immutable`: os nomes não têm hash, então um deploy de correção nunca chegaria em quem já visitou. O navegador confirma com um 304 barato antes de reusar. |
+
+Se um dia CSS/JS ganharem hash no nome, aí sim dá pra passá-los para `immutable`.
+
+Também vão em todas as rotas: `X-Content-Type-Options: nosniff`,
+`Referrer-Policy: strict-origin-when-cross-origin` e `X-Frame-Options: SAMEORIGIN`.
+(HSTS não: a Vercel já envia no domínio.)
+
 ### Preview local
 
 Como as rotas são sem extensão, **abrir `index.html` via `file://` quebra a navegação
