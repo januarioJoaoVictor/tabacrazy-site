@@ -39,6 +39,23 @@ publica automaticamente. Não há build — a Vercel serve os arquivos como est�
 - `vercel.json` liga `cleanUrls`, então as rotas públicas são `/`, `/store` e `/adega`
   (sem `.html`). Os links internos já apontam pra essas rotas.
 
+### CSS crítico (`tools/sync-critico.py`)
+
+O `<head>` do `index.html` carrega um **espelho inline** do CSS da primeira
+dobra, pra pintar o hero sem esperar requisição. O `style.css` completo vem
+logo depois, não-bloqueante, e reaplica as mesmas regras.
+
+O espelho é gerado, não escrito à mão. Se você mexer em `css/fonts.css` ou
+nas seções `§ TOKENS`…`§ HERO` / `§ LOADER SINCE` do `css/style.css`, rode:
+
+```sh
+python tools/sync-critico.py .
+```
+
+Não é build step — o site continua sendo servido como está. É manutenção:
+sem rodar, o inline fica desatualizado em relação à folha e o hero pode
+pintar com o estilo antigo por um instante.
+
 ### Cache e headers (`vercel.json`)
 
 O `vercel.json` não aceita comentários (a Vercel valida o schema e rejeita
