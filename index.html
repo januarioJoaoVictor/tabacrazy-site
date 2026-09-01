@@ -25,11 +25,764 @@
   <link rel="icon" type="image/png" sizes="32x32" href="logo/favicon-32.png">
   <link rel="apple-touch-icon"      href="logo/apple-touch-icon.png">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bangers&family=Permanent+Marker&family=Space+Grotesk:wght@300;400;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Fontes auto-hospedadas: some o par de handshakes de origem terceira
+       (fonts.googleapis.com + fonts.gstatic.com) do caminho crítico. -->
+  <link rel="preload" href="assets/fonts/anton-400.woff2"      as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/space-mono-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/fonts.css">
 
-  <link rel="stylesheet" href="css/style.css">
+  <!-- LCP da home: o octopus do hero. Descoberto já no <head>, antes do CSS. -->
+  <link rel="preload" href="logo/logoSemFundo.webp" as="image" fetchpriority="high">
+
+  <!-- ░ CSS CRÍTICO (primeira dobra) — inline pra pintar sem esperar requisição ░
+       ESPELHO das seções § TOKENS até § HERO de css/style.css (tudo até o
+       banner "§ SECTIONS (base)") mais o bloco § LOADER SINCE.
+       ⚠️ Editou alguma dessas seções lá? Atualize este espelho. O style.css completo carrega logo abaixo,
+       de forma não-bloqueante, e reaplica estas mesmas regras. -->
+  <style>
+/* ═══════════════════════════════════════════════════
+   TABACRAZY · style.css
+   Tokens → Reset → Atmosphere → Nav → Hero
+   → Sections → Components → Footer
+   ═══════════════════════════════════════════════════ */
+
+/* ── § TOKENS ─────────────────────────────────────── */
+:root {
+  --neon:      #a8ff1f;
+  --purple:    #9b2fe0;
+  --black:     #0b0a0f;
+  --surface:   #13111a;
+  --panel:     #1a1726;
+  --text:      #e8e4f0;
+  --muted:     #7a718e;
+  --border:    rgba(168,255,31,.1);
+  --border-hi: rgba(168,255,31,.28);
+  --red:       #ff3b30;
+
+  --f-head: 'Anton', sans-serif;
+  --f-hand: 'Permanent Marker', cursive;
+  --f-body: 'Space Grotesk', sans-serif;
+  --f-mono: 'Space Mono', monospace;
+
+  --max: 1160px;
+  --nav: 64px;
+  --pad: clamp(1rem, 4vw, 2rem);
+  --r:   8px;
+  --r-lg:16px;
+
+  --ease: cubic-bezier(.22,1,.36,1);
+  --dur:  280ms;
+}
+
+/* ── § RESET ──────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background: var(--black);
+  color: var(--text);
+  font-family: var(--f-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  overflow-x: hidden;
+  min-height: 100dvh;
+}
+
+img, video { max-width: 100%; height: auto; display: block; }
+ul, ol     { list-style: none; }
+a          { color: inherit; text-decoration: none; }
+button     { cursor: pointer; border: none; background: none; font: inherit; color: inherit; }
+address    { font-style: normal; }
+
+/* ── § FOCUS ──────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--neon);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* ── § SCROLLBAR ──────────────────────────────────── */
+::-webkit-scrollbar       { width: 5px; }
+::-webkit-scrollbar-track { background: var(--black); }
+::-webkit-scrollbar-thumb { background: var(--purple); border-radius: 3px; }
+
+/* ── § SELECTION ──────────────────────────────────── */
+::selection { background: var(--purple); color: var(--neon); }
+
+/* ── § SKIP LINK ──────────────────────────────────── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  padding: .5rem 1rem;
+  background: var(--neon);
+  color: var(--black);
+  font-family: var(--f-mono);
+  font-size: .8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: 0 0 var(--r) var(--r);
+  z-index: 9999;
+  transition: top var(--dur);
+}
+.skip-link:focus { top: 0; }
+
+/* ── § LOADER ─────────────────────────────────────── */
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.loader__video {
+  width: min(60vw, 60vh);
+  height: auto;
+  display: block;
+  max-width: none;
+  position: relative;
+  z-index: 1;
+}
+
+.loader__vignette { display: none; }
+
+/* logo PNG transparente — fallback do vídeo no MOBILE
+   (o webm não renderiza alpha em mobile → apareceria fundo preto) */
+.loader__img, .hero__img { display: none; }
+
+@media (max-width: 768px) {
+  /* mobile: esconde os vídeos (nem baixa o webm de 3,6MB) e mostra o PNG */
+  .loader__video { display: none; }
+  .loader__img {
+    display: block;
+    width: min(72vw, 72vh);
+    height: auto;
+    position: relative;
+    z-index: 1;
+    /* entrada suave (one-shot): opacity 0 + scale .85 → 1 */
+    animation: loader-in .6s ease-out both;
+  }
+  .hero__video { display: none; }
+  .hero__img {
+    display: block;
+    width: 100%;
+    max-width: 260px;
+    height: auto;
+    margin-inline: auto;
+  }
+}
+
+@keyframes loader-in {
+  0%   { opacity: 0; transform: scale(.85); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .loader__img { animation: none; }
+}
+
+body.loader-active { overflow: hidden; }
+
+@media (max-width: 480px) {
+  .loader__video { width: min(80vw, 80vh); }
+}
+
+/* ─ GLITCH OUT ─ */
+.loader.glitch-out {
+  animation: loader-glitch .45s steps(2) forwards;
+  pointer-events: none;   /* sem camada residual bloqueando o conteúdo */
+}
+
+.loader.glitch-out .loader__video {
+  animation: video-glitch .45s steps(1) forwards;
+}
+
+/* camadas RGB fantasma sobre o vídeo */
+.loader.glitch-out::before,
+.loader.glitch-out::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  z-index: 2;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.loader.glitch-out::before {
+  box-shadow: inset 0 0 0 9999px rgba(168,255,31,.12);
+  animation: glitch-shift-r .45s steps(3) forwards;
+}
+
+.loader.glitch-out::after {
+  box-shadow: inset 0 0 0 9999px rgba(155,47,224,.12);
+  animation: glitch-shift-b .45s steps(3) forwards;
+}
+
+@keyframes loader-glitch {
+  0%   { opacity: 1; clip-path: inset(0 0 0 0); }
+  20%  { clip-path: inset(20% 0 35% 0); transform: translateX(-8px); }
+  40%  { clip-path: inset(60% 0 8% 0);  transform: translateX(10px); }
+  60%  { clip-path: inset(35% 0 50% 0); transform: translateX(-6px); }
+  80%  { clip-path: inset(10% 0 70% 0); transform: translateX(4px); opacity: .6; }
+  100% { opacity: 0; transform: translateX(0); }
+}
+
+@keyframes video-glitch {
+  0%   { filter: none; transform: translate(0,0); }
+  25%  { filter: hue-rotate(70deg) saturate(2); transform: translate(-6px,2px); }
+  50%  { filter: hue-rotate(-40deg) contrast(1.6); transform: translate(8px,-3px); }
+  75%  { filter: invert(.15) saturate(3); transform: translate(-4px,1px); }
+  100% { filter: none; transform: translate(0,0); opacity: 0; }
+}
+
+/* MOBILE: saída do loader por fade limpo (sobrepõe o glitch do desktop).
+   Vem depois das regras de .glitch-out → vence por ordem de fonte no mobile. */
+@media (max-width: 768px) {
+  .loader { transition: opacity .4s ease; }
+  .loader.glitch-out { animation: none; opacity: 0; }
+  .loader.glitch-out::before,
+  .loader.glitch-out::after { display: none; }
+}
+
+@keyframes glitch-shift-r {
+  0%, 100% { transform: translateX(0); opacity: 0; }
+  30%      { transform: translateX(-12px); opacity: 1; }
+  60%      { transform: translateX(8px);  opacity: .7; }
+}
+
+@keyframes glitch-shift-b {
+  0%, 100% { transform: translateX(0); opacity: 0; }
+  30%      { transform: translateX(12px);  opacity: 1; }
+  60%      { transform: translateX(-8px); opacity: .7; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loader { display: none; }
+}
+
+/* ── § GRAIN ──────────────────────────────────────── */
+.grain {
+  position: fixed;
+  inset: -100px;
+  width: calc(100% + 200px);
+  height: calc(100% + 200px);
+  pointer-events: none;
+  z-index: 800;
+  opacity: .45;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+  animation: grain-shift .7s steps(2) infinite;
+}
+
+@keyframes grain-shift {
+  0%   { transform: translate(0,0); }
+  25%  { transform: translate(-2%,1%); }
+  50%  { transform: translate(1%,-2%); }
+  75%  { transform: translate(-1%,-1%); }
+  100% { transform: translate(2%,0); }
+}
+
+/* ── § BLOBS ──────────────────────────────────────── */
+.blobs {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  mix-blend-mode: screen;
+  animation: blob-drift var(--bd,20s) var(--bo,0s) ease-in-out infinite alternate;
+}
+
+.b1 { width: 560px; height: 560px; background: var(--purple); top: -180px; left: -120px; opacity: .28; --bd: 24s; }
+.b2 { width: 480px; height: 480px; background: var(--neon);   bottom: -80px; right: -80px; opacity: .14; --bd: 19s; --bo: -6s; }
+.b3 { width: 380px; height: 380px; background: var(--purple); top: 45%; left: 55%; opacity: .18; --bd: 28s; --bo: -12s; }
+
+@keyframes blob-drift {
+  0%   { transform: translate(0,0)        scale(1); }
+  33%  { transform: translate(50px,-40px) scale(1.08); }
+  66%  { transform: translate(-40px,60px) scale(.93); }
+  100% { transform: translate(30px,20px)  scale(1.04); }
+}
+
+/* ── § WRAPPER ────────────────────────────────────── */
+.w {
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: var(--pad);
+  position: relative;
+  z-index: 1;
+}
+
+/* ── § BUTTONS ────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .4rem;
+  font-family: var(--f-mono);
+  font-size: .82rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: .75rem 1.85rem;
+  border-radius: var(--r);
+  transition: all var(--dur) var(--ease);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.btn--neon {
+  background: var(--neon);
+  color: var(--black);
+}
+.btn--neon:hover {
+  background: #c0ff52;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(168,255,31,.3);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--text);
+  border: 1.5px solid rgba(255,255,255,.35);
+}
+.btn--ghost:hover {
+  border-color: rgba(255,255,255,.7);
+  transform: translateY(-2px);
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--neon);
+  border: 1.5px solid var(--neon);
+}
+.btn--outline:hover {
+  background: rgba(168,255,31,.07);
+  transform: translateY(-2px);
+}
+
+/* ── § NAV ────────────────────────────────────────── */
+.nav {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline: 0;
+  height: var(--nav);
+  z-index: 700;
+  transition: transform .3s ease,
+              background var(--dur) var(--ease),
+              backdrop-filter var(--dur) var(--ease),
+              border-bottom var(--dur) var(--ease);
+}
+
+.nav.scrolled {
+  background: rgba(11,10,15,.94);
+  backdrop-filter: blur(18px) saturate(120%);
+  -webkit-backdrop-filter: blur(18px) saturate(120%);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 8px 24px rgba(0,0,0,.35);
+}
+
+/* esconde a navbar ao rolar p/ baixo (só o carrinho fica, via FAB) */
+body.nav-hidden .nav { transform: translateY(-100%); }
+
+/* carrinho flutuante — aparece só quando a navbar está oculta */
+.cart-fab {
+  display: none;
+  position: fixed;
+  top: 12px;
+  right: clamp(1rem, 4vw, 3rem);
+  z-index: 800;            /* acima da nav (700) */
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--text);
+  background: rgba(168,255,31,.16);     /* círculo sutil na cor da marca */
+  border: 1px solid rgba(168,255,31,.4);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  transition: background var(--dur) var(--ease);
+}
+.cart-fab:hover { background: rgba(168,255,31,.3); }
+body.nav-hidden .cart-fab { display: inline-flex; }
+
+.nav__in {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 100%;
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 3rem);
+  height: 100%;
+  gap: 2rem;
+}
+
+.nav__dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--neon);
+  box-shadow: 0 0 8px var(--neon);
+  flex-shrink: 0;
+}
+
+.nav__brand {
+  font-family: var(--f-head);
+  font-size: 1.35rem;
+  letter-spacing: .08em;
+  color: var(--text);
+}
+
+.nav__brand--neon {
+  color: var(--neon);
+}
+
+.nav__logo {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  text-decoration: none;
+}
+
+.navlist__cta {
+  margin-left: .5rem;
+}
+
+.navlist__cta .btn {
+  padding: .5rem 1.25rem;
+  font-size: .72rem;
+  border-radius: 999px;
+}
+/* o CTA é um <a>, mas NÃO deve herdar o hover de link da navlist
+   (que pintava o texto de neon por cima do fundo neon → sumia) */
+.navlist__cta .btn:hover { color: var(--black); }
+.navlist__cta .btn::after { display: none; }
+
+.navlist {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.navlist a {
+  font-family: var(--f-mono);
+  font-size: .72rem;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color var(--dur) var(--ease);
+  position: relative;
+  padding-block-end: 2px;
+}
+
+.navlist a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: var(--neon);
+  transition: width var(--dur) var(--ease);
+}
+
+.navlist a:hover        { color: var(--neon); }
+.navlist a:hover::after { width: 100%; }
+
+.burger {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--r);
+  transition: background var(--dur);
+}
+.burger:hover { background: rgba(168,255,31,.07); }
+
+.burger span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: transform var(--dur) var(--ease),
+              opacity var(--dur) var(--ease),
+              background var(--dur);
+  transform-origin: center;
+}
+
+.burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(6.5px) rotate(45deg);   background: var(--neon); }
+.burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); background: var(--neon); }
+
+@media (max-width: 768px) {
+  .burger { display: flex; }
+
+  .navlist {
+    position: fixed;
+    top: var(--nav);
+    inset-inline: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    background: rgba(11,10,15,.97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 1.5rem var(--pad) 2rem;
+    gap: 0;
+    transform: translateY(-105%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform var(--dur) var(--ease), opacity var(--dur) var(--ease);
+    border-bottom: 1px solid var(--border);
+    z-index: 699;
+  }
+
+  .navlist.open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .navlist li  { width: 100%; }
+  .navlist a   { display: block; font-size: .9rem; padding: .9rem 0; border-bottom: 1px solid rgba(255,255,255,.05); color: var(--text); }
+  .navlist a::after { display: none; }
+  .navlist a:hover  { color: var(--neon); }
+  .navlist li:last-child a { border-bottom: none; }
+}
+
+/* ── § HERO ───────────────────────────────────────── */
+.hero {
+  position: relative;
+  z-index: 1;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding: var(--nav) clamp(1rem, 4vw, 3rem) 5rem;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(11,10,15,.12) 3px,
+    rgba(11,10,15,.12) 4px
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero__inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 48fr 52fr;
+  align-items: center;
+  gap: 2rem;
+}
+
+.hero__eyebrow {
+  font-family: var(--f-mono);
+  font-size: clamp(.65rem, 1.1vw, .85rem);
+  letter-spacing: .18em;
+  color: var(--neon);
+  text-transform: uppercase;
+  margin-bottom: 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+}
+
+.hero__since {
+  font-family: var(--f-hand);
+  font-size: 1.1em;
+  color: var(--purple);
+  letter-spacing: .04em;
+  text-transform: none;
+}
+
+.hero__title {
+  font-family: var(--f-head);
+  font-size: clamp(2.8rem, 7vw, 6rem);
+  line-height: .88;
+  text-transform: uppercase;
+  margin-bottom: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.hero__title--white  { color: #fff; }
+.hero__title--neon   {
+  color: var(--neon);
+  /* glow neon em camadas, numa var p/ reduzir no mobile (estado aceso) */
+  --neon-glow: 0 0 4px rgba(168,255,31,.45), 0 0 8px rgba(168,255,31,.28), 0 0 15px rgba(168,255,31,.18);
+  text-shadow: var(--neon-glow);
+}
+.hero__title--purple { color: var(--purple); }
+
+/* ── Neon "acendendo" letra por letra (letreiro com contato ruim) ──
+   Cada letra vira <span.neon-flicker> via JS (main.js), começa apagada
+   e só acende quando a Hero entra na viewport (classe .lit, 1x). */
+.neon-flicker { color: #1a1a1a; text-shadow: none; }   /* apagada até ligar */
+
+.hero__title--neon.lit .neon-flicker {
+  animation-name: neon-ignite, neon-buzz;
+  animation-duration: .9s, 5s;
+  animation-timing-function: ease-out, ease-in-out;
+  animation-iteration-count: 1, infinite;
+  animation-fill-mode: both, none;
+  /* --d (delay por letra) é setado inline pelo JS; buzz começa após a ignição */
+  animation-delay: var(--d, 0ms), calc(var(--d, 0ms) + .9s);
+}
+
+/* ignição: 3 flashes irregulares e firma no neon */
+@keyframes neon-ignite {
+  0%   { color: #1a1a1a; text-shadow: none; }
+  9%   { color: var(--neon); text-shadow: 0 0 7px rgba(168,255,31,.8); }
+  13%  { color: #1a1a1a; text-shadow: none; }
+  21%  { color: var(--neon); text-shadow: 0 0 7px rgba(168,255,31,.85), 0 0 15px rgba(168,255,31,.5); }
+  25%  { color: #1a1a1a; text-shadow: none; }
+  34%  { color: #1a1a1a; text-shadow: none; }
+  41%  { color: var(--neon); text-shadow: 0 0 7px rgba(168,255,31,.9); }
+  46%  { color: #161616; text-shadow: none; }
+  58%  { color: var(--neon); text-shadow: var(--neon-glow); }
+  66%  { color: var(--neon); text-shadow: 0 0 5px rgba(168,255,31,.6); }
+  100% { color: var(--neon); text-shadow: var(--neon-glow); }
+}
+/* flicker sutil infinito: nunca fica 100% estático */
+@keyframes neon-buzz {
+  0%, 100% { opacity: 1; }
+  42% { opacity: 1; } 44% { opacity: .96; } 46% { opacity: 1; }
+  77% { opacity: 1; } 79% { opacity: .97; } 81% { opacity: 1; }
+}
+
+/* mobile: menos camadas de glow (performance) */
+@media (max-width: 768px) {
+  .hero__title--neon { --neon-glow: 0 0 3px rgba(168,255,31,.42), 0 0 6px rgba(168,255,31,.2); }
+}
+/* acessibilidade: sem flicker → neon estático */
+@media (prefers-reduced-motion: reduce) {
+  .hero__title--neon.lit .neon-flicker { animation: none; color: var(--neon); text-shadow: var(--neon-glow); }
+}
+
+.hero__sub {
+  font-family: var(--f-mono);       /* Space Mono — cara de etiqueta/streetwear */
+  font-size: clamp(.82rem, 1.2vw, .95rem);
+  color: rgba(255,255,255,.72);
+  line-height: 1.8;
+  letter-spacing: .01em;
+  max-width: 46ch;
+  margin-bottom: 2.4rem;
+}
+
+.hero__ctas {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.hero__video {
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  object-fit: contain;
+}
+
+.scroll-cue {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--f-mono);
+  font-size: .65rem;
+  letter-spacing: .18em;
+  color: var(--muted);
+  text-transform: uppercase;
+  animation: cue-bounce 2s var(--ease) infinite;
+  z-index: 1;
+}
+
+@keyframes cue-bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0);   opacity: .5; }
+  50%       { transform: translateX(-50%) translateY(7px); opacity: 1;  }
+}
+
+@media (max-width: 768px) {
+  .hero { padding-inline: var(--pad); }
+
+  .hero__inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .hero__eyebrow { justify-content: center; }
+  .hero__sub     { max-width: 100%; }
+  .hero__ctas    { justify-content: center; }
+  .hero__media   { order: -1; }
+  .hero__video   { max-width: 260px; }
+}
+
+/* ── § LOADER SINCE ───────────────────────────── */
+.loader { flex-direction: column; gap: 1.5rem; }
+
+.loader__since {
+  font-family: var(--f-body);
+  font-size: 14px;
+  color: #B6FF3C;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+  </style>
+
+  <!-- resto do CSS: não bloqueia o render (media=print engana o parser; o
+       onload devolve pra all assim que chega). noscript cobre JS desligado. -->
+  <link rel="stylesheet" href="css/style.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="css/style.css"></noscript>
 </head>
 <body>
 
@@ -926,7 +1679,7 @@
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script src="js/main.js" defer></script>
   <script>
     (function roleHScroll() {
       var wrap  = document.querySelector('.role-hs-wrap');
@@ -1036,9 +1789,9 @@
   </aside>
 
   <!-- motor compartilhado (Vitrine + carrinho integrado Loja/Adega) -->
-  <script src="js/shop.js"></script>
+  <script src="js/shop.js" defer></script>
 
   <!-- minigame Tabacrazy Flap + ranking local (seção #jogo) -->
-  <script src="js/game.js"></script>
+  <script src="js/game.js" defer></script>
 </body>
 </html>

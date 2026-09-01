@@ -1,3 +1,10 @@
+/* ⚠️ SINCRONIA: as seções § TOKENS até § HERO (tudo daqui até o banner
+   "§ SECTIONS (base)"), mais o bloco § LOADER SINCE, estão ESPELHADOS inline
+   no <head> do index.html como CSS crítico da primeira dobra.
+   Mexeu em qualquer uma dessas seções? Atualize o espelho lá também.
+   O espelho é intencional: o navegador pinta o hero sem esperar esta folha,
+   que carrega em seguida de forma não-bloqueante e reaplica as mesmas regras. */
+
 /* ═══════════════════════════════════════════════════
    TABACRAZY · style.css
    Tokens → Reset → Atmosphere → Nav → Hero
