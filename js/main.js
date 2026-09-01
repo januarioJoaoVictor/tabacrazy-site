@@ -297,14 +297,26 @@
     hidden = h;
     document.body.classList.toggle('nav-hidden', h);
   }
-  function onScroll() {
-    var y = window.scrollY || 0;
+  /* Alternar classe no <body> invalida o layout do documento inteiro, e o
+     scroll dispara em rajada. Agrupando a escrita num requestAnimationFrame,
+     acontece no máximo uma por frame, em vez de uma por evento. */
+  var agendado = false;
+
+  function aplicar() {
+    agendado = false;
+    var y = window.scrollY || 0;              // leitura barata: não força layout
     // fora do topo → fundo opaco/blur (evita a navbar transparente sobre fotos/texto)
     nav.classList.toggle('scrolled', y > 80);
     if (y <= 80) setHidden(false);              // topo: navbar sempre visível
     else if (y > lastY + 4) setHidden(true);    // rolando p/ baixo: esconde
     else if (y < lastY - 4) setHidden(false);   // rolando p/ cima: mostra
     lastY = y;
+  }
+
+  function onScroll() {
+    if (agendado) return;
+    agendado = true;
+    requestAnimationFrame(aplicar);
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll(); // estado inicial (ex.: recarregar já rolado)

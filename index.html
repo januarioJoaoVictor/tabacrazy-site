@@ -29,17 +29,99 @@
        (fonts.googleapis.com + fonts.gstatic.com) do caminho crítico. -->
   <link rel="preload" href="assets/fonts/anton-400.woff2"      as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/space-mono-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/fonts.css">
 
   <!-- LCP da home: o octopus do hero. Descoberto já no <head>, antes do CSS. -->
   <link rel="preload" href="logo/logoSemFundo.webp" as="image" fetchpriority="high">
 
   <!-- ░ CSS CRÍTICO (primeira dobra) — inline pra pintar sem esperar requisição ░
-       ESPELHO das seções § TOKENS até § HERO de css/style.css (tudo até o
-       banner "§ SECTIONS (base)") mais o bloco § LOADER SINCE.
+       ESPELHO de css/fonts.css + seções § TOKENS até § HERO de css/style.css
+       (tudo até o banner "§ SECTIONS (base)") mais o bloco § LOADER SINCE.
+       O fonts.css entra aqui porque, com 906 bytes, um <link> próprio custava
+       um round-trip bloqueante só pra declarar os @font-face.
        ⚠️ Editou alguma dessas seções lá? Atualize este espelho. O style.css completo carrega logo abaixo,
        de forma não-bloqueante, e reaplica estas mesmas regras. -->
   <style>
+/* ═══════════════════════════════════════════════════
+   TABACRAZY · fonts.css — fontes auto-hospedadas
+   ───────────────────────────────────────────────────
+   Antes vinham do Google Fonts, o que custava DOIS handshakes de
+   origem terceira (fonts.googleapis.com p/ o CSS + fonts.gstatic.com
+   p/ os arquivos) no caminho crítico de render. Agora saem do mesmo
+   domínio, na mesma conexão HTTP/2 do resto do site.
+
+   Só o subset `latin` — cobre todo o pt-BR (os acentos vivem em
+   U+00C0–U+00FF) e é exatamente o que o navegador já baixava.
+   Todas as famílias são OFL (auto-hospedagem permitida).
+
+   font-display: swap → o texto aparece na hora com a fonte de
+   sistema e troca quando a real chega; nunca fica invisível.
+   ═══════════════════════════════════════════════════ */
+
+@font-face {
+  font-family: 'Anton';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('assets/fonts/anton-400.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Bangers';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('assets/fonts/bangers-400.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Permanent Marker';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('assets/fonts/permanent-marker-400.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('assets/fonts/space-grotesk-300.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('assets/fonts/space-grotesk-400.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('assets/fonts/space-grotesk-700.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Space Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('assets/fonts/space-mono-400.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Space Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('assets/fonts/space-mono-700.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 /* ⚠️ SINCRONIA: as seções § TOKENS até § HERO (tudo daqui até o banner
    "§ SECTIONS (base)"), mais o bloco § LOADER SINCE, estão ESPELHADOS inline
    no <head> do index.html como CSS crítico da primeira dobra.
@@ -933,27 +1015,27 @@ body.nav-hidden .cart-fab { display: inline-flex; }
  <!-- ░ TICKER ░ -->
 <div class="ticker-wrap" aria-hidden="true">
   <div class="ticker-track">
-    <span class="ti-item ti-brand"><img src="assets/marcas/ocb.svg" alt="OCB" class="ti-brand__img" loading="lazy"></span>
+    <span class="ti-item ti-brand"><img src="assets/marcas/ocb.svg" alt="OCB" class="ti-brand__img" loading="lazy" width="105" height="34"></span>
     <span class="ti-item ti-brand ti-brand--text">RAW</span>
-    <span class="ti-item ti-brand"><img src="assets/marcas/lion.svg" alt="Lion Rolling Circus" class="ti-brand__img" loading="lazy"></span>
+    <span class="ti-item ti-brand"><img src="assets/marcas/lion.svg" alt="Lion Rolling Circus" class="ti-brand__img" loading="lazy" width="156" height="150"></span>
     <span class="ti-item ti-brand ti-brand--text">ZOMO</span>
     <span class="ti-item ti-brand ti-brand--text">CLIPPER</span>
     <span class="ti-item ti-brand ti-brand--text">SANTA CRUZ</span>
     <span class="ti-item ti-brand ti-brand--text">HQ</span>
     <span class="ti-item ti-brand ti-brand--text">GORILLA</span>
     <span class="ti-item ti-brand ti-brand--text">BLUE ICE</span>
-    <span class="ti-item ti-brand"><img src="assets/marcas/ocb.svg" alt="OCB" class="ti-brand__img" loading="lazy"></span>
+    <span class="ti-item ti-brand"><img src="assets/marcas/ocb.svg" alt="OCB" class="ti-brand__img" loading="lazy" width="105" height="34"></span>
     <span class="ti-item ti-brand ti-brand--text">RAW</span>
-    <span class="ti-item ti-brand"><img src="assets/marcas/lion.svg" alt="Lion Rolling Circus" class="ti-brand__img" loading="lazy"></span>
+    <span class="ti-item ti-brand"><img src="assets/marcas/lion.svg" alt="Lion Rolling Circus" class="ti-brand__img" loading="lazy" width="156" height="150"></span>
     <span class="ti-item ti-brand ti-brand--text">ZOMO</span>
     <span class="ti-item ti-brand ti-brand--text">CLIPPER</span>
     <span class="ti-item ti-brand ti-brand--text">SANTA CRUZ</span>
     <span class="ti-item ti-brand ti-brand--text">HQ</span>
     <span class="ti-item ti-brand ti-brand--text">GORILLA</span>
     <span class="ti-item ti-brand ti-brand--text">BLUE ICE</span>
-    <span class="ti-item ti-brand"><img src="assets/marcas/ocb.svg" alt="OCB" class="ti-brand__img" loading="lazy"></span>
+    <span class="ti-item ti-brand"><img src="assets/marcas/ocb.svg" alt="OCB" class="ti-brand__img" loading="lazy" width="105" height="34"></span>
     <span class="ti-item ti-brand ti-brand--text">RAW</span>
-    <span class="ti-item ti-brand"><img src="assets/marcas/lion.svg" alt="Lion Rolling Circus" class="ti-brand__img" loading="lazy"></span>
+    <span class="ti-item ti-brand"><img src="assets/marcas/lion.svg" alt="Lion Rolling Circus" class="ti-brand__img" loading="lazy" width="156" height="150"></span>
     <span class="ti-item ti-brand ti-brand--text">ZOMO</span>
     <span class="ti-item ti-brand ti-brand--text">CLIPPER</span>
     <span class="ti-item ti-brand ti-brand--text">SANTA CRUZ</span>
@@ -1717,11 +1799,29 @@ body.nav-hidden .cart-fab { display: inline-flex; }
 
       var total = track.querySelectorAll('.role-panel').length; // 5
 
-      function tick() {
-        var scrolled  = -wrap.getBoundingClientRect().top;
-        var scrollMax = wrap.offsetHeight - window.innerHeight;
+      /* Antes o tick LIA layout (getBoundingClientRect + offsetHeight) e ESCREVIA
+         (transform + width) no mesmo evento de scroll. Como o scroll dispara em
+         rajada, cada leitura era forçada a esperar o layout da escrita anterior
+         — o "reflow forçado" que o PSI acusava.
+
+         Agora: as medidas de geometria ficam em cache (só mudam no resize), o
+         scroll lê apenas window.scrollY (barato, não força layout) e a escrita
+         acontece uma vez por frame, dentro do requestAnimationFrame. */
+      var wrapTop = 0, wrapAltura = 0, vh = 0, agendado = false;
+
+      function medir() {
+        var r = wrap.getBoundingClientRect();
+        wrapTop    = r.top + window.scrollY;   // posição absoluta na página
+        wrapAltura = wrap.offsetHeight;
+        vh         = window.innerHeight;
+      }
+
+      function pintar() {
+        agendado = false;
+        var scrollMax = wrapAltura - vh;
         if (scrollMax <= 0) return;
 
+        var scrolled = window.scrollY - wrapTop;
         var progress = Math.max(0, Math.min(1, scrolled / scrollMax));
         var xVw      = progress * (total - 1) * 100;
 
@@ -1729,8 +1829,15 @@ body.nav-hidden .cart-fab { display: inline-flex; }
         if (bar) bar.style.width = ((progress * (total - 1) + 1) / total * 100) + '%';
       }
 
+      function tick() {
+        if (agendado) return;                  // no máx. uma escrita por frame
+        agendado = true;
+        requestAnimationFrame(pintar);
+      }
+
       window.addEventListener('scroll', tick, { passive: true });
-      window.addEventListener('resize', tick, { passive: true });
+      window.addEventListener('resize', function () { medir(); tick(); }, { passive: true });
+      medir();
       tick();
     })();
 
