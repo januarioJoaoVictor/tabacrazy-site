@@ -231,7 +231,7 @@ body.loader-active { overflow: hidden; }
 @media (max-width: 768px) {
   .loader {
     transition: opacity .4s ease;
-    animation: loader-fade-out .4s ease var(--loader-hold, 700ms) forwards;
+    animation: loader-fade-out .4s ease var(--loader-hold, 250ms) forwards;
     pointer-events: none;          /* nunca precisou capturar clique */
   }
   .loader.glitch-out { animation: none; opacity: 0; }
@@ -643,31 +643,56 @@ body.nav-hidden .cart-fab { display: inline-flex; }
 /* ── Neon "acendendo" letra por letra (letreiro com contato ruim) ──
    Cada letra vira <span.neon-flicker> via JS (main.js), começa apagada
    e só acende quando a Hero entra na viewport (classe .lit, 1x). */
-.neon-flicker { color: #1a1a1a; text-shadow: none; }   /* apagada até ligar */
-
-.hero__title--neon.lit .neon-flicker {
-  animation-name: neon-ignite, neon-buzz;
-  animation-duration: .9s, 5s;
-  animation-timing-function: ease-out, ease-in-out;
-  animation-iteration-count: 1, infinite;
-  animation-fill-mode: both, none;
-  /* --d (delay por letra) é setado inline pelo JS; buzz começa após a ignição */
-  animation-delay: var(--d, 0ms), calc(var(--d, 0ms) + .9s);
+/* A letra APAGADA é o próprio span; a ACESA é uma cópia sobreposta no ::after.
+   Antes o neon-ignite animava `color` + `text-shadow`, que o compositor não
+   consegue promover pra GPU (repinta a cada frame). Agora a camada acesa
+   existe o tempo todo, pronta, e o que anima é só a `opacity` dela —
+   compositada. O flicker é o mesmo: onde o original apagava a letra, a
+   camada vai a 0; onde acendia mais fraco, ela fica em opacity parcial,
+   o que atenua cor e brilho juntos, igual ao original fazia. */
+.neon-flicker {
+  color: #1a1a1a;
+  text-shadow: none;
+  position: relative;
+  /* inline-block é necessário: num elemento inline a caixa de referência do
+     ::after absoluto é a line box, não o glifo — a cópia acesa saía desalinhada.
+     Cada letra já é um span isolado, então o kerning não muda com isso. */
+  display: inline-block;
 }
 
-/* ignição: 3 flashes irregulares e firma no neon */
+.neon-flicker::after {
+  content: attr(data-ch);          /* mesma letra, setada pelo JS em main.js */
+  position: absolute;
+  inset: 0;                         /* casa exatamente com a caixa do glifo */
+  color: var(--neon);
+  text-shadow: var(--neon-glow);
+  opacity: 0;                       /* apagada até a ignição */
+  pointer-events: none;
+}
+
+/* buzz infinito segue no span (já era só opacity, já compositava) */
+.hero__title--neon.lit .neon-flicker {
+  animation: neon-buzz 5s ease-in-out calc(var(--d, 0ms) + .9s) infinite;
+}
+
+/* ignição na camada acesa; --d (delay por letra) vem do span, por herança */
+.hero__title--neon.lit .neon-flicker::after {
+  animation: neon-ignite .9s ease-out var(--d, 0ms) both;
+}
+
+/* ignição: 3 flashes irregulares e firma no neon (só opacity → GPU) */
 @keyframes neon-ignite {
-  0%   { color: #1a1a1a; text-shadow: none; }
-  9%   { color: var(--neon); text-shadow: 0 0 7px rgba(168,255,31,.8); }
-  13%  { color: #1a1a1a; text-shadow: none; }
-  21%  { color: var(--neon); text-shadow: 0 0 7px rgba(168,255,31,.85), 0 0 15px rgba(168,255,31,.5); }
-  25%  { color: #1a1a1a; text-shadow: none; }
-  34%  { color: #1a1a1a; text-shadow: none; }
-  41%  { color: var(--neon); text-shadow: 0 0 7px rgba(168,255,31,.9); }
-  46%  { color: #161616; text-shadow: none; }
-  58%  { color: var(--neon); text-shadow: var(--neon-glow); }
-  66%  { color: var(--neon); text-shadow: 0 0 5px rgba(168,255,31,.6); }
-  100% { color: var(--neon); text-shadow: var(--neon-glow); }
+  0%   { opacity: 0; }
+  9%   { opacity: .85; }
+  13%  { opacity: 0; }
+  21%  { opacity: .92; }
+  25%  { opacity: 0; }
+  34%  { opacity: 0; }
+  41%  { opacity: .88; }
+  46%  { opacity: 0; }
+  58%  { opacity: 1; }
+  66%  { opacity: .8; }
+  100% { opacity: 1; }
 }
 /* flicker sutil infinito: nunca fica 100% estático */
 @keyframes neon-buzz {
@@ -682,7 +707,8 @@ body.nav-hidden .cart-fab { display: inline-flex; }
 }
 /* acessibilidade: sem flicker → neon estático */
 @media (prefers-reduced-motion: reduce) {
-  .hero__title--neon.lit .neon-flicker { animation: none; color: var(--neon); text-shadow: var(--neon-glow); }
+  .hero__title--neon.lit .neon-flicker { animation: none; }
+  .hero__title--neon.lit .neon-flicker::after { animation: none; opacity: 1; }
 }
 
 .hero__sub {

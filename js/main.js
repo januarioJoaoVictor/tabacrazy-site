@@ -45,7 +45,7 @@
        Sem glitch-out: a animação do CSS já termina em opacity 0. */
     document.body.classList.remove('loader-active');
     dismissed = true;                            // trava o dismiss() do desktop
-    setTimeout(() => { if (el.isConnected) el.remove(); }, 1200);
+    setTimeout(() => { if (el.isConnected) el.remove(); }, 800);  // 250ms hold + .4s fade + folga
   }
 })();
 
@@ -233,6 +233,7 @@
     s.className = 'neon-flicker';
     s.setAttribute('aria-hidden', 'true');
     s.textContent = ch;
+    s.setAttribute('data-ch', ch);   // o ::after acende esta mesma letra por cima
     s.style.setProperty('--d', (n * 90 + Math.floor(Math.random() * 60)) + 'ms');
     el.appendChild(s);
     n++;
